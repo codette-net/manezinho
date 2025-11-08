@@ -146,21 +146,97 @@
             d="M0,150 C600,100 1000,50 1200,-1.13686838e-13 C1200,6.8027294 1200,56.8027294 1200,150 L0,150 Z"></path>
           <path fill="rgba(242, 170, 13,0.6)"
             d="M0,150 C600,120 1000,80 1200,30 C1200,36.8027294 1200,76.8027294 1200,150 L0,150 Z"></path>
-          <path fill="rgb(242, 170, 13)" d="M0,150 C600,136.666667 1000,106.666667 1200,60 C1200,74 1200,104 1200,150 L0,150 Z">
+          <path fill="rgb(242, 170, 13)"
+            d="M0,150 C600,136.666667 1000,106.666667 1200,60 C1200,74 1200,104 1200,150 L0,150 Z">
           </path>
           <defs></defs>
         </svg>
       </div>
     </section>
-    <section class="panel">
+    <section class="" id="reservation">
+      <header class="full-width bg-primary">
+        <h2>Welcome to Art Restaurant Manezinho</h2>
+        <h3>Make a reservation</h3>
+
+        <p>Where culinary excellence meets artistic expression in a unique dining experience.</p>
+      </header>
+      <form class="reservation-form" action="" method="post" enctype="multipart/form-data">
+
+        <div class="fields">
+          <div class="field half">
+            <label for="name">Name <span class="form-required">* required</span></label>
+            <input type="text" id="first_name" name="first_name" placeholder="Enter your name"
+              title="First name must contain only characters!" required>
+
+          </div>
+
+          <div class="field half">
+            <label for="email">Email <span class="form-required">* required</span></label>
+            <input type="email" id="email" name="email" placeholder="Enter your email"
+              title="Please enter a valid email address!" required>
+
+          </div>
+          <!-- accept phone number with numbers , () and - only -->
+          <div class="field quarter">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="" placeholder="Enter your phone number"
+              title="Please enter a valid phone number!">
+          </div>
+          <!-- // datepicker  -->
+          <div class="field quarter">
+            <label for="persons">Number of persons <span class="form-required">* required</span></label>
+            <input type="number" name="persons" id="persons" placeholder="Enter number of persons" min=1 max=20 required
+              title="Please enter a number between 1 and 20!">
+          </div>
+          <div class="field quarter">
+            <label for="date">Date <span class="form-required">* required</span></label>
+            <input type="date" name="date" id="date-reservation" required>
+          </div>
+          <!-- number of persons  -->
+          <div class="field quarter">
+            <label for="time">Time <span class="form-required">* required</span></label>
+            <!-- 15 minutes intervals selection betweeen 1830 and 2130 -->
+            <select name="time" id="time" required>
+              <option value="" disabled selected>Select a time</option>
+       
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="18:45">18:45</option>
+              <option value="19:00" selected>19:00</option>
+              <option value="19:15">19:15</option>
+              <option value="19:30">19:30</option>
+              <option value="19:45">19:45</option>
+              <option value="20:00">20:00</option>
+              <option value="20:15">20:15</option>
+              <option value="20:30">20:30</option>
+              <option value="20:45">20:45</option>
+              <option value="21:00">21:00</option>
+              <option value="21:15">21:15</option>
+              <option value="21:30">21:30</option>
+            </select>
+          </div>
+          <div class="field half">
+            <label for="message">Additional information </label>
+            <textarea name="message" id="message" rows="3" placeholder=" "></textarea>
+          </div>
+          <div class="field quarter button-field">
+            <input type="submit" value="Send" class="primary" />
+            <input type="reset" value="Clear" class="button transparent " />
+          </div>
+          <div class="field half last-field">
+            <p class="errors-msg"></p>
+            <!-- <div class="g-recaptcha" data-sitekey="6LfUEvQpAAAAABZlIBzegXpvRMnnVGGwtCKaUMZ2"></div> -->
+
+
+          </div>
+      </form>
       <div id="hero">
         <div class="hero-content">
 
         </div>
       </div>
     </section>
-    <section id="reservation">
-      <h2>Make a reservation</h2>
+    <section>
 
     </section>
   </main>
