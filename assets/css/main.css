@@ -1,4 +1,3 @@
-@import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300i,400i");
 @font-face {
     font-family: Antonio;
@@ -783,6 +782,12 @@ hr {
     html {
         font-size: 11pt;
     }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Form */

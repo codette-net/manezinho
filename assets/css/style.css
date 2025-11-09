@@ -3,10 +3,10 @@ nav {
     top: 0;
     z-index: 999;
     width: 100%;
-    background-image: transparent;
+    background-image: linear-gradient(to bottom, hsla(var(--neutral-900), 0.95), hsla(var(--neutral-900), 0.6) 70%, hsla(var(--neutral-900), 0));
     padding-block: 0.5rem;
     transition: background-image 800ms cubic-bezier(0.62, 0.34, 0.04, 0.7);
-    background: rgb(12, 16, 11, 0.85);
+    background-color: hsla(var(--neutral-900), 0.8);
     min-height: var(--nav-height);
 }
 
@@ -45,15 +45,17 @@ nav::before {
 }
 a.logo-link,
 a.logo-link:hover,
-a.logo-link:focus {
+a.logo-link:focus,
+a.nav-link,
+a.nav-link:hover,
+a.nav-link:focus {
   text-decoration : none;
   border: unset;
 }
 .logo-link:focus-visible,
 .nav-link:focus-visible {
-  outline: 4px solid var(--white-tint-2);
-  outline-offset: 0.2em;
-  border-radius: 0.5rem;
+  outline: 1px solid var(--primary);
+  outline-offset: 3px
 }
 
 .nav-links {
@@ -70,7 +72,7 @@ a.logo-link:focus {
   left: 0;
   right: 0;
   padding: 1.5rem;
-  border-bottom: 1px solid var(--gold);
+  border-bottom: 1px solid var(--primary);
   text-align: center;
 }
 
@@ -93,7 +95,7 @@ a.logo-link:focus {
 }
 
 .btn--menu {
-  color: var(--gold);
+  color: var(--primary);
   background-color: transparent;
   border: none;
   display: grid;
@@ -125,7 +127,7 @@ li[role="none"], .nav-link {
   text-align: center;
   text-decoration: none;
 
-  border: 1px solid var(--gold);
+  border: 1px solid var(--primary);
   border-left: none;
   border-right: none;
 }
