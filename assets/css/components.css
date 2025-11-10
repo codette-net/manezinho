@@ -153,6 +153,7 @@ inset: 0;
   flex: 1;
   position: relative;
   border: 0;
+  border-radius: 6px;
 }
 
 .image.filtered:after {
@@ -251,6 +252,8 @@ inset: 0;
 
 .image img {
   display: block;
+  border-radius: 6px;
+
 }
 
 .image.left,
@@ -1806,6 +1809,33 @@ body.is-preload #scroll-x-wrapper {
   transform: translateX(2rem);
   opacity: 0;
 }
+
+/* shadow classes  */
+.shadow-low {
+  box-shadow: var(--shadow-elevation-low);
+}
+
+.shadow-medium {
+  box-shadow: var(--shadow-elevation-medium);
+}
+.shadow-high {
+  box-shadow: var(--shadow-elevation-high);
+}
+
+.shadow {
+  box-shadow: var(--shadow);
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
 
 @media screen and (max-width: 736px) {
   #scroll-x-wrapper {
