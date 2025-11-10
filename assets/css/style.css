@@ -122,7 +122,6 @@ li[role="none"], .nav-link {
 }
 
 .nav-link[aria-current="page"] {
-  color: var(--gold-tint-2);
   padding: 0.5em 2em;
   text-align: center;
   text-decoration: none;
