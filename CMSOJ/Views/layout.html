@@ -4,6 +4,7 @@
   <title>Manezinho | {% yield title %} </title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  {% yield meta %}
 
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/components.css">
@@ -14,9 +15,12 @@
 </head>
 
 <body class="">
+  {% yield nav %}
 
   {% yield content %}
-  
+  {% yield scripts %} 
+  {%yield footer %}
+
 </body>
 
 </html>
