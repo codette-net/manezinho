@@ -43,6 +43,8 @@
     --primary-700: 37, 80%, 32%;
     --primary-800: 35, 75%, 25%;
     --primary-900: 33, 70%, 18%;
+    --primary-950: 33, 65%, 12%;
+    --primary-1000: 33, 60%, 8%;
 
     /* ===================================
      Accent: Deep Blue (Denim tone)
@@ -1268,17 +1270,25 @@ header {
 
 section.hero header {
     position: absolute;
+    inset: 0;
     z-index: 1;
-    bottom: 6%;
-    left: 3%;
-    margin: var(--spacing-base);
-    background: linear-gradient(
-        to right bottom,
-        hsla(var(--primary-900), 0.6),
-        hsla(var(--neutral-900), 0.8)
+    background-color: hsla(var(--neutral-900), 0.2);
+    background-image: linear-gradient( 
+        to  bottom,
+        hsla(var(
+    --primary-900), 0.6),
+        hsla(var(--primary-950), 0.8)
     );
-    backdrop-filter: blur(5px);
-    border-radius: var(--border-radius);
+    border: unset;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    box-shadow: unset;
 }
 
 section.home-food {
@@ -1294,12 +1304,14 @@ section.home-food {
 
 .img-scroller,
 .food-images {
-    position: absolute;
+    position: relative;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     overflow: hidden;
+    isolation: isolate  ;
+    
 }
 
 .food-images {
@@ -1317,8 +1329,8 @@ section.home-food {
     z-index: -1;
     opacity: 0.5;
     object-fit: cover;
-    object-position: 66%;
-    border: 1px solid rgba(12, 16, 11);
+    border: none;  
+    transform-origin: center center ;
 }
 
 .food-scroll {
@@ -1339,12 +1351,22 @@ section.home-food {
 .food-scroll.active {
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
-    z-index: 0;
+    z-index: 2;
 }
+
+.img-scroller,
+.food-images,
+.image-scroll,
+.food-scroll img {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
 
 img.image-scroll.active,
 .food-scroll.active img {
-    animation: zoom 15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation: zoom 15s infinite ease-in-out;
 }
 
 .food-scroll {
@@ -1379,20 +1401,76 @@ img.image-scroll.active,
     position: absolute;
     bottom: -10px;
     width: 100%;
+    z-index: 2;
     /* min-height: 100%; */
 }
 
-@keyframes zoom {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
+.hero-sliding {
+    font-weight: 700;
+    display: inline-flex;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
 }
+
+.slide-word {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.25s ease-in-out;
+}
+
+
+.slide-word.visible {
+    display: inline-block;
+    animation: slideWords 5s infinite;
+}
+
+
+
+@keyframes slideWords {
+    0%   { transform: translateY(100%); opacity: 0; }
+    15%  {  opacity: 0.5; }
+    30%  { transform: translateY(0); opacity: 1; visibility: visible;}
+    45%  { opacity: 1; }
+    60%  { transform: translateY(-80%) ;}
+    70%  { opacity: 0.5; }
+    85%  { transform: translateY(-100%); opacity: 0; visibility: hidden;}
+    100% { opacity: 0; }
+}
+
+
+
+.hero-sub {
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+}
+.hero-header {
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+}
+
+@keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+
+@keyframes zoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+#introduction {
+    border-radius: 0 0 6px 6px;
+    box-shadow: var(--shadow-md);
+}
+
 
 footer {
     background-image: linear-gradient(

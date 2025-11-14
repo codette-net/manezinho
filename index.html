@@ -15,7 +15,6 @@
 
 <body class="">
 
-
   <nav>
 
     <div class="container nav-container">
@@ -75,17 +74,17 @@
       </div>
 
     </div>
-    <div class="nav-info">
-      <div id="nav-info-hours">
-        Open Wednesday - Sunday from 18:30 till 02:00
-      </div>
-      <div class="nav-info-contact">
-        <a href="tel:+351295414096" class="button primary small">+351295414096</a>
-        <a href="/#reservation" class="button primary small">Reservation</a>
-      </div>
-    </div>
   </nav>
 
+  <div class="nav-info">
+    <div id="nav-info-hours">
+      Open Wednesday - Sunday from 18:30 till 02:00
+    </div>
+    <div class="nav-info-contact">
+      <a href="tel:+351295414096" class="button transparent small">+351295414096</a>
+      <a href="/#reservation" class="button transparent small">Reservation</a>
+    </div>
+  </div>
   <main>
     <section class="hero">
       <div class="img-scroller">
@@ -133,9 +132,14 @@
 
       </div>
       <header>
-        <h1>Art Restaurant Manezinho</h1>
-        <p>Experience the fusion of art and cuisine in the heart of São Jorge, Azores.</p>
-        <a href="./menu" class="button primary">Explore Our Menu</a>
+        <h1 class="hero-header">Art Restaurant Manezinho</h1>
+        <p class="hero-sub">Experience the fusion of art and cuisine in the heart of São Jorge, Azores.</p>
+        <h2 class="hero-sliding">
+          <span class="slide-word">Azorean Cuisine</span>
+          <span class="slide-word">Local ingredients</span>
+          <span class="slide-word">Art & Music</span>
+        </h2>
+        <a href="./menu" class="button primary">Find out more</a>
       </header>
 
 
@@ -151,6 +155,18 @@
           <defs></defs>
         </svg>
       </div>
+    </section>
+    <section id="introduction" class="panel bg-primary">
+      <div class="col">
+        <h2 class="major"> Experience the spirit of the islands</h2>
+        <p>
+          Manezinho brings together authentic Azorean flavours, live music and a relaxed coastal atmosphere. Our menu is
+          inspired by the ingredients and traditions of São Jorge, creating a true taste of the islands. Whether you
+          join us for a meal, a concert or a quiet moment by the coast, Manezinho offers a welcoming experience shaped
+          by the heart of the Azores.
+        </p>
+      </div>
+
     </section>
     <section id="flavours" class="panel">
       <div class="col">
@@ -178,7 +194,8 @@
 
     <section id="events" class="panel">
       <div class="col">
-        <div class="image shadow-low"><img src="./assets/img/pieterJet.png" alt="Pieter and Jet on stage" loading="lazy"></div>
+        <div class="image shadow-low"><img src="./assets/img/pieterJet.png" alt="Pieter and Jet on stage"
+            loading="lazy"></div>
       </div>
       <div class="col">
         <h2 class="major">Live Music & Events</h2>
@@ -201,7 +218,8 @@
         <a href="/about.html" class="button primary">Read more</a>
       </div>
       <div class="col">
-        <div class="image shadow-low"><img src="./assets/img/pieteRiniEwi.jpg" alt="Art at Manezinho" loading="lazy"></div>
+        <div class="image shadow-low"><img src="./assets/img/pieteRiniEwi.jpg" alt="Art at Manezinho" loading="lazy">
+        </div>
       </div>
     </section>
 
@@ -389,14 +407,33 @@
       "@type": "Restaurant",
       "name": "Art restaurant Manezinho",
       "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
-      "openingHours": "We,Th,Fr,Sa,Su 16:00-02:00",
+      "openingHours": "We,Th,Fr,Sa,Su 18:30-02:00",
       "telephone": "+351295414096"
     }
   </script>
   <script>
-    // made by Jos Velema 2022
+    document.addEventListener("DOMContentLoaded", () => {
+      const words = document.querySelectorAll(".slide-word");
+      let index = 0;
+
+      function cycle() {
+        words.forEach(w => w.classList.remove("visible"));
+        words[index].classList.add("visible");
+        index = (index + 1) % words.length;
+      }
+
+      cycle();
+      setInterval(cycle, 2500);
+    });
+
+
+    // made by Jos Velema 2022 , redesigned in 2025
     const navBtn = document.querySelector("#menu-btn");
     const nav = document.querySelector("nav");
+    const navOffset = nav.offsetTop;
+    const navInfo = document.querySelector(".nav-info");
+
+    const main = document.querySelector("main");
     const navLinks = document.querySelector(".nav-links");
     const navLink = document.querySelectorAll(".nav-link");
 
@@ -424,16 +461,15 @@
       !isExpanded && nav.classList.add("active");
     });
 
-    const navObserver = new IntersectionObserver(
-      (watchEntry) => {
-        !watchEntry[0].isIntersecting
-          ? nav.classList.add("active")
-          : nav.classList.remove("active");
-      },
-      { threshold: 0.85 }
-    );
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > navOffset) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    });
 
-    navObserver.observe(document.querySelector("header"));
+
 
     const fadeUpObserver = new IntersectionObserver(
       (elsToWatch) => {
