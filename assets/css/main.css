@@ -114,24 +114,24 @@
      Shadows (brighter and more visible for dark bg)
      Using subtle warm-gray glows for realism
   =================================== */
-   --shadow-color: 40, 33%, 30%;
-    --shadow-sm: 0 1px 2px hsla(var(--shadow-color) , 0.4);
-    --shadow: 0 2px 6px hsla(var(--shadow-color) , 0.35),
-        0 1px 3px hsla(var(--shadow-color) , 0.25);
-    --shadow-md: 0 6px 12px hsla(var(--shadow-color) , 0.4),
-        0 3px 6px hsla(var(--shadow-color) , 0.25);
-    --shadow-lg: 0 10px 25px hsla(var(--shadow-color) , 0.45),
-        0 4px 10px hsla(var(--primary-700) , 0.25); 
+    --shadow-color: 40, 33%, 30%;
+    --shadow-sm: 0 1px 2px hsla(var(--shadow-color), 0.4);
+    --shadow: 0 2px 6px hsla(var(--shadow-color), 0.35),
+        0 1px 3px hsla(var(--shadow-color), 0.25);
+    --shadow-md: 0 6px 12px hsla(var(--shadow-color), 0.4),
+        0 3px 6px hsla(var(--shadow-color), 0.25);
+    --shadow-lg: 0 10px 25px hsla(var(--shadow-color), 0.45),
+        0 4px 10px hsla(var(--primary-700), 0.25);
 
-  /* Elevated glow variants (good for buttons,cards)  */
-    --shadow-elevation-low: 0 1px 2px hsla(var(--shadow-color) , 0.4),
-        0 2px 4px hsla(var(--shadow-color) , 0.25);
+    /* Elevated glow variants (good for buttons,cards)  */
+    --shadow-elevation-low: 0 1px 2px hsla(var(--shadow-color), 0.4),
+        0 2px 4px hsla(var(--shadow-color), 0.25);
 
-    --shadow-elevation-medium: 0 4px 8px hsla(var(--shadow-color) , 0.35),
-        0 6px 12px hsla(var(--shadow-color) , 0.25);
+    --shadow-elevation-medium: 0 4px 8px hsla(var(--shadow-color), 0.35),
+        0 6px 12px hsla(var(--shadow-color), 0.25);
 
-    --shadow-elevation-high: 0 8px 16px hsla(var(--shadow-color) , 0.4),
-        0 12px 24px hsla(var(--primary-700) , 0.25);
+    --shadow-elevation-high: 0 8px 16px hsla(var(--shadow-color), 0.4),
+        0 12px 24px hsla(var(--primary-700), 0.25);
     /* ===================================
      Gradients
   =================================== */
@@ -325,7 +325,11 @@ body {
             hsla(var(--neutral-1000), 0.85),
             hsla(var(--neutral-950), 0.85)
         ),
-        radial-gradient(ellipse at bottom, hsla(var(--primary-500),0.85), transparent);
+        radial-gradient(
+            ellipse at bottom,
+            hsla(var(--primary-500), 0.85),
+            transparent
+        );
     background-attachment: fixed;
     background-size: cover;
 }
@@ -522,7 +526,7 @@ textarea {
     color: rgba(255, 255, 255, 0.75);
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.65;
 }
 
@@ -540,8 +544,14 @@ a:hover:not(.button) {
 
 strong,
 b {
-    color: hsla(var(--neutral-100),0.85);
-    font-weight: 400;
+    color: hsla(var(--neutral-100), 0.85);
+    font-weight: 500;
+}
+
+.bg-primary strong,
+.bg-primary b {
+    color: hsla(var(--neutral-950), 0.9);
+    font-weight: 600;
 }
 
 em,
@@ -550,7 +560,9 @@ i {
 }
 
 p {
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1rem 0;
+    width: min(95%, 88ch);
+
 }
 
 body.is-ie p {
@@ -563,12 +575,12 @@ h3,
 h4,
 h5,
 h6 {
-    color: hsla(var(--neutral-100),0.85);
-    font-family: Arial, Helvetica, sans-serif;
+    color: hsla(var(--neutral-100), 0.85);
+    font-family: "Limosine-reg", Arial, Helvetica, sans-serif;
     font-weight: 700;
     line-height: 1.3;
     margin: 0 0 0.75rem 0;
-    letter-spacing: -0.05em;
+    letter-spacing: 0.15rem;
 }
 
 h1 a,
@@ -586,6 +598,11 @@ a {
     text-decoration: dotted;
 }
 
+u {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
 h1.major,
 h2.major,
 h3.major {
@@ -598,9 +615,15 @@ h3.major:after {
     position: absolute;
     left: 0;
     width: 3.5rem;
-    height: 0.1rem;
-    background-color: rgba(255, 255, 255, 0.25);
+    height: 0.15rem;
+    background-color: hsla(var(--primary-100), 0.3);
 }
+
+.bg-primary h1.major:after,
+.bg-primary h2.major:after,
+.bg-primary h3.major:after {
+    background-color: hsla(var(--primary-900), 0.3);
+} 
 
 h1 {
     font-size: 3rem;
@@ -665,7 +688,7 @@ sup {
 }
 
 blockquote {
-    border-left: solid 0.25rem rgba(255, 255, 255, 0.25);
+    border-left: solid 0.25rem hsla(var(--primary-100), 0.3);
     font-style: italic;
     margin: 0 0 1.5rem 0;
     padding: 0.375rem 0 0.375rem 1.5rem;
@@ -698,7 +721,7 @@ pre code {
 
 hr {
     border: 0;
-    border-bottom: solid 2px rgba(255, 255, 255, 0.25);
+    border-bottom: solid 2px hsla(var(--primary-100), 0.3);
     margin: 1.875rem 0;
 }
 
@@ -859,7 +882,7 @@ form > .fields > .field.quarter {
 }
 
 label {
-    color: hsla(var(--neutral-100),0.85);
+    color: hsla(var(--neutral-100), 0.85);
     display: block;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
@@ -879,8 +902,8 @@ textarea {
     -webkit-appearance: none;
     -ms-appearance: none;
     appearance: none;
-    background: hsla(var(--neutral-100),0.85);
-    border: solid 2px hsla(var(--neutral-100),0.55);
+    background: hsla(var(--neutral-100), 0.85);
+    border: solid 2px hsla(var(--neutral-100), 0.55);
     border-radius: 0.25rem;
     color: hsl(var(--neutral-950));
     display: block;
@@ -942,7 +965,7 @@ input[type="date"]:focus {
 }
 
 option {
-    background-color: hsla(var(--neutral-100),0.85);
+    background-color: hsla(var(--neutral-100), 0.85);
     color: hsl(var(--neutral-950));
 }
 
@@ -958,10 +981,8 @@ select {
 
 /* date icon  */
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* forces black icon */
+    filter: invert(1); /* forces black icon */
 }
-
-
 
 /* select option {
   color: hsla(var(--neutral-100),0.85);
@@ -1060,7 +1081,7 @@ input[type="radio"] + label:before {
     height: 1.6875rem;
     line-height: 1.6875rem;
     background: rgba(255, 255, 255, 0.075);
-    border: solid 1px rgba(255, 255, 255, 0.25);
+    border: solid 1px hsla(var(--primary-100), 0.3);
     border-radius: 0.25rem;
     color: #2e2b37;
     text-align: center;
@@ -1074,8 +1095,8 @@ body.is-ie input[type="radio"] + label:before {
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
     content: "\f00c";
-    background: hsla(var(--neutral-100),0.85);
-    border-color: hsla(var(--neutral-100),0.85);
+    background: hsla(var(--neutral-100), 0.85);
+    border-color: hsla(var(--neutral-100), 0.85);
 }
 
 input[type="checkbox"]:focus + label:before,
@@ -1273,10 +1294,9 @@ section.hero header {
     inset: 0;
     z-index: 1;
     background-color: hsla(var(--neutral-900), 0.2);
-    background-image: linear-gradient( 
-        to  bottom,
-        hsla(var(
-    --primary-900), 0.6),
+    background-image: linear-gradient(
+        to bottom,
+        hsla(var(--primary-900), 0.6),
         hsla(var(--primary-950), 0.8)
     );
     border: unset;
@@ -1310,8 +1330,7 @@ section.home-food {
     top: 0;
     left: 0;
     overflow: hidden;
-    isolation: isolate  ;
-    
+    isolation: isolate;
 }
 
 .food-images {
@@ -1329,8 +1348,8 @@ section.home-food {
     z-index: -1;
     opacity: 0.5;
     object-fit: cover;
-    border: none;  
-    transform-origin: center center ;
+    border: none;
+    transform-origin: center center;
 }
 
 .food-scroll {
@@ -1358,11 +1377,10 @@ section.home-food {
 .food-images,
 .image-scroll,
 .food-scroll img {
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
 }
-
 
 img.image-scroll.active,
 .food-scroll.active img {
@@ -1423,30 +1441,54 @@ img.image-scroll.active,
     transition: opacity 0.5s ease-in-out, visibility 0.25s ease-in-out;
 }
 
-
 .slide-word.visible {
     display: inline-block;
     animation: slideWords 5s infinite;
 }
 
-
-
 @keyframes slideWords {
-    0%   { transform: translateY(100%); opacity: 0; }
-    15%  {  opacity: 0.5; }
-    30%  { transform: translateY(0); opacity: 1; visibility: visible;}
-    45%  { opacity: 1; }
-    60%  { transform: translateY(-80%) ;}
-    70%  { opacity: 0.5; }
-    85%  { transform: translateY(-100%); opacity: 0; visibility: hidden;}
-    100% { opacity: 0; }
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.5;
+    }
+    30% {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    45% {
+        opacity: 1;
+    }
+    60% {
+        transform: translateY(-80%);
+    }
+    70% {
+        opacity: 0.5;
+    }
+    85% {
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
-
+.hero-logo {
+    width: min(50%, 500px );
+}
 
 .hero-sub {
     opacity: 0;
     animation: fadeUp 1s ease 1s forwards;
+    width: min(90%, 36ch);
+    text-wrap: balance;
+    text-wrap: pretty;
+    text-align: center;
 }
 .hero-header {
     line-height: 1.6;
@@ -1455,22 +1497,32 @@ img.image-scroll.active,
 }
 
 @keyframes fadeUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-
 @keyframes zoom {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 #introduction {
     border-radius: 0 0 6px 6px;
     box-shadow: var(--shadow-md);
 }
-
 
 footer {
     background-image: linear-gradient(

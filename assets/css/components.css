@@ -857,11 +857,18 @@ button.large,
   padding: 0 2rem 0 2.15rem;
 }
 
+.transparent,
 .button.transparent {
   box-shadow: none;
   background-color: transparent;
   color: var(--primary);
   border: 1px solid var(--primary);
+}
+
+.inverse {
+  background-color: hsl(var(--primary-950));
+  color: hsl(var(--primary-100));
+  border: 1px solid hsl(var(--primary-200));
 }
 
 input[type="submit"].primary,
@@ -920,11 +927,18 @@ button.primary:focus,
   outline-color: var(--primary-hover);
 }
 
-.button.transparent:hover,
-.button.transparent:focus {
+.transparent:hover,
+.transparent:focus {
   background-color: var(--primary-hover);
   color: hsl(var(--neutral-900));
   outline-color: var(--primary-hover);
+}
+
+.inverse:hover,
+.inverse:focus {
+  background-color: hsl(var(--primary-900));
+  border-color: hsl(var(--primary-100));
+  outline-color: hsl(var(--primary-900));
 }
 
 input[type="submit"].primary:active,
@@ -1881,7 +1895,8 @@ body.is-preload #scroll-x-wrapper {
     min-height: 100%;
   }
 
-  .banner.col-rev {
+  .banner.col-rev,
+  .panel.col-rev {
     flex-direction: column-reverse;
   }
 
