@@ -327,7 +327,7 @@
           </div>
           <div class="field quarter button-field">
             <input type="submit" value="Send" class="primary" />
-            <input type="reset" value="Clear" class="button transparent " />
+            <input type="reset" value="Clear" class="button transparent" />
           </div>
           <div class="field half last-field">
             <p class="errors-msg"></p>
@@ -502,6 +502,25 @@
         nav.classList.remove("scrolled");
       }
     });
+
+    // if last section is in view  make footer fixed
+    const footer = document.querySelector(".footer");
+    const lastSection = document.querySelector("main section:last-of-type");
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log("Last section in view");
+            footer.classList.add("fixed-footer");
+          } else {
+            footer.classList.remove("fixed-footer");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    footerObserver.observe(lastSection);
 
 
 

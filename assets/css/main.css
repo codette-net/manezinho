@@ -1527,14 +1527,24 @@ img.image-scroll.active,
 footer {
     background-image: linear-gradient(
         to bottom,
-        #000000,
-        #0009 70%,
-        var(--gold-shade-2) 75%,
-        var(--gold-shade-1) 90%
+        hsla(var(--neutral-950), 0.10) 0%,
+        hsla(var(--neutral-900), 0.15) 70%,
+        hsla(var(--primary-950), 0.25) 90%
     );
     padding: 1.5rem 0;
     text-align: center;
+    /* position: fixed; */
+    opacity: 1;
+    bottom: 0;
+    z-index: 0;
+    transition: opacity 0.5s ease-in-out;
 }
+/* footer .footer .fixed-footer {
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+} */
 
 .footer-content {
     display: flex;
@@ -1577,11 +1587,11 @@ footer {
 .footer-section a {
     font-size: 0.9rem;
     line-height: 1.6;
+    text-decoration: none;
+    border-bottom: none;
 }
 
-.footer-section a {
-    color: var(--gold-2);
-}
+
 
 .footer-section ul {
     list-style: none;
