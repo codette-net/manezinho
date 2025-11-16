@@ -1,5 +1,5 @@
 nav {
-    position: static;
+    position: relative;
     top: 0;
     z-index: 999;
     width: 100%;
@@ -104,14 +104,15 @@ a.nav-link:focus {
 }
 
 .btn--menu {
-  color: var(--primary);
-  background-color: transparent;
-  border: none;
-  display: grid;
-  place-items: center;
-  padding-inline: 1rem;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.84);
-  margin: unset;
+    color: hsla(var(--primary-500),0.8);
+    background-color: transparent;
+    border: 1px solid hsla(var(--primary-800),0.8);
+    display: grid;
+    place-items: center;
+    padding: 0.25rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.84);
+    margin: unset;
+    box-shadow: var(--shadow-sm) !important;
 }
 
 li[role="none"], .nav-link {
@@ -164,7 +165,14 @@ li[role="none"], .nav-link {
     transform: translate3d(0 , -3rem , 0);
 }
 
+.nav-info-contact {
+  display: flex;
+  gap: 0.5rem;
+}
+
 @media (min-width: 768px) {
+
+
 
 
   .btn--menu {
@@ -189,11 +197,16 @@ li[role="none"], .nav-link {
   
 }
 
+@media (max-width: 480px) {
+  .nav-info-contact {
+  }
+}
+
 
 
 main {
   position: relative  ;
-  z-index: 1;
+  /* z-index: 1; */
   min-height: calc(100dvh - var(--nav-height));
   width: min(98%, var(--container-max-width));
   margin-inline: auto;

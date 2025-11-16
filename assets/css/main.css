@@ -548,6 +548,11 @@ b {
     font-weight: 500;
 }
 
+small {
+    font-size: 0.9rem;
+    text-wrap: balance;
+}
+
 .bg-primary strong,
 .bg-primary b {
     color: hsla(var(--neutral-950), 0.9);
@@ -1464,7 +1469,7 @@ img.image-scroll.active,
     }
     60% {
         transform: translateY(-80%);
-    }
+    }  
     70% {
         opacity: 0.5;
     }
@@ -1477,9 +1482,14 @@ img.image-scroll.active,
         opacity: 0;
     }
 }
+.hero h1,h2,h3 {
+    color: hsla(var(--neutral-100), 0.95);
+    text-shadow: 0 0 4px hsla(var(--accent-900), 0.4);
+}
 
 .hero-logo {
     width: min(50%, 500px );
+    filter: drop-shadow(0 0 6px hsla(var(--accent-900), 0.6));
 }
 
 .hero-sub {
