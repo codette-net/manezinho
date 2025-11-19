@@ -570,7 +570,7 @@ i {
 }
 
 p {
-    margin: 0 0 1rem 0;
+    margin-block: 0 1.5rem;
     width: min(95%, 88ch);
 
 }
@@ -1512,6 +1512,27 @@ img.image-scroll.active,
     line-height: 1.6;
     opacity: 0;
     animation: fadeUp 1s ease 0.8s forwards;
+}
+
+.header-alt {
+    border-radius: var(--border-radius);
+    border: unset;
+    margin-block: 1rem 1.5rem;
+    text-align: center;
+    box-shadow: none;
+
+}
+
+.header-alt p {
+    margin-inline: auto;
+}
+
+.hero-header-h2 {
+    animation: fadeUp 1s ease 1s forwards;
+    padding-block: 0.5rem;
+    border-top: 2px solid hsla(var(--primary-600), 0.5);
+    border-bottom: 2px solid hsla(var(--primary-600), 0.5);
+
 }
 
 @keyframes fadeUp {

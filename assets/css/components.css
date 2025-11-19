@@ -150,11 +150,13 @@ inset: 0;
 
 .image {
   display: flex;
+  flex-direction: column;
   flex: 1;
   position: relative;
   border: 0;
   border-radius: 6px;
 }
+
 
 .image.filtered:after {
   background-image: url("../../images/overlay.png"),
@@ -255,6 +257,29 @@ inset: 0;
   border-radius: 6px;
 
 }
+
+.image.img-max img{
+  max-height: 450px;
+  object-fit: cover;
+  object-position: center;
+
+}
+
+figure figcaption {
+  padding: 0.2rem;
+  font-size: 0.65rem;
+  text-align: center; 
+  letter-spacing: 0.05rem;
+  
+  background-color: hsla(var(--primary-950), 0.33);
+}
+
+figure:has(figcaption) img {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: 1px solid hsla(var(--primary-800), 0.25);
+}
+
 
 .image.left,
 .image.right {
