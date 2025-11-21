@@ -1517,7 +1517,7 @@ img.image-scroll.active,
 .header-alt {
     border-radius: var(--border-radius);
     border: unset;
-    margin-block: 1rem 1.5rem;
+    margin-block: 1rem;
     text-align: center;
     box-shadow: none;
 
