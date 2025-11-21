@@ -329,9 +329,12 @@ body {
             ellipse at bottom,
             hsla(var(--primary-500), 0.85),
             transparent
-        );
+        ),
+        url("../svg/manezinhologo.svg");
     background-attachment: fixed;
-    background-size: cover;
+    background-size: cover, cover, 66%;
+    background-repeat: repeat, repeat, no-repeat;
+    background-position: center, center, right bottom ;
 }
 
 mark {
@@ -1563,6 +1566,46 @@ img.image-scroll.active,
     box-shadow: var(--shadow-md);
 }
 
+#about h3 {
+    text-align: center;
+}
+
+#about p {
+    width: min(100%,930px)
+}
+
+.image-circle {
+    border-radius: 50%;
+    overflow: hidden;
+    width: min(100%, 350px);
+    height: auto;
+    border: 2px solid hsla(var(--primary-600), 0.6);
+    box-shadow: var(--shadow-elevation-medium);
+    /* flow text around circle  */
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    shape-outside: circle(50%);
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.image-circle.float-right {
+    margin-right: none;
+    margin-left: 1rem;
+}
+
+.image-circle img {
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1 / 1;
+}
+
 footer {
     background-image: linear-gradient(
         to bottom,
@@ -1608,6 +1651,12 @@ footer {
 
 
 @media (max-width: 600px) {
+    .image-circle {
+            float: none !important;
+    margin: 1rem auto;
+}
+    }
+
     .footer-content {
         flex-direction: column;
         align-items: center;
