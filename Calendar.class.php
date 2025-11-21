@@ -418,7 +418,12 @@ class Calendar {
         // Get the current translated month
         $current_month = $this->translated_months[$this->active_month-1];
         // Template code
-        $html = '<div class="calendar" data-colors="' . event_colors . '"' . (disable_event_management ? ' data-disable-event-management="true"' : '') . (disable_photo_uploads ? ' data-disable-photo-uploads="true"' : '') . '>';
+            // Expanded list view
+        $html = '';
+        if ($this->expanded_list) {
+            $html .= $this->expanded_view();
+        }
+        $html .= '<div class="calendar" data-colors="' . event_colors . '"' . (disable_event_management ? ' data-disable-event-management="true"' : '') . (disable_photo_uploads ? ' data-disable-photo-uploads="true"' : '') . '>';
         $html .= '<div class="calendar-header">';
         $html .= '<div class="month-year">';
         $html .= '<a href="#" class="current" title="Select Date">' . $current_month . ' ' . $this->active_year . '</a>';
@@ -551,10 +556,7 @@ class Calendar {
         }
         $html .= '</div>';
         $html .= '</div>';
-        // Expanded list view
-        if ($this->expanded_list) {
-            $html .= $this->expanded_view();
-        }
+    
         // Return the template code
         return $html;
     }

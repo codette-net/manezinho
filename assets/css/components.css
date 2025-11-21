@@ -1876,6 +1876,16 @@ body.is-preload #scroll-x-wrapper {
 }
 
 
+.border-radius-sm {
+  border-radius: 6px;
+}
+.border-radius-md {
+  border-radius: 12px;
+}
+.border-radius-lg {
+  border-radius: 1rem;
+}
+
 @media screen and (max-width: 736px) {
   #scroll-x-wrapper {
     flex-direction: column;
