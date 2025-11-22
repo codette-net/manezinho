@@ -211,5 +211,6 @@ main {
   width: min(98%, var(--container-max-width));
   margin-inline: auto;
   padding-block: 0 var(--spacing-base);
+  margin-top: 0.15rem;
 }
 
