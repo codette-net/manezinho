@@ -13,6 +13,16 @@ static function view($file, $data = array())
     extract($data, EXTR_SKIP);
     require $cached_file;
 }
+static function resolvePath($file)
+{
+    // If path is already absolute, return it
+    if (str_starts_with($file, '/') || preg_match('/^[A-Z]:/i', $file)) {
+        return $file;
+    }
+
+    // Build absolute path from project root
+    return dirname(__DIR__) . '/' . $file;
+}
 
 
 	static function cache($file)
@@ -22,7 +32,8 @@ static function view($file, $data = array())
 		}
 		$cached_file = self::$cache_path . str_replace(array('/', '.html'), array('_', ''), $file . '.php');
 		if (!self::$cache_enabled || !file_exists($cached_file) || filemtime($cached_file) < filemtime($file)) {
-			$code = self::includeFiles($file);
+			$code = self::includeFiles(self::resolvePath($file));
+
 			$code = self::compileCode($code);
 			file_put_contents($cached_file, '<?php class_exists(\'' . __CLASS__ . '\') or exit; ?>' . PHP_EOL . $code);
 		}
@@ -49,7 +60,8 @@ static function compileCode($code)
 
 	static function includeFiles($file)
 	{
-		$code = file_get_contents($file);
+		$code = file_get_contents(self::resolvePath($file));
+
 		preg_match_all('/{% ?(extends|include) ?\'?(.*?)\'? ?%}/i', $code, $matches, PREG_SET_ORDER);
 		foreach ($matches as $value) {
 			$code = str_replace($value[0], self::includeFiles($value[2]), $code);
