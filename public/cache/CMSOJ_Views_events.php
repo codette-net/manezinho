@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="/assets/css/noscript.css" />
 </noscript>
 
-<link rel="stylesheet" href="CMSOJ/Views/css/calendar.css">
+<link rel="stylesheet" href="/assets/css/calendar.css">
 
   <!-- here is the end of head  -->
 </head>
@@ -283,7 +283,7 @@
 
 
 
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
 
       <div class="footer-section links">
@@ -361,11 +361,11 @@
 
   
 
-<script src="/assets/js/app.js"></script>
+<script src="/assets/js/main.js"></script>
 
   
 
-<script src="CMSOJ/Views/js/Calendar.js"></script>
+<script src="/assets/js/Calendar.js"></script>
 <!-- <script src="CMSOJ/Views/js/events.js"></script> -->
  <script>
    new Calendar({

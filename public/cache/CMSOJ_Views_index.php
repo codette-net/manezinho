@@ -98,44 +98,44 @@
   <section class="hero">
     <div class="img-scroller">
       <!-- scroll trough images from img/scaledImg folder using img srcset  -->
-      <img src="assets/img/scaledImg/Manezinho-Entrada-small.jpg"
-        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/Manezinho-Entrada-xl.jpg 1200w,
-    assets/img/scaledImg/Manezinho-Entrada-large.jpg 992w,
-    assets/img/scaledImg/Manezinho-Entrada-medium.jpg 768w,
+      <img src="/assets/img/scaledImg/Manezinho-Entrada-small.jpg"
+        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/Manezinho-Entrada-xl.jpg 1200w,
+    /assets/img/scaledImg/Manezinho-Entrada-large.jpg 992w,
+    /assets/img/scaledImg/Manezinho-Entrada-medium.jpg 768w,
     ./assets/img/scaledImg/Manezinho-Entrada-small.jpg 480w
     " alt="Descriptive alt text" loading="lazy" class="image-scroll active">
-      <img src="assets/img/scaledImg/Manezinho-Interior-small.jpg"
-        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/Manezinho-Interior-xl.jpg 1200w,
-    assets/img/scaledImg/Manezinho-Interior-large.jpg 992w,
-    assets/img/scaledImg/Manezinho-Interior-medium.jpg 768w,
+      <img src="/assets/img/scaledImg/Manezinho-Interior-small.jpg"
+        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/Manezinho-Interior-xl.jpg 1200w,
+    /assets/img/scaledImg/Manezinho-Interior-large.jpg 992w,
+    /assets/img/scaledImg/Manezinho-Interior-medium.jpg 768w,
     ./assets/img/scaledImg/Manezinho-Interior-small.jpg 480w
     " alt="Descriptive alt text" loading="lazy" class="image-scroll">
       <!-- assets\img\scaledImg\Manezinho-Bar-small.jpg -->
-      <img src="assets/img/scaledImg/Manezinho-Bar-small.jpg"
-        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/Manezinho-Bar-xl.jpg 1200w,
-    assets/img/scaledImg/Manezinho-Bar-large.jpg 992w,
-    assets/img/scaledImg/Manezinho-Bar-medium.jpg 768w,
+      <img src="/assets/img/scaledImg/Manezinho-Bar-small.jpg"
+        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/Manezinho-Bar-xl.jpg 1200w,
+    /assets/img/scaledImg/Manezinho-Bar-large.jpg 992w,
+    /assets/img/scaledImg/Manezinho-Bar-medium.jpg 768w,
     ./assets/img/scaledImg/Manezinho-Bar-small.jpg 480w
     " alt="Descriptive alt text" loading="lazy" class="image-scroll" style="object-position: 36%;">
       <!-- assets\img\scaledImg\Manezinho-Esplanada-small.jpg -->
-      <img src="assets/img/scaledImg/Manezinho-Esplanada-small.jpg"
-        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/Manezinho-Esplanada-xl.jpg 1200w,
-    assets/img/scaledImg/Manezinho-Esplanada-large.jpg 992w,
-    assets/img/scaledImg/Manezinho-Esplanada-medium.jpg 768w,
+      <img src="/assets/img/scaledImg/Manezinho-Esplanada-small.jpg"
+        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/Manezinho-Esplanada-xl.jpg 1200w,
+    /assets/img/scaledImg/Manezinho-Esplanada-large.jpg 992w,
+    /assets/img/scaledImg/Manezinho-Esplanada-medium.jpg 768w,
     ./assets/img/scaledImg/Manezinho-Esplanada-small.jpg 480w" loading="lazy" alt="Descriptive alt text"
         class="image-scroll" style="object-position: 60%;">
       <!-- assets\img\scaledImg\Manezinho-Jardim-small.jpg -->
-      <img src="assets/img/scaledImg/Manezinho-Jardim-small.jpg"
-        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/Manezinho-Jardim-xl.jpg 1200w,
-    assets/img/scaledImg/Manezinho-Jardim-large.jpg 992w,
-    assets/img/scaledImg/Manezinho-Jardim-medium.jpg 768w,
+      <img src="/assets/img/scaledImg/Manezinho-Jardim-small.jpg"
+        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/Manezinho-Jardim-xl.jpg 1200w,
+    /assets/img/scaledImg/Manezinho-Jardim-large.jpg 992w,
+    /assets/img/scaledImg/Manezinho-Jardim-medium.jpg 768w,
     ./assets/img/scaledImg/Manezinho-Jardim-small.jpg 480w" loading="lazy" alt="Descriptive alt text"
         class="image-scroll" style="object-position: 20%;">
       <!-- assets\img\scaledImg\Manezinho-Frente-small.jpg -->
-      <img src="assets/img/scaledImg/Manezinho-Frente-small.jpg"
-        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/Manezinho-Frente-xl.jpg 1200w,
-    assets/img/scaledImg/Manezinho-Frente-large.jpg 992w,
-    assets/img/scaledImg/Manezinho-Frente-medium.jpg 768w,
+      <img src="/assets/img/scaledImg/Manezinho-Frente-small.jpg"
+        sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/Manezinho-Frente-xl.jpg 1200w,
+    /assets/img/scaledImg/Manezinho-Frente-large.jpg 992w,
+    /assets/img/scaledImg/Manezinho-Frente-medium.jpg 768w,
     ./assets/img/scaledImg/Manezinho-Frente-small.jpg 480w" loading="lazy" alt="Descriptive alt text"
         class="image-scroll" style="object-position: 66%;">
 
@@ -208,10 +208,10 @@
     </div>
     <div class="col">
       <div class="image shadow-low">
-        <img src="assets/img/scaledImg/manezinho_food_048-small.jpg"
-          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="assets/img/scaledImg/manezinho_food_048-xl.jpg 1200w,
-    assets/img/scaledImg/manezinho_food_048-large.jpg 992w,
-    assets/img/scaledImg/manezinho_food_048-medium.jpg 768w, 
+        <img src="/assets/img/scaledImg/manezinho_food_048-small.jpg"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px" srcset="/assets/img/scaledImg/manezinho_food_048-xl.jpg 1200w,
+    /assets/img/scaledImg/manezinho_food_048-large.jpg 992w,
+    /assets/img/scaledImg/manezinho_food_048-medium.jpg 768w, 
     ./assets/img/scaledImg/manezinho_food_048-small.jpg 480w" alt="Delicious Lapas" loading="lazy">
 
       </div>
@@ -547,7 +547,7 @@
 
   
 
-<script src="/assets/js/app.js"></script>
+<script src="/assets/js/main.js"></script>
 
   
 </body>
