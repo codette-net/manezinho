@@ -4,11 +4,11 @@ class Template
 
 	static $blocks = array();
 	static $cache_path = 'cache/';
-	static $cache_enabled = TRUE;
+	static $cache_enabled = FALSE;
 
 static function view($file, $data = array())
 {
-    self::$blocks = [];  // Reset blocks every request 👈 FIX
+    self::$blocks = [];  // Reset blocks every request 
     $cached_file = self::cache($file);
     extract($data, EXTR_SKIP);
     require $cached_file;

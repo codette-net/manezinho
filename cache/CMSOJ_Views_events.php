@@ -5,16 +5,22 @@
 <head>
   <title>Manezinho | <?php echo $title ?> </title>
   
-<meta name="description"
-  content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<meta name="description" content="Welcome to Art Restaurant Manezinho...">
 
   
+
 <link rel="stylesheet" href="/assets/css/main.css" />
 <link rel="stylesheet" href="/assets/css/components.css">
 <link rel="stylesheet" href="/assets/css/style.css">
 <noscript>
   <link rel="stylesheet" href="/assets/css/noscript.css" />
 </noscript>
+
+<link rel="stylesheet" href="CMSOJ/Views/css/calendar.css">
 
   <!-- here is the end of head  -->
 </head>
@@ -24,7 +30,6 @@
   
 
   
-
   <nav>
 
     <div class="container nav-container">
@@ -95,102 +100,88 @@
       <a href="/#reservation" class="button transparent small">Reservation</a>
     </div>
   </div>
-<main id="about">
-  <header class="header-alt">
-    <h1 class="hero-header">Art Restaurant Manezinho</h1>
-    <h2 class="hero-header-h2">About Us</h2>
-    <p>
 
-    </p>
-  </header>
-
-  <section>
-    <h3>Who was Manezinho?</h3>
-    <div class="image-circle float-left">
-      <img src="./assets/img/manezinhoDancing.jpg" alt="Manuel Medeiros dancing" loading="lazy">
-    </div>
-    <p>
-      Manezinho, whose real name was Manuel Medeiros, was born to a poor family on São Miguel around 1930. He never
-      went to school and started to work at a young age. When in his early teens his parents moved to São Jorge, where
-      he initially helped his father as a woodcutter (serralheiro). Later he worked as a fisherman on one of the four
-      large fishing boats (traineiras) that were stationed on the island. They would roam around in the archipelago
-      and on occasions made fishing trips of more than a month. In the early seventies the family moved to the USA,
-      but the father would return regularly to work during the summer on São Jorge.
-    </p>
-    <div class="image-circle float-right">
-      <img src="./assets/img/manezhinos.jpeg" alt="Manzehino buildig outside">
-    </div>
-    <p>
-      In the mid-seventies the father bought the plot of land where Art Restaurant Manezinho is now located. In the
-      beginning of the eighties the family returned to stay on São Jorge. At that time the coast of Urzelina was very
-      rough and dangerous. Manezinho often went out fishing on the cliffs where he used ropes to climb to the good
-      fishing spots. He had a talent for cooking, and he started to prepare meals for his fellow fishermen. He even
-      opened at three or four in the morning to make coffee for them before they went to the sea. Also, the
-      construction workers from other European countries that helped to rebuild Urzelina after the earthquake of 1980
-      found their way to his little shed near the coast. Gradually the business grew into a real restaurant, not in
-      the least because of home cooking of Manezinho and his wife Ilda. For a while the Manezinho restaurant was
-      famous all over the Azores.
-    </p>
-    <p>
-      The story has no happy end, however. One evening, while returning to home from work in the dark, Ilda missed a
-      step on the coastal path and fell to her death. Later the daughter Margarida and her husband helped her father
-      to reconstruct the restaurant and although it thrived for a while in the second decade of this century the
-      restaurant fell into decline due to conflicts between the owners and financial mishap. In 2013 Manezinho died.
-      The restaurant was left to itself without any interior or equipment. Occasionally vagrants lived in it.
-    </p>
-  </section>
-  <section class="panel">
-    <div class="col">
-      <h3>Same name , new concept</h3>
+<main>
+    <header class="header-alt">
+      <h1 class="hero-header">Art Restaurant Manezinho</h1>
+      <h2 class="hero-header-h2">Events</h2>
       <p>
-        In 2020 the philosopher, painter and musician, Pieter Adriaans and his wife Cesarina could buy the building
-        from the relatives of Manezinho. They decided to create a meeting place were art and music could be
-        appreciated. In remembrance of this hard-working man who created a place of happiness and beauty out of
-        nothing and brought joy to so many lives, the new owners decided to keep the name. Today the portrait of
-        Manezinho is looking out over the restaurant he founded forty years ago: Grand Café Manezinho. It is our
-        tribute to him.
+        Enjoy live music in a relaxed, welcoming setting. Manezinho hosts regular performances by local and visiting
+        musicians, with styles that range from blues and jazz to acoustic nights and spontaneous jam sessions. Feeling
+        musical yourself? Join one of our open stage evenings and share the spotlight.
       </p>
       <p>
-        After almost a year of renovation the place opened its doors again as Grand Café Manezinho in October 2021.
-        The name was kept but the formula is different: a place where people can relax, see art and listen to live
-        music. In Manezinho there is a permanent exposition of works by Pieter.
+        <a href="#events" class="button primary">Coming events</a>
       </p>
-    </div>
-    <div class="col">
-      <div class="image"><img src="./assets/img/pieteRiniEwiCrop.jpg" alt="Pieter, Rini & Ewout Adriaans"></div>
-    </div>
-  </section>
-  <section class="panel">
-    <div class="col">
-      <div class="image">
-        <img src="./assets/img/Raquel_Oliveira.jpeg" alt="Raquel Oliveira">
+
+
+    </header>
+    <section class="panel">
+      <div class="col">
+        <h2 class="major">Resident Musicians</h2>
+        <p>
+
+          Manezinho has its own circle of regular performers who help shape the atmosphere of our live music nights. One
+          of them is Ewout “Ewi” Adriaans, often seen on stage with his own repertoire or joining others on guitar,
+          drums or harmonica. Each resident brings their own style, creating evenings that feel both familiar and full
+          of surprises.</p>
       </div>
-    </div>
-    <div class="col">
-      <h3>Introducing Raquel Oliveira</h3>
-      <p>
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="./assets/img/ewiHarmonica.jpg" alt="Ewi playing harmonica at Manezinho" loading="lazy">
+          <figcaption>Ewout on harmonica</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="panel col-rev">
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="./assets/img/pieterJet.png" alt="Pieter and Jet performing at Manezinho" loading="lazy">
+          <figcaption>Pieter and Jet on stage</figcaption>
+        </figure>
+      </div>
+      <div class="col">
+        <h2 class="major">
+          Guest Performances
+        </h2>
+        <p>
+          Alongside our resident musicians, Manezinho hosts guest artists who bring new sounds and styles to our stage.
+          These performances range from acoustic sets to blues, jazz and spontaneous collaborations with our regulars.
+          And if the evening is just right, you might even catch the Adriaans Brothers joining in for an unforgettable
+          blues session.
+        </p>
+      </div>
+    </section>
 
-        Hello, my name is Raquel Oliveira, originally from the island of São Jorge, and I am the head chef at
-        Manezinho.
-        <br>
-        My passion for cooking began in childhood. I grew up in a big family that loved to gather around the table. We
-        hunted and fished, and whatever we caught was what we cooked. Those moments of sharing and togetherness
-        inspired my love for gastronomy.
-      </p>
-      <p>
-        Later on, I decided to follow that path and pursue a degree in Culinary Arts. Over twenty years ago, few
-        people even knew such a course existed. At the time, I was studying accounting in São Miguel when I decided to
-        change direction and tell my parents. It came as a surprise, but they supported me completely.
+    <section class="panel">
+      <div class="col">
+        <h2 class="major">Open stage</h2>
+        <p>Want to join in? Our open stage nights invite musicians of all levels to share a song, jam with others or
+          simply enjoy the music from a different perspective.</p>
+        <p>
+          Check our events calendar for upcoming open stage nights or send us a message to express your interest in
+          performing.
+          <a href="mailto:info@artrestaurantmanezinho.com">info@artrestaurantmanezinho.com</a>
+        </p>
 
-        My mother once saw an interview about the Estoril School of Hospitality and Tourism, and that’s how we
-        discovered the program. I applied, was accepted, and everything went well.
+      </div>
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="./assets/img/impressionHeroImg.jpg" alt="Collage of events at Manezinho" loading="lazy">
 
-        I completed internships in several regions of Portugal, from Pousadas de Portugal to a major hotel in
-        Madeira, gaining as much knowledge and experience as possible.
-      </p>
-    </div>
-  </section>
-  
+        </figure>
+      </div>
+    </section>
+    <section id="events">
+
+      <header class="header-alt">
+        <h2 class="hero-header-h2">Events Calendar</h2>
+      </header>
+      <div class="calendar-container"></div>
+
+
+
+    </section>
    <section class="" id="reservation">
       <header class="full-width bg-primary">
 
@@ -286,9 +277,13 @@
       </form>
 
     </section>
-</main>
 
-  <footer class="footer">
+   
+  </main>
+
+
+
+    <footer class="footer">
     <div class="footer-content">
 
       <div class="footer-section links">
@@ -369,9 +364,32 @@
 <script src="/assets/js/app.js"></script>
 
   
+
+<script src="CMSOJ/Views/js/Calendar.js"></script>
+<!-- <script src="CMSOJ/Views/js/events.js"></script> -->
+ <script>
+   new Calendar({
+      // Unique ID - each page should have a unique ID
+      uid: 1,
+      // Size of the calendar - normal | mini | auto
+      size: 'mini',
+      // Display calendar - true | false
+      display_calendar: true,
+      // Expanded list - true | false
+      expanded_list: true
+    });
+</script>
+
 </body>
 
 </html>
+
+
+
+
+
+
+
 
 
 

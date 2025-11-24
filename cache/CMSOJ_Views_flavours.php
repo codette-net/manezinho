@@ -5,8 +5,7 @@
 <head>
   <title>Manezinho | <?php echo $title ?> </title>
   
-<meta name="description"
-  content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
+  <meta name="description" content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
 
   
 <link rel="stylesheet" href="/assets/css/main.css" />
@@ -95,103 +94,124 @@
       <a href="/#reservation" class="button transparent small">Reservation</a>
     </div>
   </div>
-<main id="about">
-  <header class="header-alt">
-    <h1 class="hero-header">Art Restaurant Manezinho</h1>
-    <h2 class="hero-header-h2">About Us</h2>
-    <p>
-
-    </p>
-  </header>
-
-  <section>
-    <h3>Who was Manezinho?</h3>
-    <div class="image-circle float-left">
-      <img src="./assets/img/manezinhoDancing.jpg" alt="Manuel Medeiros dancing" loading="lazy">
-    </div>
-    <p>
-      Manezinho, whose real name was Manuel Medeiros, was born to a poor family on São Miguel around 1930. He never
-      went to school and started to work at a young age. When in his early teens his parents moved to São Jorge, where
-      he initially helped his father as a woodcutter (serralheiro). Later he worked as a fisherman on one of the four
-      large fishing boats (traineiras) that were stationed on the island. They would roam around in the archipelago
-      and on occasions made fishing trips of more than a month. In the early seventies the family moved to the USA,
-      but the father would return regularly to work during the summer on São Jorge.
-    </p>
-    <div class="image-circle float-right">
-      <img src="./assets/img/manezhinos.jpeg" alt="Manzehino buildig outside">
-    </div>
-    <p>
-      In the mid-seventies the father bought the plot of land where Art Restaurant Manezinho is now located. In the
-      beginning of the eighties the family returned to stay on São Jorge. At that time the coast of Urzelina was very
-      rough and dangerous. Manezinho often went out fishing on the cliffs where he used ropes to climb to the good
-      fishing spots. He had a talent for cooking, and he started to prepare meals for his fellow fishermen. He even
-      opened at three or four in the morning to make coffee for them before they went to the sea. Also, the
-      construction workers from other European countries that helped to rebuild Urzelina after the earthquake of 1980
-      found their way to his little shed near the coast. Gradually the business grew into a real restaurant, not in
-      the least because of home cooking of Manezinho and his wife Ilda. For a while the Manezinho restaurant was
-      famous all over the Azores.
-    </p>
-    <p>
-      The story has no happy end, however. One evening, while returning to home from work in the dark, Ilda missed a
-      step on the coastal path and fell to her death. Later the daughter Margarida and her husband helped her father
-      to reconstruct the restaurant and although it thrived for a while in the second decade of this century the
-      restaurant fell into decline due to conflicts between the owners and financial mishap. In 2013 Manezinho died.
-      The restaurant was left to itself without any interior or equipment. Occasionally vagrants lived in it.
-    </p>
-  </section>
-  <section class="panel">
-    <div class="col">
-      <h3>Same name , new concept</h3>
+  <main>
+    <header class="header-alt">
+      <h1 class="hero-header">Art Restaurant Manezinho</h1>
+      <h2 class="hero-header-h2">Flavours</h2>
       <p>
-        In 2020 the philosopher, painter and musician, Pieter Adriaans and his wife Cesarina could buy the building
-        from the relatives of Manezinho. They decided to create a meeting place were art and music could be
-        appreciated. In remembrance of this hard-working man who created a place of happiness and beauty out of
-        nothing and brought joy to so many lives, the new owners decided to keep the name. Today the portrait of
-        Manezinho is looking out over the restaurant he founded forty years ago: Grand Café Manezinho. It is our
-        tribute to him.
+        Discover the authentic taste of São Jorge, where local ingredients and traditional island cooking inspire every
+        dish. From its famous cheeses and rich dairy heritage to fresh seafood and locally raised meats, the island
+        offers flavours rooted in simplicity and quality. At Manezinho, we bring these ingredients together with care,
+        creating meals that reflect the character of the Azores and the spirit of its coast.
       </p>
-      <p>
-        After almost a year of renovation the place opened its doors again as Grand Café Manezinho in October 2021.
-        The name was kept but the formula is different: a place where people can relax, see art and listen to live
-        music. In Manezinho there is a permanent exposition of works by Pieter.
-      </p>
-    </div>
-    <div class="col">
-      <div class="image"><img src="./assets/img/pieteRiniEwiCrop.jpg" alt="Pieter, Rini & Ewout Adriaans"></div>
-    </div>
-  </section>
-  <section class="panel">
-    <div class="col">
-      <div class="image">
-        <img src="./assets/img/Raquel_Oliveira.jpeg" alt="Raquel Oliveira">
+    </header>
+    <section class="panel">
+      <div class="col">
+        <h2 class="major"> Fresh Catch from the Atlantic</h2>
+        <p>
+          The fish on our menu changes with what the ocean offers each day. Whether it’s tuna, amberjack, lapas or
+          another local catch, we prepare it fresh and serve it with a short story about its origin and, if you like, a
+          wine pairing chosen to match its flavour.</p>
       </div>
-    </div>
-    <div class="col">
-      <h3>Introducing Raquel Oliveira</h3>
-      <p>
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <!-- srcset  -->
+          <img src="assets/img/scaledImg/manezinho_food_060-small.jpg"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+            srcset="assets/img/scaledImg/manezinho_food_060-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_060-large.jpg 992w, assets/img/scaledImg/manezinho_food_060-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_060-small.jpg 480w"
+            alt="Manezinho Tuna Dish" loading="lazy">
+          <figcaption>Fresh Tuna</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="panel col-rev">
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="assets/img/scaledImg/manezinho_food_031-small.jpg"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+            srcset="assets/img/scaledImg/manezinho_food_031-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_031-large.jpg 992w, assets/img/scaledImg/manezinho_food_031-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_031-small.jpg 480w"
+            alt="Manezinho Hamburger Dish" loading="lazy">
+          <figcaption>Manezinho Hamburger</figcaption>
+        </figure>
+      </div>
+      <div class="col">
+        <h2 class="major">
+          Crafted Cuts & Signature Dishes
+        </h2>
+        <p>
+          Our selection of island meats highlights the best of local producers, featuring premium cuts prepared with
+          care and served with thoughtful sides. Among them is our signature manezinho hamburger. It is made with ground
+          beef from the islands, which gives it a unique and delicious flavor.
+        </p>
+      </div>
+    </section>
 
-        Hello, my name is Raquel Oliveira, originally from the island of São Jorge, and I am the head chef at
-        Manezinho.
-        <br>
-        My passion for cooking began in childhood. I grew up in a big family that loved to gather around the table. We
-        hunted and fished, and whatever we caught was what we cooked. Those moments of sharing and togetherness
-        inspired my love for gastronomy.
-      </p>
-      <p>
-        Later on, I decided to follow that path and pursue a degree in Culinary Arts. Over twenty years ago, few
-        people even knew such a course existed. At the time, I was studying accounting in São Miguel when I decided to
-        change direction and tell my parents. It came as a surprise, but they supported me completely.
-
-        My mother once saw an interview about the Estoril School of Hospitality and Tourism, and that’s how we
-        discovered the program. I applied, was accepted, and everything went well.
-
-        I completed internships in several regions of Portugal, from Pousadas de Portugal to a major hotel in
-        Madeira, gaining as much knowledge and experience as possible.
-      </p>
-    </div>
-  </section>
+    <section class="panel">
+      <div class="col">
+        <h2 class="major">Cheese & Tapas</h2>
+        <p>São Jorge is known for its bold, flavorful cheese, and our tapas menu celebrates this local specialty
+          alongside a selection of small plates made with regional ingredients. From dairy-rich bites to fresh seafood
+          and cured meats, each tapa is prepared to share and enjoy at a relaxed pace.</p>
+      </div>
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="assets/img/scaledImg/manezinho_food_033-small.jpg"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+            srcset="assets/img/scaledImg/manezinho_food_033-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_033-large.jpg 992w, assets/img/scaledImg/manezinho_food_033-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_033-small.jpg 480w"
+            alt="Manezinho Tapas Dish" loading="lazy">
+          <figcaption>Assorted Tapas</figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-- wines -->
+    <section class="panel col-rev">
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="assets/img/scaledImg/manezinho_food_058-small.jpg"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+            srcset="assets/img/scaledImg/manezinho_food_058-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_058-large.jpg 992w, assets/img/scaledImg/manezinho_food_058-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_058-small.jpg 480w"
+            alt="Manezinho Wine Selection" loading="lazy">
+          <figcaption>Wine Selection</figcaption>
+        </figure>
+      </div>
+      <div class="col">
+        <h2 class="major">Curated Wine Selection</h2>
+        <p>
+          Our wine list showcases Azorean wines defined by volcanic terroir and limited production, alongside select
+          bottles from mainland regions. Let us guide you to the ideal pairing, whether you’re enjoying seafood, local
+          meats or a shared plate of São Jorge cheese.
+        </p>
+      </div>
+    </section>
   
-   <section class="" id="reservation">
+      <!-- cocktails & gins img 036 -->
+      <section class="panel">
+
+        <div class="col">
+          <h2 class="major">
+            Craft Cocktails & Local Gins
+          </h2>
+          <p>
+            Enjoy a selection of classic cocktails and carefully chosen gins, served simply and made to suit every
+            taste. Whether you prefer something refreshing, smooth or bold, we can help you find the right drink to
+            enjoy on its own or alongside your meal. Relax at the bar, try something familiar or discover a new
+            favourite with our recommendations.
+
+          </p>
+        </div>
+        <div class="col">
+          <figure class="image img-max shadow-low">
+            <img src="assets/img/scaledImg/manezinho_food_036-small.jpg"
+              sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+              srcset="assets/img/scaledImg/manezinho_food_036-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_036-large.jpg 992w, assets/img/scaledImg/manezinho_food_036-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_036-small.jpg 480w"
+              alt="Manezinho Cocktails and Gins" loading="lazy">
+            <figcaption>Strawberry Martini</figcaption>
+          </figure>
+        </div>
+      </section>
+
+
+ <section class="" id="reservation">
       <header class="full-width bg-primary">
 
         <h3 class="major"> Make a reservation</h3>
@@ -286,9 +306,11 @@
       </form>
 
     </section>
-</main>
+  </main>
 
-  <footer class="footer">
+
+
+    <footer class="footer">
     <div class="footer-content">
 
       <div class="footer-section links">
@@ -372,6 +394,10 @@
 </body>
 
 </html>
+
+
+
+
 
 
 
