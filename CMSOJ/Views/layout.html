@@ -1,31 +1,39 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
   <title>Manezinho | {% yield title %} </title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   {% yield meta %}
-
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-  </noscript>
+  {% yield css %}
+  <!-- here is the end of head  -->
 </head>
+
 
 <body class="">
   {% yield nav %}
 
   {% yield content %}
-  {% yield scripts %} 
-  {%yield footer %}
 
+  {% yield footer %}
+  {% yield scripts %}
 </body>
 
 </html>
 
+{% block meta %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+{% endblock %}
 
-</body>
-
-</html>
+{% block css %}
+<link rel="stylesheet" href="/assets/css/main.css" />
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<noscript>
+  <link rel="stylesheet" href="/assets/css/noscript.css" />
+</noscript>
+{% endblock %}
+{% block footer%}
+{% block scripts %}
+<script src="/assets/js/app.js"></script>
+{% endblock %}

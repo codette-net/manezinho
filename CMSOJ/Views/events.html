@@ -1,0 +1,126 @@
+{% extends CMSOJ/Views/layout.html %}
+
+{% block title %}Events {% endblock %}
+{% block meta %}
+@parent
+<meta name="description" content="Welcome to Art Restaurant Manezinho...">
+{% endblock %}
+
+{% block css %}
+@parent
+<link rel="stylesheet" href="CMSOJ/Views/css/calendar.css">
+{% endblock %}
+
+
+
+{% block content %}
+{% include CMSOJ/Views/nav.html %}
+
+<main>
+    <header class="header-alt">
+      <h1 class="hero-header">Art Restaurant Manezinho</h1>
+      <h2 class="hero-header-h2">Events</h2>
+      <p>
+        Enjoy live music in a relaxed, welcoming setting. Manezinho hosts regular performances by local and visiting
+        musicians, with styles that range from blues and jazz to acoustic nights and spontaneous jam sessions. Feeling
+        musical yourself? Join one of our open stage evenings and share the spotlight.
+      </p>
+      <p>
+        <a href="#events" class="button primary">Coming events</a>
+      </p>
+
+
+    </header>
+    <section class="panel">
+      <div class="col">
+        <h2 class="major">Resident Musicians</h2>
+        <p>
+
+          Manezinho has its own circle of regular performers who help shape the atmosphere of our live music nights. One
+          of them is Ewout “Ewi” Adriaans, often seen on stage with his own repertoire or joining others on guitar,
+          drums or harmonica. Each resident brings their own style, creating evenings that feel both familiar and full
+          of surprises.</p>
+      </div>
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="./assets/img/ewiHarmonica.jpg" alt="Ewi playing harmonica at Manezinho" loading="lazy">
+          <figcaption>Ewout on harmonica</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="panel col-rev">
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="./assets/img/pieterJet.png" alt="Pieter and Jet performing at Manezinho" loading="lazy">
+          <figcaption>Pieter and Jet on stage</figcaption>
+        </figure>
+      </div>
+      <div class="col">
+        <h2 class="major">
+          Guest Performances
+        </h2>
+        <p>
+          Alongside our resident musicians, Manezinho hosts guest artists who bring new sounds and styles to our stage.
+          These performances range from acoustic sets to blues, jazz and spontaneous collaborations with our regulars.
+          And if the evening is just right, you might even catch the Adriaans Brothers joining in for an unforgettable
+          blues session.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="col">
+        <h2 class="major">Open stage</h2>
+        <p>Want to join in? Our open stage nights invite musicians of all levels to share a song, jam with others or
+          simply enjoy the music from a different perspective.</p>
+        <p>
+          Check our events calendar for upcoming open stage nights or send us a message to express your interest in
+          performing.
+          <a href="mailto:info@artrestaurantmanezinho.com">info@artrestaurantmanezinho.com</a>
+        </p>
+
+      </div>
+      <div class="col">
+        <figure class="image img-max shadow-low">
+          <img src="./assets/img/impressionHeroImg.jpg" alt="Collage of events at Manezinho" loading="lazy">
+
+        </figure>
+      </div>
+    </section>
+    <section id="events">
+
+      <header class="header-alt">
+        <h2 class="hero-header-h2">Events Calendar</h2>
+      </header>
+      <div class="calendar-container"></div>
+
+
+
+    </section>
+  {% include 'CMSOJ/Views/reservation.html' %}
+
+   
+  </main>
+
+
+{% block footer %}
+  {% include CMSOJ/Views/footer.html %}
+{% endblock %}
+
+{% block scripts %}
+@parent
+<script src="CMSOJ/Views/js/Calendar.js"></script>
+<!-- <script src="CMSOJ/Views/js/events.js"></script> -->
+ <script>
+   new Calendar({
+      // Unique ID - each page should have a unique ID
+      uid: 1,
+      // Size of the calendar - normal | mini | auto
+      size: 'mini',
+      // Display calendar - true | false
+      display_calendar: true,
+      // Expanded list - true | false
+      expanded_list: true
+    });
+</script>
+{% endblock %}

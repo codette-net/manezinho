@@ -1,30 +1,3 @@
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Restaurant",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sao Jorge, Azores",
-        "addressRegion": "Urzelina",
-        "streetAddress": "Canada do Açougue, 9800"
-      },
-      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
-      "name": "Art restaurant Manezinho",
-      "telephone": "+351295414096"
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Restaurant",
-      "name": "Art restaurant Manezinho",
-      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
-      "openingHours": "We,Th,Fr,Sa,Su 18:30-02:00",
-      "telephone": "+351295414096"
-    }
-  </script>
-  <script>
 
 
     // made by Jos Velema 2022 , redesigned in 2025
@@ -111,4 +84,4 @@
     */
 
 
-  </script>
+  

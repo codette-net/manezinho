@@ -1,19 +1,29 @@
+<?php class_exists('Template') or exit; ?>
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <title>Manezinho | Flavours</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Manezinho | Home </title>
+  
+<meta name="description"
+  content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
 
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <noscript>
-    <link rel="stylesheet" href="assets/css/noscript.css" />
-  </noscript>
+  
+<link rel="stylesheet" href="/assets/css/main.css" />
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<noscript>
+  <link rel="stylesheet" href="/assets/css/noscript.css" />
+</noscript>
+
+  <!-- here is the end of head  -->
 </head>
 
+
 <body class="">
+  
+
+  
 
   <nav>
 
@@ -78,133 +88,205 @@
 
   <div class="nav-info">
     <div id="nav-info-hours">
-      <small>Open Wednesday - Sunday from 18:30 till 02:00</small>
+      Open Wednesday - Sunday from 18:30 till 02:00
     </div>
     <div class="nav-info-contact">
+      <a href="tel:+351295414096" class="button transparent small">+351295414096</a>
       <a href="/#reservation" class="button transparent small">Reservation</a>
     </div>
   </div>
-  <main>
-    <header class="header-alt">
-      <h1 class="hero-header">Art Restaurant Manezinho</h1>
-      <h2 class="hero-header-h2">Flavours</h2>
+<main id="about">
+  <header class="header-alt">
+    <h1 class="hero-header">Art Restaurant Manezinho</h1>
+    <h2 class="hero-header-h2">About Us</h2>
+    <p>
+
+    </p>
+  </header>
+
+  <section>
+    <h3>Who was Manezinho?</h3>
+    <div class="image-circle float-left">
+      <img src="./assets/img/manezinhoDancing.jpg" alt="Manuel Medeiros dancing" loading="lazy">
+    </div>
+    <p>
+      Manezinho, whose real name was Manuel Medeiros, was born to a poor family on São Miguel around 1930. He never
+      went to school and started to work at a young age. When in his early teens his parents moved to São Jorge, where
+      he initially helped his father as a woodcutter (serralheiro). Later he worked as a fisherman on one of the four
+      large fishing boats (traineiras) that were stationed on the island. They would roam around in the archipelago
+      and on occasions made fishing trips of more than a month. In the early seventies the family moved to the USA,
+      but the father would return regularly to work during the summer on São Jorge.
+    </p>
+    <div class="image-circle float-right">
+      <img src="./assets/img/manezhinos.jpeg" alt="Manzehino buildig outside">
+    </div>
+    <p>
+      In the mid-seventies the father bought the plot of land where Art Restaurant Manezinho is now located. In the
+      beginning of the eighties the family returned to stay on São Jorge. At that time the coast of Urzelina was very
+      rough and dangerous. Manezinho often went out fishing on the cliffs where he used ropes to climb to the good
+      fishing spots. He had a talent for cooking, and he started to prepare meals for his fellow fishermen. He even
+      opened at three or four in the morning to make coffee for them before they went to the sea. Also, the
+      construction workers from other European countries that helped to rebuild Urzelina after the earthquake of 1980
+      found their way to his little shed near the coast. Gradually the business grew into a real restaurant, not in
+      the least because of home cooking of Manezinho and his wife Ilda. For a while the Manezinho restaurant was
+      famous all over the Azores.
+    </p>
+    <p>
+      The story has no happy end, however. One evening, while returning to home from work in the dark, Ilda missed a
+      step on the coastal path and fell to her death. Later the daughter Margarida and her husband helped her father
+      to reconstruct the restaurant and although it thrived for a while in the second decade of this century the
+      restaurant fell into decline due to conflicts between the owners and financial mishap. In 2013 Manezinho died.
+      The restaurant was left to itself without any interior or equipment. Occasionally vagrants lived in it.
+    </p>
+  </section>
+  <section class="panel">
+    <div class="col">
+      <h3>Same name , new concept</h3>
       <p>
-        Discover the authentic taste of São Jorge, where local ingredients and traditional island cooking inspire every
-        dish. From its famous cheeses and rich dairy heritage to fresh seafood and locally raised meats, the island
-        offers flavours rooted in simplicity and quality. At Manezinho, we bring these ingredients together with care,
-        creating meals that reflect the character of the Azores and the spirit of its coast.
+        In 2020 the philosopher, painter and musician, Pieter Adriaans and his wife Cesarina could buy the building
+        from the relatives of Manezinho. They decided to create a meeting place were art and music could be
+        appreciated. In remembrance of this hard-working man who created a place of happiness and beauty out of
+        nothing and brought joy to so many lives, the new owners decided to keep the name. Today the portrait of
+        Manezinho is looking out over the restaurant he founded forty years ago: Grand Café Manezinho. It is our
+        tribute to him.
       </p>
-    </header>
-    <section class="panel">
-      <div class="col">
-        <h2 class="major"> Fresh Catch from the Atlantic</h2>
+      <p>
+        After almost a year of renovation the place opened its doors again as Grand Café Manezinho in October 2021.
+        The name was kept but the formula is different: a place where people can relax, see art and listen to live
+        music. In Manezinho there is a permanent exposition of works by Pieter.
+      </p>
+    </div>
+    <div class="col">
+      <div class="image"><img src="./assets/img/pieteRiniEwiCrop.jpg" alt="Pieter, Rini & Ewout Adriaans"></div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="col">
+      <div class="image">
+        <img src="./assets/img/Raquel_Oliveira.jpeg" alt="Raquel Oliveira">
+      </div>
+    </div>
+    <div class="col">
+      <h3>Introducing Raquel Oliveira</h3>
+      <p>
+
+        Hello, my name is Raquel Oliveira, originally from the island of São Jorge, and I am the head chef at
+        Manezinho.
+        <br>
+        My passion for cooking began in childhood. I grew up in a big family that loved to gather around the table. We
+        hunted and fished, and whatever we caught was what we cooked. Those moments of sharing and togetherness
+        inspired my love for gastronomy.
+      </p>
+      <p>
+        Later on, I decided to follow that path and pursue a degree in Culinary Arts. Over twenty years ago, few
+        people even knew such a course existed. At the time, I was studying accounting in São Miguel when I decided to
+        change direction and tell my parents. It came as a surprise, but they supported me completely.
+
+        My mother once saw an interview about the Estoril School of Hospitality and Tourism, and that’s how we
+        discovered the program. I applied, was accepted, and everything went well.
+
+        I completed internships in several regions of Portugal, from Pousadas de Portugal to a major hotel in
+        Madeira, gaining as much knowledge and experience as possible.
+      </p>
+    </div>
+  </section>
+  
+   <section class="" id="reservation">
+      <header class="full-width bg-primary">
+
+        <h3 class="major"> Make a reservation</h3>
+
         <p>
-          The fish on our menu changes with what the ocean offers each day. Whether it’s tuna, amberjack, lapas or
-          another local catch, we prepare it fresh and serve it with a short story about its origin and, if you like, a
-          wine pairing chosen to match its flavour.</p>
-      </div>
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <!-- srcset  -->
-          <img src="assets/img/scaledImg/manezinho_food_060-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_060-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_060-large.jpg 992w, assets/img/scaledImg/manezinho_food_060-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_060-small.jpg 480w"
-            alt="Manezinho Tuna Dish" loading="lazy">
-          <figcaption>Fresh Tuna</figcaption>
-        </figure>
-      </div>
-    </section>
-    <section class="panel col-rev">
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <img src="assets/img/scaledImg/manezinho_food_031-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_031-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_031-large.jpg 992w, assets/img/scaledImg/manezinho_food_031-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_031-small.jpg 480w"
-            alt="Manezinho Hamburger Dish" loading="lazy">
-          <figcaption>Manezinho Hamburger</figcaption>
-        </figure>
-      </div>
-      <div class="col">
-        <h2 class="major">
-          Crafted Cuts & Signature Dishes
-        </h2>
-        <p>
-          Our selection of island meats highlights the best of local producers, featuring premium cuts prepared with
-          care and served with thoughtful sides. Among them is our signature manezinho hamburger. It is made with ground
-          beef from the islands, which gives it a unique and delicious flavor.
+          You can request a reservation by filling in the form below. We will get back to you by email as soon as possible
+          to confirm your booking.
+          <br>
+          <strong>Please note that your reservation is <u>only</u> confirmed once you receive our confirmation email.</strong>
         </p>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="col">
-        <h2 class="major">Cheese & Tapas</h2>
-        <p>São Jorge is known for its bold, flavorful cheese, and our tapas menu celebrates this local specialty
-          alongside a selection of small plates made with regional ingredients. From dairy-rich bites to fresh seafood
-          and cured meats, each tapa is prepared to share and enjoy at a relaxed pace.</p>
-      </div>
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <img src="assets/img/scaledImg/manezinho_food_033-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_033-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_033-large.jpg 992w, assets/img/scaledImg/manezinho_food_033-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_033-small.jpg 480w"
-            alt="Manezinho Tapas Dish" loading="lazy">
-          <figcaption>Assorted Tapas</figcaption>
-        </figure>
-      </div>
-    </section>
-    <!-- wines -->
-    <section class="panel col-rev">
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <img src="assets/img/scaledImg/manezinho_food_058-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_058-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_058-large.jpg 992w, assets/img/scaledImg/manezinho_food_058-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_058-small.jpg 480w"
-            alt="Manezinho Wine Selection" loading="lazy">
-          <figcaption>Wine Selection</figcaption>
-        </figure>
-      </div>
-      <div class="col">
-        <h2 class="major">Curated Wine Selection</h2>
         <p>
-          Our wine list showcases Azorean wines defined by volcanic terroir and limited production, alongside select
-          bottles from mainland regions. Let us guide you to the ideal pairing, whether you’re enjoying seafood, local
-          meats or a shared plate of São Jorge cheese.
-        </p>
-      </div>
+        For groups larger than four, a phone number is required.
+
+        You can also reserve by phone on the days we are open, starting in the afternoon.
+        
+        Please keep in mind that we are <strong>closed on Mondays and Tuesdays.</strong>
+        <br>
+         Requests made on that day will be answered on our next open
+        day, and same-day reservations can only be accepted until 15:00.
+      </p>
+         <a href="" class="button inverse small">+351 968 990 696</a>
+      </header>
+      <form class="reservation-form" action="" method="post" enctype="multipart/form-data">
+
+        <div class="fields">
+          <div class="field half">
+            <label for="name">Name <span class="form-required">* required</span></label>
+            <input type="text" id="first_name" name="first_name" placeholder="Enter your name"
+              title="First name must contain only characters!" required>
+
+          </div>
+
+          <div class="field half">
+            <label for="email">Email <span class="form-required">* required</span></label>
+            <input type="email" id="email" name="email" placeholder="Enter your email"
+              title="Please enter a valid email address!" required>
+
+          </div>
+          <!-- accept phone number with numbers , () and - only -->
+          <div class="field quarter">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="" placeholder="Enter your phone number"
+              title="Please enter a valid phone number!">
+          </div>
+          <!-- // datepicker  -->
+          <div class="field quarter">
+            <label for="persons">Number of persons <span class="form-required">* required</span></label>
+            <input type="number" name="persons" id="persons" placeholder="Enter number of persons" min=1 max=20 required
+              title="Please enter a number between 1 and 20!">
+          </div>
+          <div class="field quarter">
+            <label for="date">Date <span class="form-required">* required</span></label>
+            <input type="date" name="date" id="date-reservation" required>
+          </div>
+          <!-- number of persons  -->
+          <div class="field quarter">
+            <label for="time">Time <span class="form-required">* required</span></label>
+            <!-- 15 minutes intervals selection betweeen 1830 and 2130 -->
+            <select name="time" id="time" required>
+              <option value="" disabled selected>Select a time</option>
+
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="18:45">18:45</option>
+              <option value="19:00" selected>19:00</option>
+              <option value="19:15">19:15</option>
+              <option value="19:30">19:30</option>
+              <option value="19:45">19:45</option>
+              <option value="20:00">20:00</option>
+              <option value="20:15">20:15</option>
+              <option value="20:30">20:30</option>
+              <option value="20:45">20:45</option>
+              <option value="21:00">21:00</option>
+              <option value="21:15">21:15</option>
+              <option value="21:30">21:30</option>
+            </select>
+          </div>
+          <div class="field half">
+            <label for="message">Additional information </label>
+            <textarea name="message" id="message" rows="3" placeholder=" "></textarea>
+          </div>
+          <div class="field quarter button-field">
+            <input type="submit" value="Send" class="primary" />
+            <input type="reset" value="Clear" class="button transparent" />
+          </div>
+          <div class="field half last-field">
+            <p class="errors-msg"></p>
+            <!-- <div class="g-recaptcha" data-sitekey="6LfUEvQpAAAAABZlIBzegXpvRMnnVGGwtCKaUMZ2"></div> -->
+
+
+          </div>
+      </form>
+
     </section>
-    
-      <!-- cocktails & gins img 036 -->
-      <section class="panel">
-
-        <div class="col">
-          <h2 class="major">
-            Craft Cocktails & Local Gins
-          </h2>
-          <p>
-            Enjoy a selection of classic cocktails and carefully chosen gins, served simply and made to suit every
-            taste. Whether you prefer something refreshing, smooth or bold, we can help you find the right drink to
-            enjoy on its own or alongside your meal. Relax at the bar, try something familiar or discover a new
-            favourite with our recommendations.
-
-          </p>
-        </div>
-        <div class="col">
-          <figure class="image img-max shadow-low">
-            <img src="assets/img/scaledImg/manezinho_food_036-small.jpg"
-              sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-              srcset="assets/img/scaledImg/manezinho_food_036-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_036-large.jpg 992w, assets/img/scaledImg/manezinho_food_036-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_036-small.jpg 480w"
-              alt="Manezinho Cocktails and Gins" loading="lazy">
-            <figcaption>Strawberry Martini</figcaption>
-          </figure>
-        </div>
-      </section>
-  {% include CMSOJ/Views/reservation.html %}
-
-
-
-    
-  </main>
+</main>
 
   <footer class="footer">
     <div class="footer-content">
@@ -282,176 +364,20 @@
   </footer>
 
 
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Restaurant",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sao Jorge, Azores",
-        "addressRegion": "Urzelina",
-        "streetAddress": "Canada do Açougue, 9800"
-      },
-      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
-      "name": "Art restaurant Manezinho",
-      "telephone": "+351295414096"
-    }
-  </script>
+  
 
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Restaurant",
-      "name": "Art restaurant Manezinho",
-      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
-      "openingHours": "We,Th,Fr,Sa,Su 18:30-02:00",
-      "telephone": "+351295414096"
-    }
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const words = document.querySelectorAll(".slide-word");
-      let index = 0;
+<script src="/assets/js/app.js"></script>
 
-      function cycle() {
-        words.forEach(w => w.classList.remove("visible"));
-        words[index].classList.add("visible");
-        index = (index + 1) % words.length;
-      }
-
-      cycle();
-      setInterval(cycle, 2500);
-    });
-
-
-    // made by Jos Velema 2022 , redesigned in 2025
-    const navBtn = document.querySelector("#menu-btn");
-    const nav = document.querySelector("nav");
-    const navOffset = nav.offsetTop;
-    const navInfo = document.querySelector(".nav-info");
-
-    const main = document.querySelector("main");
-    const navLinks = document.querySelector(".nav-links");
-    const navLink = document.querySelectorAll(".nav-link");
-
-    const logo = document.querySelector(".logo");
-    const menuBtn = document.querySelector(".btn--menu");
-    // active page
-    // console.log(window.location.href)
-    navLink.forEach((link) => {
-      // console.log((link.href, window.location.href));
-      console.log(link.href);
-
-      // get current url without the # or ?
-      const currentURL = window.location.href.split("#")[0].split("?")[0];
-      if (link.href === currentURL) {
-        link.setAttribute("aria-current", "page");
-        link.setAttribute("title", "You are currently on this page");
-      }
-    });
-
-    navBtn.addEventListener("click", () => {
-      navLinks.classList.add("activated");
-      const isExpanded = JSON.parse(navBtn.getAttribute("aria-expanded"));
-      navBtn.setAttribute("aria-expanded", !isExpanded);
-
-      !isExpanded && nav.classList.add("active");
-    });
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > navOffset) {
-        nav.classList.add("scrolled");
-      } else {
-        nav.classList.remove("scrolled");
-      }
-    });
-
-    // if last section is in view  make footer fixed
-    const footer = document.querySelector(".footer");
-    const lastSection = document.querySelector("main section:last-of-type");
-    const footerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            console.log("Last section in view");
-            footer.classList.add("fixed-footer");
-          } else {
-            footer.classList.remove("fixed-footer");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    footerObserver.observe(lastSection);
-
-
-
-    const fadeUpObserver = new IntersectionObserver(
-      (elsToWatch) => {
-        elsToWatch.forEach((el) => {
-          if (el.isIntersecting) {
-            el.target.classList.add("faded");
-            fadeUpObserver.unobserve(el.target);
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    document.querySelectorAll(".fade-up").forEach((item) => {
-      console.log(item);
-      fadeUpObserver.observe(item);
-    });
-
-    /* document.querySelectorAll(".fade-up-delay").forEach((item) => {
-      console.log(item);
-      fadeUpObserver.observe(item);
-    });
-    
-    window.onscroll = function () {
-      var e = document.getElementById("scrolltop");
-      if (!e) {
-        e = document.createElement("a");
-        e.id = "scrolltop";
-        e.href = "#";
-        e.title = "Back to top";
-        document.body.appendChild(e);
-      }
-      e.style.display = document.documentElement.scrollTop > 300 ? "block" : "none";
-      e.onclick = (ev) => {
-        ev.preventDefault();
-        document.documentElement.scrollTop = 0;
-      };
-    };
-    */
-
-    const imgScroller = document.querySelector(".img-scroller");
-
-    function mainScroller() {
-      imgScroller.querySelectorAll(".image-scroll").forEach((img, index) => {
-
-        if (index === 0) {
-          img.classList.add("active");
-        }
-      });
-
-      // scroll trough images
-      let i = 0;
-      setInterval(() => {
-        imgScroller.querySelector(".active").classList.remove("active");
-        i = (i + 1) % imgScroller.children.length;
-        imgScroller.children[i].classList.add("active");
-      }, 5000);
-    }
-    document.addEventListener("DOMContentLoaded", mainScroller);
-  </script>
-
+  
 </body>
 
 </html>
 
 
-</body>
 
-</html>
+
+
+
+
+
+

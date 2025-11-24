@@ -9,6 +9,16 @@ $router->get('', function() {
     Template::view('CMSOJ/Views/index.html');
 });
 
+// Flavours page
+$router->get('flavours', function() {
+    Template::View('CMSOJ/Views/flavours.html');
+});
+
+// Events page
+$router->get('events', function() {
+    Template::View('CMSOJ/Views/events.html');
+});
+
 // About page
 $router->get('about', function() {
     Template::view('CMSOJ/Views/about.html');
