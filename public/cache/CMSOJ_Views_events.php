@@ -3,7 +3,8 @@
 <html lang="en">
 
 <head>
-  <title>Manezinho | <?php echo $title ?> </title>
+  <base href="/">
+  <title>Manezinho | <?php echo Template::asset($title) ?> </title>
   
 
 <meta charset="utf-8" />
@@ -13,11 +14,11 @@
 
   
 
-<link rel="stylesheet" href="/assets/css/main.css" />
-<link rel="stylesheet" href="/assets/css/components.css">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href='<?php echo Template::asset("/assets/css/main.css") ?>' />
+<link rel="stylesheet" href='<?php echo Template::asset("/assets/css/components.css") ?>'>
+<link rel="stylesheet" href='<?php echo Template::asset("/assets/css/style.css") ?>'>
 <noscript>
-  <link rel="stylesheet" href="/assets/css/noscript.css" />
+  <link rel="stylesheet" href='<?php echo Template::asset("/assets/css/noscript.css") ?>' />
 </noscript>
 
 <link rel="stylesheet" href="/assets/css/calendar.css">
@@ -282,7 +283,6 @@
   </main>
 
 
-
   <footer class="footer">
     <div class="footer-content">
 
@@ -359,11 +359,6 @@
   </footer>
 
 
-  
-
-<script src="/assets/js/main.js"></script>
-
-  
 
 <script src="/assets/js/Calendar.js"></script>
 <!-- <script src="CMSOJ/Views/js/events.js"></script> -->
@@ -380,11 +375,15 @@
     });
 </script>
 
+
+  
+
+<script src='<?php echo Template::asset("/assets/js/main.js") ?>''></script>
+
+  
 </body>
 
 </html>
-
-
 
 
 

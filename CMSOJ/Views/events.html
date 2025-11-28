@@ -14,7 +14,7 @@
 
 
 {% block content %}
-{% include CMSOJ/Views/nav.html %}
+{% partial 'nav' %}
 
 <main>
     <header class="header-alt">
@@ -97,15 +97,13 @@
 
 
     </section>
-  {% include 'CMSOJ/Views/reservation.html' %}
+  {% partial 'reservation' %}
 
    
   </main>
 
 
-{% block footer %}
-{% include CMSOJ/Views/footer.html %}
-{% endblock %}
+{% partial 'footer' %}
 
 {% block scripts %}
 @parent

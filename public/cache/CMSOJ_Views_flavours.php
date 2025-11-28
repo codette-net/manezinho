@@ -3,16 +3,17 @@
 <html lang="en">
 
 <head>
-  <title>Manezinho | <?php echo $title ?> </title>
+  <base href="/">
+  <title>Manezinho | <?php echo Template::asset($title) ?> </title>
   
   <meta name="description" content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
 
   
-<link rel="stylesheet" href="/assets/css/main.css" />
-<link rel="stylesheet" href="/assets/css/components.css">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href='<?php echo Template::asset("/assets/css/main.css") ?>' />
+<link rel="stylesheet" href='<?php echo Template::asset("/assets/css/components.css") ?>'>
+<link rel="stylesheet" href='<?php echo Template::asset("/assets/css/style.css") ?>'>
 <noscript>
-  <link rel="stylesheet" href="/assets/css/noscript.css" />
+  <link rel="stylesheet" href='<?php echo Template::asset("/assets/css/noscript.css") ?>' />
 </noscript>
 
   <!-- here is the end of head  -->
@@ -309,8 +310,7 @@
   </main>
 
 
-
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
 
       <div class="footer-section links">
@@ -386,17 +386,16 @@
   </footer>
 
 
+
+
   
 
-<script src="/assets/js/main.js"></script>
+<script src='<?php echo Template::asset("/assets/js/main.js") ?>''></script>
 
   
 </body>
 
 </html>
-
-
-
 
 
 

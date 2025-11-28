@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include CMSOJ/Views/nav.html %}
+{% partial 'nav' %}
   <main>
     <header class="header-alt">
       <h1 class="hero-header">Art Restaurant Manezinho</h1>
@@ -126,13 +126,11 @@
       </section>
 
 
-{% include CMSOJ/Views/reservation.html %}
+{% partial 'reservation' %}
   </main>
 
 
-{% block footer %}
-  {% include CMSOJ/Views/footer.html %}
-{% endblock %}
+{% partial 'footer' %}
 
 
 {% endblock %}

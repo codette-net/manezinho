@@ -48,13 +48,14 @@ class Template
 	}
 
 	static function compileCode($code)
-	{	
+	{
 		$code = self::compilePartials($code);
+		$code = self::compileComponents($code);
 		$code = self::compileBlock($code);
 		$code = self::compileYield($code);
 		$code = self::compileEscapedEchos($code);
 		$code = self::compileEchos($code);
-		$code = self::stripLeftoverBlockTags($code); 
+		$code = self::stripLeftoverBlockTags($code);
 		$code = self::compilePHP($code);
 		return $code;
 	}
@@ -78,7 +79,7 @@ class Template
 
 	static function compileEchos($code)
 	{
-		return preg_replace('~\{{\s*(.+?)\s*\}}~is', '<?php echo $1 ?>', $code);
+		return preg_replace('~\{{\s*(.+?)\s*\}}~is', '<?php echo Template::asset($1) ?>', $code);
 	}
 
 	static function compileEscapedEchos($code)
@@ -141,5 +142,29 @@ class Template
 			$file = 'CMSOJ/Views/partials/' . $matches[1] . '.html';
 			return self::includeFiles(self::resolvePath($file));
 		}, $code);
+	}
+
+	static function compileComponents($code)
+	{
+		return preg_replace_callback('/\{%[\s]*component[\s]+\'(.+?)\'\s*,\s*(\{.+?\})\s*%}/is', function ($matches) {
+
+			$component = 'CMSOJ/Views/components/' . $matches[1] . '.html';
+			$props = json_decode(str_replace("'", '"', $matches[2]), true);
+
+			ob_start();
+			extract($props, EXTR_SKIP);
+			include self::resolvePath($component);
+			return ob_get_clean();
+		}, $code);
+	}
+
+
+	static function asset($path)
+	{
+		$full = dirname(__DIR__) . '/public' . $path;
+		if (file_exists($full)) {
+			return $path . '?v=' . filemtime($full);
+		}
+		return $path;
 	}
 }
