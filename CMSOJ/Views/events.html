@@ -8,7 +8,7 @@
 
 {% block css %}
 @parent
-<link rel="stylesheet" href="CMSOJ/Views/css/calendar.css">
+<link rel="stylesheet" href="/assets/css/calendar.css">
 {% endblock %}
 
 
@@ -104,12 +104,12 @@
 
 
 {% block footer %}
-  {% include CMSOJ/Views/footer.html %}
+{% include CMSOJ/Views/footer.html %}
 {% endblock %}
 
 {% block scripts %}
 @parent
-<script src="CMSOJ/Views/js/Calendar.js"></script>
+<script src="/assets/js/Calendar.js"></script>
 <!-- <script src="CMSOJ/Views/js/events.js"></script> -->
  <script>
    new Calendar({
