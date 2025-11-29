@@ -1,4 +1,8 @@
 <?php
+namespace CMSOJ;
+use CMSOJ\Controllers\CalendarController;
+use CMSOJ\Template;
+
 
 // Home
 $router->get('', function() {
@@ -28,3 +32,16 @@ $router->get('about', function() {
 $router->get('blog/{id}', function($id) {
     Template::view('CMSOJ/Views/blog.html', ['id' => $id]);
 });
+
+
+$router->get('calendar', [CalendarController::class, 'handle']);
+
+
+
+// $router->get('test-db', function() {
+//     $db = CMSOJ\Core\Database::connect();
+
+//     echo "<pre>Connected successfully!";
+//     $stmt = $db->query("SHOW TABLES;");
+//     print_r($stmt->fetchAll());
+// });

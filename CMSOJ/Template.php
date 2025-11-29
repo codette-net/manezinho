@@ -1,4 +1,7 @@
 <?php
+
+namespace CMSOJ;
+
 class Template
 {
 
@@ -79,7 +82,11 @@ class Template
 
 	static function compileEchos($code)
 	{
-		return preg_replace('~\{{\s*(.+?)\s*\}}~is', '<?php echo Template::asset($1) ?>', $code);
+		return preg_replace(
+			'~\{{\s*(.+?)\s*\}}~is',
+			'<?php echo \CMSOJ\Template::asset($1) ?>',
+			$code
+		);
 	}
 
 	static function compileEscapedEchos($code)

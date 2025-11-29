@@ -1,4 +1,6 @@
 <?php
+namespace CMSOJ;
+use CMSOJ\Template;
 
 $router->get('admin', function() {
     Template::view('CMSOJ/Admin/Views/dashboard.html');

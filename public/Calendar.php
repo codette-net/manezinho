@@ -1,23 +1,34 @@
 <?php
-// Include the configuration file
-include 'config.php';
-// Include the calendar class
-include 'Calendar.class.php';
+// Bootstrap config + DB + legacy calendar class
+
+require_once __DIR__ . '/../CMSOJ/Core/Config.php';
+CMSOJ\Core\Config::load();
+
+require_once __DIR__ . '/../CMSOJ/Core/Database.php';
+require_once __DIR__ . '/../CMSOJ/Legacy/Calendar.php';
+
 // Get the current date (if specified); default is null
 $current_date = isset($_GET['current_date']) && strtotime($_GET['current_date']) ? $_GET['current_date'] : null;
+
 // Get the unique id (if specified); default is 0
-$uid = isset($_GET['uid']) ? $_GET['uid'] : 0;
-// Alternative to the above, but using sessions instead
-// session_start();
-// $uid = isset($_SESSION['uid']) ? $_SESSION['uid'] : 0;
-// Get display calendar parameter (if specified); default is true
-$display_calendar = isset($_GET['display_calendar']) ? $_GET['display_calendar'] : false;
+$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : 0;
+
+// Get display calendar parameter (if specified); default is false
+$display_calendar = isset($_GET['display_calendar']) ? (bool)$_GET['display_calendar'] : false;
+
 // Get expanded list parameter (if specified); default is false
-$expanded_list = isset($_GET['expanded_list']) ? $_GET['expanded_list'] : false;
+$expanded_list = isset($_GET['expanded_list']) ? (bool)$_GET['expanded_list'] : false;
+
 // Create a new calendar instance
 $calendar = new Calendar($current_date, $uid, $expanded_list, $display_calendar);
-// Connect to the calendar database using the constants declared in the config.php file
-$calendar->connect_to_database(db_host, db_user, db_pass, db_name);
+
+// Use the NEW PDO connection from your framework
+$pdo = CMSOJ\Core\Database::connect();
+$calendar->set_database_connection($pdo);
+
+// IMPORTANT: in original connect_to_database() it also did update_unavailable_dates()
+$calendar->update_unavailable_dates();
+
 // Check if the event management is disabled
 if (!disable_event_management) {
     // Check if the add/update event form was submitted 
@@ -54,6 +65,7 @@ if (!disable_event_management) {
         exit;
     }
 }
+
 // Retrieve events list in HTML format
 if (isset($_GET['events_list'])) {
     $events_list = $calendar->list_events_by_date_html($_GET['events_list']);
@@ -64,6 +76,6 @@ if (isset($_GET['events_list'])) {
     }
     exit;
 }
-// Display the calendar
+
+// Display the calendar (HTML from __toString())
 echo $calendar;
-?>

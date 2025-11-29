@@ -5,7 +5,7 @@ class Calendar {
         let defaults = {
             uid: 1,
             container: document.querySelector('.calendar-container'),
-            php_file_url: 'Calendar.php',
+            php_file_url: '/calendar',
             current_date: new Date().toISOString().substring(0, 10),
             size: 'auto',
             display_calendar: true,
