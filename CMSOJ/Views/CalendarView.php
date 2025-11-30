@@ -9,12 +9,13 @@ class CalendarView
      */
     public function render(array $data): string
     {
-        $html = '<div class="calendar-wrapper">';
-
+        $html = '';
         // Optional expanded month list at the top
         if (!empty($data['expanded_list'])) {
             $html .= $this->renderExpandedMonth($data['events'], $data);
         }
+        $html .= '<div class="calendar">';
+
 
         // Main calendar grid
         if (!empty($data['display_calendar'])) {
@@ -33,26 +34,33 @@ class CalendarView
      */
     private function renderHeader(array $data): string
     {
+        
         return '
-        <div class="calendar-header">
-            <div class="month-year">
-                <a href="#" class="current" title="Select Date"
-                   data-date="' . $data['year'] . '-' . sprintf('%02d', $data['month']) . '-01">
-                    ' . $data['month_name'] . ' ' . $data['year'] . '
-                </a>
+            <div class="calendar-header">
+                <div class="month-year">
+                    <a href="#" class="current" title="Select Date"
+                    data-date="' . $data['year'] . '-' . sprintf('%02d', $data['month']) . '-01">
+                        ' . $data['month_name'] . ' ' . $data['year'] . '
+                    </a>
 
-                <a href="#" class="today">today</a>
-                <a href="#" class="refresh" title="Refresh">&#x21bb;</a>
+                    <a href="#" class="today">today</a>
+                    <a href="#" class="refresh" title="Refresh">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" /></svg>
+                    </a>
 
-                <a href="#" class="prev"
-                   title="Previous Month"
-                   data-date="' . $data['prev_month'] . '">&#x276E;</a>
+                    <a href="#" class="prev"
+                    title="Previous Month"
+                    data-date="' . $data['prev_month'] . '">
+                    <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg></a>
 
-                <a href="#" class="next"
-                   title="Next Month"
-                   data-date="' . $data['next_month'] . '">&#x276F;</a>
+                    <a href="#" class="next"
+                    title="Next Month"
+                    data-date="' . $data['next_month'] . '">
+                    <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                    </a>
+                </div>
             </div>
-        </div>';
+        ';
     }
 
     /**
@@ -127,8 +135,8 @@ class CalendarView
         }
 
         $html = '<div class="' . implode(' ', $classes) . '" ' .
-                'data-date="' . $day['date'] . '" ' .
-                'data-label="' . htmlspecialchars($day['label_full'], ENT_QUOTES) . '">';
+            'data-date="' . $day['date'] . '" ' .
+            'data-label="' . htmlspecialchars($day['label_full'], ENT_QUOTES) . '">';
 
         // Day number
         $html .= '<span class="day_num_value">' . $day['label'] . '</span>';
@@ -256,7 +264,7 @@ class CalendarView
 
         if (!empty($event['photo_url'])) {
             $html .= '<div class="photo"><img src="' . htmlspecialchars($event['photo_url'], ENT_QUOTES) .
-                     '" width="100" height="100" alt="' . htmlspecialchars($event['title'] ?? '', ENT_QUOTES) . '"></div>';
+                '" width="100" height="100" alt="' . htmlspecialchars($event['title'] ?? '', ENT_QUOTES) . '"></div>';
         }
 
         $html .= '<div class="con">';
@@ -266,7 +274,7 @@ class CalendarView
         if (!empty($event['redirect_url'])) {
             $href  = htmlspecialchars($event['redirect_url'], ENT_QUOTES);
             $html .= '<h3 class="title"><a href="' . $href . '" rel="noopener noreferrer nofollow">' .
-                     $title . '</a></h3>';
+                $title . '</a></h3>';
         } else {
             $html .= '<h3 class="title">' . $title . '</h3>';
         }
@@ -278,7 +286,7 @@ class CalendarView
         }
 
         $html .= '<span class="time">From ' . $timeFrom . ' to ' . $timeTo .
-                 ' on ' . $daySuffix . ' ' . $currentMonthLabel . '</span>';
+            ' on ' . $daySuffix . ' ' . $currentMonthLabel . '</span>';
 
         $html .= '</div>'; // .con
         $html .= '</div>'; // .event
