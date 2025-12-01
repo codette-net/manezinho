@@ -17,7 +17,7 @@ form.addEventListener("submit", async (event) => {
 
 
   try {
-    const response = await fetch("reservation.php", {
+    const response = await fetch("/reservation", {
       method: "POST",
       body: formData,
     });

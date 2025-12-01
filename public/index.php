@@ -9,6 +9,10 @@ CMSOJ\Core\Config::load();
 // Start router
 $router = new \CMSOJ\Router();
 
+// Include PHPMailer library
+require __DIR__ . '/../lib/phpmailer/Exception.php';
+require __DIR__ . '/../lib/phpmailer/PHPMailer.php';
+require __DIR__ . '/../lib/phpmailer/SMTP.php';
 
 // Load route definitions
 require __DIR__ . '/../CMSOJ/Routes/web.php';
