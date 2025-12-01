@@ -11,6 +11,11 @@ class Router
         $this->addRoute('GET', $pattern, $callback);
     }
 
+    public function post(string $pattern, $callback): void
+    {
+        $this->addRoute('POST', $pattern, $callback);
+    }
+
     private function addRoute(string $method, string $pattern, $callback): void
     {
         // Normalize: remove leading/trailing slashes

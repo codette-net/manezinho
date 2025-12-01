@@ -102,6 +102,14 @@
     </div>
   </div>
 
+  <div class="response-wrapper">
+  <div class="response">
+    <h2>Thank you for your request!</h2>
+    <p class="response-msg"></p>
+    <button class="btn btn--dark" id="response-exit-btn" title="go back to page">close</button>
+  </div>
+</div>
+
 <main>
     <header class="header-alt">
       <h1 class="hero-header">Art Restaurant Manezinho</h1>
