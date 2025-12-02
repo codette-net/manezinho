@@ -362,6 +362,7 @@
 
 
   
+<a id="scrolltop" href="#" title="Back to top" style="display: none;"></a>
 
 <script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js") ?>''></script>
 <script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js") ?>''></script>
@@ -369,6 +370,7 @@
   
 
 <script src="/assets/js/imgscroller.js"></script>
+<script src="/assets/js/wordslider.js"></script>
 
 </body>
 

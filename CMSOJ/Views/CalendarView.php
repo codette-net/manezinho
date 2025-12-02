@@ -1,6 +1,7 @@
 <?php
 
 namespace CMSOJ\Views;
+use CMSOJ\Core\Config;
 
 class CalendarView
 {
@@ -76,11 +77,11 @@ class CalendarView
             $attrs[] = 'data-colors="' . htmlspecialchars(event_colors, ENT_QUOTES) . '"';
         }
 
-        if (defined('disable_event_management') && disable_event_management) {
+        if (Config::get('DISABLE_EVENT_MANAGEMENT')) {
             $attrs[] = 'data-disable-event-management="true"';
         }
 
-        if (defined('disable_photo_uploads') && disable_photo_uploads) {
+        if (Config::get('DISABLE_PHOTO_UPLOADS')) {
             $attrs[] = 'data-disable-photo-uploads="true"';
         }
 
@@ -359,7 +360,7 @@ class CalendarView
         $html .= '</div>
                 <div class="actions">';
 
-        if (!defined('disable_event_management') || !disable_event_management) {
+        if (!Config::get('DISABLE_EVENT_MANAGEMENT')) {
             $html .= '
                 <svg class="edit" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Edit Event</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
                 <svg class="delete" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Delete Event</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>';
