@@ -766,6 +766,7 @@ button,
   outline: 1px solid transparent;
   outline-offset: 3px;
   width: fit-content;
+  margin-inline: 0.25rem;
 
 
 }

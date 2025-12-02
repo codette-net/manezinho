@@ -97,7 +97,7 @@ class Calendar {
             <div class="calendar-modal calendar-date-modal">
                 <div class="calendar-event-modal-header">
                     <h5>Select Date</h5>
-                    <a href="#" class="close"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg></a>
+                    <a class="close"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg></a>
                 </div>
                 <div class="calendar-event-modal-content date-select">
                     <h5>Month</h5>
@@ -106,8 +106,8 @@ class Calendar {
                     <div class="years"></div>
                 </div>
                 <div class="calendar-event-modal-footer">
-                    <a href="#" class="save">Save</a>
-                    <a href="#" class="close">Close</a>
+                    <a href="#" class="button primary small select">Select</a>
+                    <a href="#" class="button transparent small close">Close</a>
                 </div>
             </div>
         `;
@@ -166,8 +166,8 @@ class Calendar {
             modalElement.querySelector(".month.active").offsetTop - 100;
         modalElement.querySelector(".year.active").parentNode.scrollTop =
             modalElement.querySelector(".year.active").offsetTop - 100;
-        // Save the selected month and year
-        modalElement.querySelector(".save").onclick = (event) => {
+        //  select the month and year
+        modalElement.querySelector(".select").onclick = (event) => {
             event.preventDefault();
             // Update the current date
             this.currentDate =
@@ -551,6 +551,7 @@ class Calendar {
         modalElement.querySelectorAll(".close").forEach(
             (element) =>
                 (element.onclick = (event) => {
+                    console.log('clossse');
                     event.preventDefault();
                     // Remove the modal
                     modalElement.remove();

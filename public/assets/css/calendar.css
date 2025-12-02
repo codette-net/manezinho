@@ -359,6 +359,7 @@
     box-shadow: var(--shadow-elevation-high);
     border-radius: 4px;
     border: 1px solid hsla(var(--primary-400), 0.65);
+    width: min(100%,450px);
 }
 .calendar-modal .calendar-event-modal-header {
   display: flex;
@@ -424,8 +425,8 @@
   color: #616468;
 }
 .calendar-modal .calendar-event-modal-content.date-select .years .year.active, .calendar-modal .calendar-event-modal-content.date-select .years .month.active, .calendar-modal .calendar-event-modal-content.date-select .months .year.active, .calendar-modal .calendar-event-modal-content.date-select .months .month.active {
-  background-color: #4784ca;
-  color: hsla(var(--neutral-100), 1);
+  background-color: var(--primary);
+  color: hsla(var(--neutral-900), 1);
 }
 .calendar-modal .calendar-event-modal-footer {
   display: flex;
@@ -438,8 +439,6 @@
   padding: 0 10px;
   margin-right: 8px;
   height: 30px;
-  background-color: #e6e9ee;
-  color: hsla(var(--neutral-100), 0.9);
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -448,9 +447,7 @@
   align-self: flex-end;
   border-radius: 4px;
 }
-.calendar-modal .calendar-event-modal-footer .save:hover, .calendar-modal .calendar-event-modal-footer .add_event:hover, .calendar-modal .calendar-event-modal-footer .delete_event:hover, .calendar-modal .calendar-event-modal-footer .close:hover {
-  background-color: #e0e4ea;
-}
+
 .calendar-modal .calendar-event-modal-footer .close {
   background-color: var(--primary);
   color: hsla(var(--neutral-900), 1);
@@ -710,7 +707,7 @@
     justify-content: center;
     align-items: center;
     background-color: hsla(var(--primary-1000),0.8);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(12px);
     opacity: 0.1;
     transition: all 300ms ease-in-out;
   }

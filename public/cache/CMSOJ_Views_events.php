@@ -106,7 +106,7 @@
   <div class="response">
     <h2>Thank you for your request!</h2>
     <p class="response-msg"></p>
-    <button class="btn btn--dark" id="response-exit-btn" title="go back to page">close</button>
+    <button class="primary" id="response-exit-btn" title="go back to page">close</button>
   </div>
 </div>
 
