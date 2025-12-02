@@ -1,22 +1,21 @@
 <?php
 
-// Load autoloader (this loads all CMSOJ\* classes automatically)
-require_once __DIR__ . '/../CMSOJ/autoload.php';
+// 1. Composer autoload
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-// Load config
-CMSOJ\Core\Config::load();
+// 2. Load .env + config
+use CMSOJ\Core\Config;
+Config::load();
 
-// Start router
-$router = new \CMSOJ\Router();
+// 3. Initialize router + template
+use CMSOJ\Router;
+use CMSOJ\Template;
 
-// Include PHPMailer library
-require __DIR__ . '/../lib/phpmailer/Exception.php';
-require __DIR__ . '/../lib/phpmailer/PHPMailer.php';
-require __DIR__ . '/../lib/phpmailer/SMTP.php';
+$router = new Router();
 
-// Load route definitions
-require __DIR__ . '/../CMSOJ/Routes/web.php';
-require __DIR__ . '/../CMSOJ/Routes/admin.php';
+// 4. Load routes
+require dirname(__DIR__) . '/CMSOJ/Routes/web.php';
+require dirname(__DIR__) . '/CMSOJ/Routes/admin.php';
 
-// Dispatch request
+// 5. Dispatch
 $router->dispatch();
