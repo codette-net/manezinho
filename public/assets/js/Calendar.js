@@ -106,8 +106,8 @@ class Calendar {
                     <div class="years"></div>
                 </div>
                 <div class="calendar-event-modal-footer">
-                    <a href="#" class="button primary small select">Select</a>
-                    <a href="#" class="button transparent small close">Close</a>
+                    <a href="#" class="button small primary select">Select</a>
+                    <a href="#" class="button small transparent close">Close</a>
                 </div>
             </div>
         `;
@@ -215,7 +215,7 @@ class Calendar {
                 ${eventsList}
                 </div>
                 <div class="calendar-event-modal-footer">
-                    <a href="#" class="close">Close</a>
+                    <a href="#" class="button small transparent close">Close</a>
                 </div>
             </div>`;
         // Select the above modal

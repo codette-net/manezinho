@@ -1333,7 +1333,9 @@ section.home-food {
 
 .bg-primary h2,
 .bg-primary h3,
-.bg-primary p {
+.bg-primary a:not(.button), 
+.bg-primary p 
+{
     color: hsl(var(--neutral-950));
 }
 
