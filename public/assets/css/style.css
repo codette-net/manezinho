@@ -154,9 +154,10 @@ li[role="none"], .nav-link {
     border-top: 1px solid hsla(var(--primary-300) , 0.25);
     border-bottom: 1px solid hsla(var(--primary-300) , 0.25);
     position: relative;
-    z-index: 2;
+    z-index: 998;
     transform: translate3d(0 , 0, 0);
     transition: transform 300ms ease-in-out, border-top 300ms ease-in-out, border-bottom 300ms ease-in-out;
+    background-color: hsl(var(--neutral-900));
 }
 
  .nav-info.scrolled {
@@ -169,6 +170,28 @@ li[role="none"], .nav-link {
   display: flex;
   gap: 0.5rem;
 }
+
+#holiday-warning {
+  position: absolute;
+  z-index: 2;
+    border: 1px solid var(--primary);
+    padding: 0.25rem;
+    background-color: hsl(16, 100%, 50%);
+    color: hsla(var(--neutral-900),1);
+    width: 100%;
+    transform: translateY(-48px);
+    transition: transform 400ms ease-in-out 200ms, background-color 500ms ease-in-out ;
+    visibility: hidden;
+ }
+
+ #holiday-warning.open {
+  transform: translateY(0);
+    background-color: hsl(var(--primary-200));
+
+  visibility: visible;
+ }  
+
+
 
 @media (min-width: 768px) {
 

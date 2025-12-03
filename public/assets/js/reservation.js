@@ -4,6 +4,7 @@ let exitBtn = document.querySelector("#response-exit-btn");
 let form = document.querySelector(".reservation-form");
 let errorsMsg = document.querySelector(".errors-msg");
 let whatNext = document.querySelector(".what-next");
+let holidayWarning = document.querySelector("#holiday-warning");
 
 let today = new Date();
 let todayReservations = new Date();
@@ -107,7 +108,33 @@ async function getHoursData() {
 
 async function loadHours() {
     OPEN_HOURS = await getHoursData();
-    OPEN_HOURS.exceptions.sort((a,b) => new Date(a.date) - new Date(b.date));
+    OPEN_HOURS.exceptions.sort((a, b) => new Date(a.date) - new Date(b.date));
+    let upComingHolidays = checkWeek();
+    if (upComingHolidays) {
+
+        let msg = '<ul class="alt">';
+        let formatDay;
+        upComingHolidays.forEach((holiday) => {
+            let [y, m, d] = holiday.date.split("-");
+            // format date to noon so there are no timezone quirks
+            let dateObj = new Date(Date.UTC(y, m - 1, d, 12, 0, 0));
+
+            let formatted = new Intl.DateTimeFormat("en-US", {
+                timeZone: "Atlantic/Azores",
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            }).format(dateObj);
+
+            msg += `<li class="li-flex">${formatted} <span style="color: orangered;">Closed</span></li>`;
+        });
+
+        msg += "</ul>";
+        
+        holidayWarning.innerHTML = `your mum`;
+        holidayWarning.classList.toggle('open');
+    }
 }
 
 loadHours();
@@ -153,10 +180,11 @@ function holidays(week = false, month = true) {
     }
     if (week) {
         let weekFromNow = new Date(today);
-        weekFromNow.setDate(weekFromNow.getDate() + 7);
+        weekFromNow.setDate(weekFromNow.getDate() + 24);
         let weekFromNowFormatted = `${weekFromNow.getFullYear()}-${String(
             weekFromNow.getMonth() + 1
         ).padStart(2, "0")}-${String(weekFromNow.getDate()).padStart(2, "0")}`;
+        console.log(weekFromNowFormatted);
         let closingDates = OPEN_HOURS.exceptions.filter((exception) => {
             let exceptionDate = new Date(exception.date);
             return exceptionDate >= today && exceptionDate <= weekFromNow;
@@ -205,6 +233,11 @@ form.addEventListener("submit", async (event) => {
     }
 });
 
+function checkWeek() {
+    let weekData = holidays((week = true), (month = false));
+    return weekData.length > 0 ? weekData : false;
+}
+
 // listen for holidays and open modal with holiday hours
 
 holidaysBtn.addEventListener("click", (e) => {
@@ -219,7 +252,7 @@ holidaysBtn.addEventListener("click", (e) => {
     msg += todayOpen();
     // check for holidays the comming 31 days
     let holidaysData = holidays();
-    
+
     // check if there are holidays and if so add them to the list.
     if (holidaysData) {
         msg += '<ul class="alt">';

@@ -3,7 +3,7 @@
     {
       "day": 0, 
       "status": "open",
-      "open": 1800, 
+      "open": 1830, 
       "close": 200
     },
     {
@@ -21,25 +21,25 @@
     {
       "day": 3, 
       "status": "open",
-      "open": 1800, 
+      "open": 1830, 
       "close": 200
     },
     {
       "day": 4, 
       "status": "open",
-      "open": 1800, 
+      "open": 1830, 
       "close": 200
     },
     { 
       "day": 5, 
       "status": "open",
-      "open": 1800, 
+      "open": 1830, 
       "close": 200
     },
     {
       "day": 6, 
       "status": "open",
-      "open": 1800,
+      "open": 1830,
       "close": 200
     }
     

@@ -88,13 +88,13 @@
 
 <div class="nav-info">
   <div id="nav-info-hours">
-    Open Wednesday - Sunday from 18:30 till 02:00
+    <small>Open Wednesday - Sunday from 18:30 till 02:00</small>
   </div>
   <div class="nav-info-contact">
-    <a href="tel:+351295414096" class="button transparent small">+351295414096</a>
-    <a href="/#reservation" class="button transparent small">Reservation</a>
+    <a href="#reservation" class="button transparent small">Reservation</a>
   </div>
 </div>
+<div id="holiday-warning">some warning about a coming holiday click <a href="#">here</a> for more</div>
 
 <div class="response-wrapper">
   <div class="response">
