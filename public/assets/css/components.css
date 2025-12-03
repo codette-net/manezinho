@@ -365,6 +365,12 @@ ul.alt li:first-child {
   padding-top: 0;
 }
 
+li.li-flex {
+  display: inline-flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
 dl {
   margin: 0 0 1.5rem 0;
 }
