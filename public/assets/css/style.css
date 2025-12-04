@@ -54,10 +54,8 @@ nav::before {
 }
 a.logo-link,
 a.logo-link:hover,
-a.logo-link:focus,
-a.nav-link,
-a.nav-link:hover,
-a.nav-link:focus {
+a.logo-link:focus
+ {
   text-decoration : none;
   border: unset;
 }
@@ -72,8 +70,7 @@ a.nav-link:focus {
   flex-direction: column;
   align-items: center;
     margin: 0;
-
-  gap: 1.5rem;
+  gap: 0.5rem;
   transform: translate3d(0, -200%, 0);
   position: absolute;
   z-index: -1;
@@ -118,7 +115,7 @@ a.nav-link:focus {
 li[role="none"], .nav-link {
   width: 100%;
   display: block;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
@@ -131,15 +128,30 @@ li[role="none"], .nav-link {
   transform: translate3d(0, 0, 0);
 }
 
-.nav-link[aria-current="page"] {
-  padding: 0.5em 2em;
-  text-align: center;
-  text-decoration: none;
 
-  border: 1px solid var(--primary);
-  border-left: none;
-  border-right: none;
+.nav-link {
+      padding: 0.5rem 0.25rem;
+    text-align: center;
+    text-decoration: none;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-left: none;
+    border-right: none;
+    transform: all 250ms ease-in-out;
 }
+
+.nav-link[aria-current="page"] {
+  border-top: 1px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    border-top: 1px solid hsla(var(--primary-600),0.8) !important;
+    border-bottom: 1px solid hsla(var(--primary-600),0.8) !important;
+    
+}
+
 
 /* nav.active .nav-link[aria-current="page"] {
   border: unset;

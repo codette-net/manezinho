@@ -1872,5 +1872,5 @@ address p {
 
 
 #holidays {
-    display: block;
+    display: inline-block;
 }

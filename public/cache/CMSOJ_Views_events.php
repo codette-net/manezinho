@@ -1,9 +1,7 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <base href="/">
   <title>Manezinho | <?php echo \CMSOJ\Template::asset($title) ?> </title>
   
 
@@ -71,16 +69,16 @@
           <a href="/" class="nav-link" role="menuitem">Home</a>
         </li>
         <li role="none">
-          <a href="./flavours" class="nav-link" role="menuitem">Flavours</a>
+          <a href="/flavours" class="nav-link" role="menuitem">Flavours</a>
         </li>
         <li role="none">
-          <a href="./events" class="nav-link" role="menuitem">Events</a>
+          <a href="/events" class="nav-link" role="menuitem">Events</a>
         </li>
         <li role="none">
-          <a href="./about" class="nav-link" role="menuitem">About</a>
+          <a href="/about" class="nav-link" role="menuitem">About</a>
         </li>
         <li role="none">
-          <a href="./menu" class="nav-link" role="menuitem">Menu</a>
+          <a href="/menu" class="nav-link" role="menuitem">Menu</a>
         </li>
 
 
@@ -94,7 +92,10 @@
 
 <div class="nav-info">
   <div id="nav-info-hours">
-    <small>Open Wednesday - Sunday from 18:30 till 02:00</small>
+    <div style="display: flex;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-hour-7"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12l-2 3" /><path d="M12 7v5" /></svg>
+    </div>
+    <small><a>Open Wednesday - Sunday from 18:30 - 02:00 </a></small>
   </div>
   <div class="nav-info-contact">
     <a href="#reservation" class="button transparent small">Reservation</a>

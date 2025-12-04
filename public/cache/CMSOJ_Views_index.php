@@ -1,9 +1,7 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <base href="/">
   <title>Manezinho |  <?php echo \CMSOJ\Template::asset($title) ?>  </title>
   
   <meta name="description" content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
@@ -65,16 +63,16 @@
           <a href="/" class="nav-link" role="menuitem">Home</a>
         </li>
         <li role="none">
-          <a href="./flavours" class="nav-link" role="menuitem">Flavours</a>
+          <a href="/flavours" class="nav-link" role="menuitem">Flavours</a>
         </li>
         <li role="none">
-          <a href="./events" class="nav-link" role="menuitem">Events</a>
+          <a href="/events" class="nav-link" role="menuitem">Events</a>
         </li>
         <li role="none">
-          <a href="./about" class="nav-link" role="menuitem">About</a>
+          <a href="/about" class="nav-link" role="menuitem">About</a>
         </li>
         <li role="none">
-          <a href="./menu" class="nav-link" role="menuitem">Menu</a>
+          <a href="/menu" class="nav-link" role="menuitem">Menu</a>
         </li>
 
 

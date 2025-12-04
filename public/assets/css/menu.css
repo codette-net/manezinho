@@ -1,0 +1,81 @@
+
+    .wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .menu-section {
+      margin-bottom: 40px;
+    }
+
+    .menu-section h2 {
+      font-size: 1.8rem;
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    .menu-subsection h3 {
+      font-size: 1.3rem;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      border-left: 3px solid #999;
+      padding-left: 10px;
+      color: #444;
+    }
+
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+
+    .menu-table th,
+    .menu-table td {
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .menu-table th[colspan] {
+      text-align: left;
+      font-weight: bold;
+      padding-top: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .menu-table td.price {
+      text-align: right;
+      white-space: nowrap;
+      width: 10%;
+    }
+
+    .menu-table td:first-child {
+      width: 70%;
+    }
+
+    .menu-table small em {
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .lang-switch {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .lang-switch a {
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 0 5px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .lang-switch a.active {
+      background: #333;
+      color: #fff;
+    }
+  

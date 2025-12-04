@@ -1,9 +1,9 @@
 {% extends CMSOJ/Views/layout.html %}
-{% block title %}{{ $title }}{% endblock %}
+
+{% block title %} {{ $title }} {% endblock %}
 
 {% block meta %}
-<meta name="description"
-  content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
+  <meta name="description" content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
 {% endblock %}
 
 {% block content %}
@@ -104,7 +104,10 @@
       </p>
     </div>
   </section>
-  
-  {% partial 'reservation' %}
+ {% partial 'reservation' %}
+
 </main>
+
+{% endblock %}
+
 {% partial 'footer' %}

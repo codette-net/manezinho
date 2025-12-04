@@ -10,6 +10,19 @@ const navLink = document.querySelectorAll(".nav-link");
 
 const logo = document.querySelector(".logo");
 const menuBtn = document.querySelector(".btn--menu");
+
+document.querySelectorAll('[data-anchor]').forEach(a => {
+    console.log('tahhgg')
+
+    a.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log('tahhgg')
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+
 // active page
 // console.log(window.location.href)
 navLink.forEach((link) => {
