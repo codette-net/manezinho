@@ -88,7 +88,10 @@
 
 <div class="nav-info">
   <div id="nav-info-hours">
-    <small>Open Wednesday - Sunday from 18:30 till 02:00</small>
+    <div style="display: flex;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-hour-7"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12l-2 3" /><path d="M12 7v5" /></svg>
+    </div>
+    <small><a>Open Wednesday - Sunday from 18:30 - 02:00 </a></small>
   </div>
   <div class="nav-info-contact">
     <a href="#reservation" class="button transparent small">Reservation</a>

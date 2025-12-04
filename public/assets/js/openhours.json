@@ -3,8 +3,8 @@
     {
       "day": 0, 
       "status": "open",
-      "open": 1830, 
-      "close": 200
+      "open": "18:30", 
+      "close": "02:00"
     },
     {
       "day": 1, 
@@ -21,27 +21,27 @@
     {
       "day": 3, 
       "status": "open",
-      "open": 1830, 
-      "close": 200
+      "open": "18:30", 
+      "close": "02:00"
     },
     {
       "day": 4, 
       "status": "open",
-      "open": 1830, 
-      "close": 200
+      "open": "18:30", 
+      "close": "02:00"
     },
     { 
       "day": 5, 
       "status": "open",
-      "open": 1830, 
-      "close": 200
+      "open": "18:30", 
+      "close": "02:00"
     },
     {
       "day": 6, 
       "status": "open",
-      "open": 1830,
-      "close": 200
-    }
+      "open": "18:30",
+      "close": "02:00"
+    } 
     
   ],
   "exceptions": [

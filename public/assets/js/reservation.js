@@ -6,6 +6,7 @@ let form = document.querySelector(".reservation-form");
 let errorsMsg = document.querySelector(".errors-msg");
 let whatNext = document.querySelector(".what-next");
 let holidayWarning = document.querySelector("#holiday-warning");
+let navInfoHours = document.querySelector("#nav-info-hours");
 
 let today = new Date();
 let todayReservations = new Date();
@@ -112,7 +113,6 @@ async function loadHours() {
     OPEN_HOURS.exceptions.sort((a, b) => new Date(a.date) - new Date(b.date));
     let upComingHolidays = checkWeek();
     if (upComingHolidays) {
-
         let msg = '<ul class="alt">';
         let formatDay;
         upComingHolidays.forEach((holiday) => {
@@ -132,22 +132,26 @@ async function loadHours() {
         });
 
         msg += "</ul>";
-        
+
         // holidayWarning.innerHTML = `your mum`;
-        holidayWarning.classList.toggle('open');
-        holidayWarning.querySelector('#holiday-warning-check').addEventListener('click', (e) => {
-          e.preventDefault()
-            responseHeader.textContent = 'Holidays/exceptions for the coming week';
-            responseMsg.innerHTML = msg;
-            responseWrapper.style.display = "flex";
-            holidayWarning.classList.toggle('open');
-          
-        })
-        if (holidayWarning.classList.contains('open')) {
-          holidayWarning.querySelector('.close').addEventListener('click', (e) => {
-            e.preventDefault();
-            holidayWarning.classList.toggle('open')
-          })
+        holidayWarning.classList.toggle("open");
+        holidayWarning
+            .querySelector("#holiday-warning-check")
+            .addEventListener("click", (e) => {
+                e.preventDefault();
+                responseHeader.textContent =
+                    "Holidays/exceptions for the coming week";
+                responseMsg.innerHTML = msg;
+                responseWrapper.style.display = "flex";
+                holidayWarning.classList.toggle("open");
+            });
+        if (holidayWarning.classList.contains("open")) {
+            holidayWarning
+                .querySelector(".close")
+                .addEventListener("click", (e) => {
+                    e.preventDefault();
+                    holidayWarning.classList.toggle("open");
+                });
         }
     }
 }
@@ -163,19 +167,68 @@ function todayOpen() {
     const exception = OPEN_HOURS.exceptions.find(
         (exception) => exception.date === todayDateFormatted
     );
-    let openClosedMsg = "<p>";
+    let openClosedMsg = "";
 
     // check data.regular[todayDay] if the status is closed
     console.log(OPEN_HOURS.regular[todayDayNumber].status);
 
     if (exception || OPEN_HOURS.regular[todayDayNumber].status === "closed") {
-        openClosedMsg += `Sorry, today we are closed.`;
+        openClosedMsg += `<p class="today-closed">Sorry, today we are closed.</p>`;
     } else {
-        openClosedMsg += `Today we are open!`;
+        openClosedMsg += `<p class="today-open">Today we are open!</p>`;
     }
     openClosedMsg += "</p>";
     return openClosedMsg;
 }
+
+function displayHours() {
+    if (!OPEN_HOURS || !OPEN_HOURS.regular) return;
+
+    const regular = OPEN_HOURS.regular;
+
+    // Reorder data: Monday → Sunday
+    const orderedRegular = [
+        regular[1], regular[2], regular[3],
+        regular[4], regular[5], regular[6], regular[0]
+    ];
+
+    const orderedNames = [
+        "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday", "Sunday"
+    ];
+
+    // Map today (JS Sunday=0 → becomes index=6)
+    const jsToday = new Date().getDay();
+    const todayIndex = (jsToday + 6) % 7;
+
+    let msg = "";
+    msg += todayOpen(); // keep your own function
+
+    msg += `<ul class="alt">`;
+
+    orderedRegular.forEach((day, index) => {
+        const isToday = index === todayIndex;
+
+        msg += `
+        <li class="li-flex ${isToday ? "today" : ""}">
+            <span>${orderedNames[index]}</span>
+            ${
+                day.status === "open"
+                    ? `<span class="open">${day.open} - ${day.close}</span>`
+                    : `<span class="closed">Closed</span>`
+            }
+        </li>`;
+    });
+
+    msg += `</ul>`;
+
+    responseHeader.textContent = "Opening Hours";
+    responseMsg.innerHTML = msg;
+    responseWrapper.style.display = "flex";
+}
+
+
+
 
 function holidays(week = false, month = true) {
     if (month) {
@@ -293,6 +346,12 @@ holidaysBtn.addEventListener("click", (e) => {
 
     responseMsg.innerHTML = msg;
 });
+
+navInfoHours.addEventListener('click', (e) => {
+  e.preventDefault();
+  displayHours()
+})
+
 
 exitBtn.addEventListener("click", () => {
     responseWrapper.style.display = "none";

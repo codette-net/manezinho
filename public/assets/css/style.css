@@ -171,6 +171,23 @@ li[role="none"], .nav-link {
   gap: 0.5rem;
 }
 
+#nav-info-hours {
+  display: flex;
+  flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    
+}
+
+#nav-info-hours a {
+  text-decoration: none;
+  border-bottom: none;
+  color: hsla(var(--neutral-100), 0.75);
+
+}
+
+
 #holiday-warning {
     position: absolute;
     z-index: 2;
@@ -214,6 +231,26 @@ a#holiday-warning-check {
 
   visibility: visible;
  }  
+
+.li-flex.today {
+    background-color: hsla(var(--primary-900),0.6);
+    color: hsl(var(--neutral-100));
+    border-top-color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+}
+
+p.today-open,
+p.today-closed {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: hsla(var(--primary-400),0.8);
+  width: 100%;
+}
+
+.li-flex span.closed,
+p.today-closed {
+  color: hsl(16, 100%, 50%);
+}
 
 
 

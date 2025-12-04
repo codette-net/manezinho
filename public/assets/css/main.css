@@ -526,7 +526,7 @@ body,
 input,
 select,
 textarea {
-    color: rgba(255, 255, 255, 0.75);
+    color: hsla(var(--neutral-100), 0.75);
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-size: 1rem;
     font-weight: 400;
@@ -1868,4 +1868,9 @@ address p {
 #scrolltop:focus {
     transform: translateY(0);
     background-color: hsla(var(--primary-500), 0.9);
+}
+
+
+#holidays {
+    display: block;
 }

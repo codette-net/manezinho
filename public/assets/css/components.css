@@ -356,8 +356,8 @@ ul.alt {
 
 ul.alt li {
   border-top: solid 1px rgba(255, 255, 255, 0.25);
-  padding: 0.5rem 0;
-  width: min(100%, 44ch);
+  padding: 0.5rem 0.25rem;
+  width: min(100%, 40ch);
 }
 
 ul.alt li:first-child {
