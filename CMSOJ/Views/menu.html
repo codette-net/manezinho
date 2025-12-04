@@ -1,0 +1,71 @@
+{% extends CMSOJ/Views/layout.html %}
+
+{% block title %} {{ $title }} {% endblock %}
+
+{% block meta %}
+<meta name="description"
+  content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
+{% endblock %}
+
+{% block content %}
+
+{% partial 'nav' %}
+<main>
+
+
+  <div class="lang-switch">
+    <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">English</a>
+    <a href="?lang=pt" class="<?= $lang === 'pt' ? 'active' : '' ?>">Português</a>
+  </div>
+
+  <div class="wrapper">
+
+    <?php foreach ($tree as $main): ?>
+    <div class="menu-section">
+      <h2>
+        <?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"]) ?>
+      </h2>
+
+      <?php if ($main["description_$lang"]): ?>
+      <p>
+        <?= nl2br(htmlspecialchars($main["description_$lang"])) ?>
+      </p>
+      <?php endif; ?>
+
+      <?php if (!empty($main['children'])): ?>
+      <?php foreach ($main['children'] as $sub): ?>
+      <div class="menu-subsection">
+        <h3>
+          <?= htmlspecialchars($sub["name_$lang"] ?: $sub["name_en"]) ?>
+        </h3>
+        <?php if ($sub["description_$lang"]): ?>
+        <p>
+          <?= nl2br(htmlspecialchars($sub["description_$lang"])) ?>
+        </p>
+        <?php endif; ?>
+        {% component 'menu-table', [
+        'id' => $sub['id'],
+        'items' => $itemsBySection,
+        'lang' => $lang
+        ] %}
+
+
+      </div>
+      <?php endforeach; ?>
+      <?php else: ?>
+      {% component 'menu-table', ['id' => $main['id'], 'items' => $itemsBySection, 'lang' => $lang] %}
+
+      <?php endif; ?>
+
+    </div>
+    <?php endforeach; ?>
+
+  </div>
+
+
+
+</main>
+
+{% endblock %}
+
+{% partial 'footer' %}

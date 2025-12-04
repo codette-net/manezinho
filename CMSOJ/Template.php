@@ -11,11 +11,16 @@ class Template
 
 	static function view($file, $data = array())
 	{
-		self::$blocks = [];  // Reset blocks every request 
+		self::$blocks = [];
+
+		// Make view variables accessible to components via $GLOBALS
+		$GLOBALS['__TEMPLATE_VIEW_VARS'] = $data;
+
 		$cached_file = self::cache($file);
 		extract($data, EXTR_SKIP);
 		require $cached_file;
 	}
+
 	static function resolvePath($file)
 	{
 		// If path is already absolute, return it
@@ -153,17 +158,36 @@ class Template
 
 	static function compileComponents($code)
 	{
-		return preg_replace_callback('/\{%[\s]*component[\s]+\'(.+?)\'\s*,\s*(\{.+?\})\s*%}/is', function ($matches) {
+		return preg_replace_callback(
+			'/\{%[\s]*component[\s]+\'(.+?)\'\s*,\s*(.+?)\s*%}/is',
+			function ($matches) {
 
-			$component = 'CMSOJ/Views/components/' . $matches[1] . '.html';
-			$props = json_decode(str_replace("'", '"', $matches[2]), true);
+				$componentFile = 'CMSOJ/Views/components/' . $matches[1] . '.html';
+				$propsCode     = $matches[2];
 
-			ob_start();
-			extract($props, EXTR_SKIP);
-			include self::resolvePath($component);
-			return ob_get_clean();
-		}, $code);
+				// Produce executable PHP instead of evaluating now
+				return "<?php 
+                echo CMSOJ\\Template::renderComponent(
+                    '$componentFile',
+                    $propsCode
+                );
+            ?>";
+			},
+			$code
+		);
 	}
+
+	public static function renderComponent(string $path, array $props)
+	{
+		$file = self::resolvePath($path);
+
+		ob_start();
+		extract($props, EXTR_SKIP);
+		include $file;
+		return ob_get_clean();
+	}
+
+
 
 
 	static function asset($path)

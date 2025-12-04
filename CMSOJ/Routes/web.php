@@ -2,6 +2,7 @@
 namespace CMSOJ;
 use CMSOJ\Controllers\CalendarController;
 use CMSOJ\Controllers\ReservationController;
+use CMSOJ\Controllers\MenuController;
 use CMSOJ\Template;
 
 
@@ -36,6 +37,8 @@ $router->get('blog/{id}', function($id) {
 
 
 $router->get('calendar', [CalendarController::class, 'handle']);
+
+$router->get('menu',[MenuController::class,'index']);
 
 // Reservation request
 $router->post('reservation',[ReservationController::class,'submit']);
