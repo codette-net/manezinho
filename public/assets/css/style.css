@@ -172,17 +172,41 @@ li[role="none"], .nav-link {
 }
 
 #holiday-warning {
-  position: absolute;
-  z-index: 2;
+    position: absolute;
+    z-index: 2;
+    display: flex;
     border: 1px solid var(--primary);
     padding: 0.25rem;
     background-color: hsl(16, 100%, 50%);
-    color: hsla(var(--neutral-900),1);
+    color: hsl(var(--neutral-900));
     width: 100%;
     transform: translateY(-48px);
-    transition: transform 400ms ease-in-out 200ms, background-color 500ms ease-in-out ;
+    transition: transform 400ms ease-in-out 200ms, background-color 500ms ease-in-out visibility 250ms ease-in-out;
     visibility: hidden;
- }
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.holiday-warning-msg strong {
+      color: hsl(var(--neutral-900));
+}
+
+a#holiday-warning-check {
+  color: hsl(16, 100%, 50%);
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+ 
+.holiday-warning-msg strong {
+  font-weight: 600;
+}
+
+#holiday-warning a.close {
+  text-decoration: none;
+  border-bottom: none;
+}
 
  #holiday-warning.open {
   transform: translateY(0);

@@ -1,4 +1,5 @@
 let responseWrapper = document.querySelector(".response-wrapper");
+let responseHeader = responseWrapper.querySelector("h2");
 let responseMsg = document.querySelector(".response-msg");
 let exitBtn = document.querySelector("#response-exit-btn");
 let form = document.querySelector(".reservation-form");
@@ -132,8 +133,22 @@ async function loadHours() {
 
         msg += "</ul>";
         
-        holidayWarning.innerHTML = `your mum`;
+        // holidayWarning.innerHTML = `your mum`;
         holidayWarning.classList.toggle('open');
+        holidayWarning.querySelector('#holiday-warning-check').addEventListener('click', (e) => {
+          e.preventDefault()
+            responseHeader.textContent = 'Holidays/exceptions for the coming week';
+            responseMsg.innerHTML = msg;
+            responseWrapper.style.display = "flex";
+            holidayWarning.classList.toggle('open');
+          
+        })
+        if (holidayWarning.classList.contains('open')) {
+          holidayWarning.querySelector('.close').addEventListener('click', (e) => {
+            e.preventDefault();
+            holidayWarning.classList.toggle('open')
+          })
+        }
     }
 }
 
@@ -180,7 +195,7 @@ function holidays(week = false, month = true) {
     }
     if (week) {
         let weekFromNow = new Date(today);
-        weekFromNow.setDate(weekFromNow.getDate() + 24);
+        weekFromNow.setDate(weekFromNow.getDate() + 7);
         let weekFromNowFormatted = `${weekFromNow.getFullYear()}-${String(
             weekFromNow.getMonth() + 1
         ).padStart(2, "0")}-${String(weekFromNow.getDate()).padStart(2, "0")}`;
@@ -244,9 +259,7 @@ holidaysBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
     responseWrapper.style.display = "flex";
-    responseWrapper.querySelector(
-        "h2"
-    ).textContent = `Holidays and exceptions for ${monthInWords}`;
+    responseHeader.textContent = `Holidays and exceptions for ${monthInWords}`;
     let msg = "";
     // check if today is open or closed
     msg += todayOpen();

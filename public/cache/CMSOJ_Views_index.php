@@ -94,7 +94,18 @@
     <a href="#reservation" class="button transparent small">Reservation</a>
   </div>
 </div>
-<div id="holiday-warning">some warning about a coming holiday click <a href="#">here</a> for more</div>
+<div id="holiday-warning">
+  <span class="holiday-warning-msg">
+    <strong>Upcoming holiday(s)! </strong> <a id="holiday-warning-check" title="check for opening hours"> Please check our openinghours</a>
+  </span>
+  <div>
+    <a class="close" title="close this message"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z">
+        </path>
+      </svg></a>
+  </div>
+</div>
 
 <div class="response-wrapper">
   <div class="response">

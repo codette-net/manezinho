@@ -94,18 +94,29 @@
 
 <div class="nav-info">
   <div id="nav-info-hours">
-    Open Wednesday - Sunday from 18:30 till 02:00
+    <small>Open Wednesday - Sunday from 18:30 till 02:00</small>
   </div>
   <div class="nav-info-contact">
-    <a href="tel:+351295414096" class="button transparent small">+351295414096</a>
-    <a href="/#reservation" class="button transparent small">Reservation</a>
+    <a href="#reservation" class="button transparent small">Reservation</a>
+  </div>
+</div>
+<div id="holiday-warning">
+  <span class="holiday-warning-msg">
+    <strong>Upcoming holiday(s)! </strong> <a id="holiday-warning-check" title="check for opening hours"> Please check our openinghours</a>
+  </span>
+  <div>
+    <a class="close" title="close this message"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z">
+        </path>
+      </svg></a>
   </div>
 </div>
 
 <div class="response-wrapper">
   <div class="response">
     <h2>Thank you for your request!</h2>
-    <p class="response-msg"></p>
+    <div class="response-msg"></div>
     <button class="primary" id="response-exit-btn" title="go back to page">close</button>
   </div>
 </div>
@@ -191,101 +202,97 @@
 
 
     </section>
-   <section class="" id="reservation">
-      <header class="full-width bg-primary">
+  <section class="" id="reservation">
+  <header class="full-width bg-primary">
 
-        <h3 class="major"> Make a reservation</h3>
+    <h3 class="major"> Make a reservation</h3>
 
-        <p>
-          You can request a reservation by filling in the form below. We will get back to you by email as soon as possible
-          to confirm your booking.
-          <br>
-          <strong>Please note that your reservation is <u>only</u> confirmed once you receive our confirmation email.</strong>
-        </p>
-        <p>
-        For groups larger than four, a phone number is required.
+    <p>
+      You can request a reservation by filling in the form below or by calling <a href="tel:+351968990696">+351 968 990 696</a>
+      <br>   
+      Please keep in mind that we are <strong>closed on Mondays and Tuesdays.</strong>
+      <br>
+      Requests made on that day will be answered on our next open
+      day, and same-day reservations can only be accepted until 15:00.
+      For groups larger than four, a phone number is required.
+    </p>
+    <a href="" id="holidays">Click here to check for holidays or exceptions in <span id="holidays-month"></span> </a>
+  </header>
+  <form class="reservation-form" action="" method="post" enctype="multipart/form-data">
+      <strong>Please note that your reservation is <u>only</u> confirmed once you receive our confirmation
+        email.</strong>
+    <div class="fields">
+      <div class="field half">
+        <label for="name">Name <span class="form-required">*</span></label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter your name"
+          title="First name must contain only characters!" required>
 
-        You can also reserve by phone on the days we are open, starting in the afternoon.
-        
-        Please keep in mind that we are <strong>closed on Mondays and Tuesdays.</strong>
-        <br>
-         Requests made on that day will be answered on our next open
-        day, and same-day reservations can only be accepted until 15:00.
-      </p>
-         <a href="" class="button inverse small">+351 968 990 696</a>
-      </header>
-      <form class="reservation-form" action="" method="post" enctype="multipart/form-data">
+      </div>
 
-        <div class="fields">
-          <div class="field half">
-            <label for="name">Name <span class="form-required">* required</span></label>
-            <input type="text" id="first_name" name="first_name" placeholder="Enter your name"
-              title="First name must contain only characters!" required>
+      <div class="field half">
+        <label for="email">Email <span class="form-required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="Enter your email"
+          title="Please enter a valid email address!" required>
 
-          </div>
+      </div>
+      <!-- accept phone number with numbers , () and - only -->
+      <div class="field quarter">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="" placeholder="Enter your phone number"
+          title="Please enter a valid phone number!">
+      </div>
+      <!-- // datepicker  -->
+      <div class="field quarter">
+        <label for="persons">Number of persons <span class="form-required">*</span></label>
+        <input type="number" name="persons" id="persons" placeholder="Enter number of persons" min=1 max=20 required
+          title="Please enter a number between 1 and 20!">
+      </div>
+      <div class="field quarter">
+        <label for="date">Date <span class="form-required">*</span></label>
+        <input type="date" name="date" id="date-reservation" required>
+      </div>
+      <!-- number of persons  -->
+      <div class="field quarter">
+        <label for="time">Time <span class="form-required">*</span></label>
+        <!-- 15 minutes intervals selection betweeen 1830 and 2130 -->
+        <select name="time" id="time" required>
+          <option value="" disabled selected>Select a time</option>
 
-          <div class="field half">
-            <label for="email">Email <span class="form-required">* required</span></label>
-            <input type="email" id="email" name="email" placeholder="Enter your email"
-              title="Please enter a valid email address!" required>
-
-          </div>
-          <!-- accept phone number with numbers , () and - only -->
-          <div class="field quarter">
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" id="" placeholder="Enter your phone number"
-              title="Please enter a valid phone number!">
-          </div>
-          <!-- // datepicker  -->
-          <div class="field quarter">
-            <label for="persons">Number of persons <span class="form-required">* required</span></label>
-            <input type="number" name="persons" id="persons" placeholder="Enter number of persons" min=1 max=20 required
-              title="Please enter a number between 1 and 20!">
-          </div>
-          <div class="field quarter">
-            <label for="date">Date <span class="form-required">* required</span></label>
-            <input type="date" name="date" id="date-reservation" required>
-          </div>
-          <!-- number of persons  -->
-          <div class="field quarter">
-            <label for="time">Time <span class="form-required">* required</span></label>
-            <!-- 15 minutes intervals selection betweeen 1830 and 2130 -->
-            <select name="time" id="time" required>
-              <option value="" disabled selected>Select a time</option>
-
-              <option value="18:00">18:00</option>
-              <option value="18:30">18:30</option>
-              <option value="18:45">18:45</option>
-              <option value="19:00" selected>19:00</option>
-              <option value="19:15">19:15</option>
-              <option value="19:30">19:30</option>
-              <option value="19:45">19:45</option>
-              <option value="20:00">20:00</option>
-              <option value="20:15">20:15</option>
-              <option value="20:30">20:30</option>
-              <option value="20:45">20:45</option>
-              <option value="21:00">21:00</option>
-              <option value="21:15">21:15</option>
-              <option value="21:30">21:30</option>
-            </select>
-          </div>
-          <div class="field half">
-            <label for="message">Additional information </label>
-            <textarea name="message" id="message" rows="3" placeholder=" "></textarea>
-          </div>
-          <div class="field quarter button-field">
-            <input type="submit" value="Send" class="primary" />
-            <input type="reset" value="Clear" class="button transparent" />
-          </div>
-          <div class="field half last-field">
-            <p class="errors-msg"></p>
-            <!-- <div class="g-recaptcha" data-sitekey="6LfUEvQpAAAAABZlIBzegXpvRMnnVGGwtCKaUMZ2"></div> -->
+          <option value="18:00">18:00</option>
+          <option value="18:30">18:30</option>
+          <option value="18:45">18:45</option>
+          <option value="19:00" selected>19:00</option>
+          <option value="19:15">19:15</option>
+          <option value="19:30">19:30</option>
+          <option value="19:45">19:45</option>
+          <option value="20:00">20:00</option>
+          <option value="20:15">20:15</option>
+          <option value="20:30">20:30</option>
+          <option value="20:45">20:45</option>
+          <option value="21:00">21:00</option>
+          <option value="21:15">21:15</option>
+          <option value="21:30">21:30</option>
+        </select>
+      </div>
+      <div class="field half">
+        <label for="message">Additional information </label>
+        <textarea name="message" id="message" rows="3" placeholder=" "></textarea>
+      </div>
+      <div class="field quarter button-field">
+        <input type="submit" value="Send" class="primary" />
+        <input type="reset" value="Clear" class="button transparent" />
+      </div>
+      <div class="field half last-field">
+        <span class="form-required">* required</span>
+        <p class="errors-msg"></p>
+        <!-- <div class="g-recaptcha" data-sitekey="6LfUEvQpAAAAABZlIBzegXpvRMnnVGGwtCKaUMZ2"></div> -->
 
 
-          </div>
-      </form>
+      </div>
 
-    </section>
+  </form>
+
+</section>
 
    
   </main>
