@@ -8,12 +8,15 @@
   content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
 
   
+
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css") ?>' />
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css") ?>'>
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/style.css") ?>'>
 <noscript>
   <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css") ?>' />
 </noscript>
+
+<link rel="stylesheet" href="/assets/css/menu.css">
 
   <!-- here is the end of head  -->
 </head>
@@ -118,17 +121,31 @@
 </div>
 <main>
 
+  <header class="header-alt">
+    <h1 class="hero-header">Art Restaurant Manezinho</h1>
+    <h2 class="hero-header-h2">Menu</h2>
 
-  <div class="lang-switch">
-    <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">English</a>
-    <a href="?lang=pt" class="<?= $lang === 'pt' ? 'active' : '' ?>">Português</a>
-  </div>
+    <div class="lang-switch">
+      <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">English</a>
+      <a href="?lang=pt" class="<?= $lang === 'pt' ? 'active' : '' ?>">Português</a>
+    </div>
+    <div class="section-links">
+      <?php foreach ($tree as $main): ?>
+      <span>
+        <a href="/menu#<?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>">
+          <?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>
+        </a>
+      </span>
+      <?php endforeach; ?>
+
+    </div>
+  </header>
 
   <div class="wrapper">
 
     <?php foreach ($tree as $main): ?>
-    <div class="menu-section">
-      <h2>
+    <section class="menu-section">
+      <h2 id="<?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>">
         <?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"]) ?>
       </h2>
 
@@ -173,8 +190,8 @@
 
       <?php endif; ?>
 
-    </div>
-    <?php endforeach; ?>
+  </div>
+  <?php endforeach; ?>
 
   </div>
 
@@ -194,6 +211,10 @@
 </body>
 
 </html>
+
+
+
+
 
 
 

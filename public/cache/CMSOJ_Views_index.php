@@ -270,9 +270,7 @@
     </div>
   </section>
 
-  <section id="about">
-
-  </section>
+  
   <section class="" id="reservation">
   <header class="full-width bg-primary">
 

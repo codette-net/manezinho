@@ -43,6 +43,7 @@ class MenuService
         }
 
         return [
+            'title'           => 'Menu',
             'lang'            => $lang,
             'tree'            => $tree,
             'itemsBySection'  => $itemsBySection,

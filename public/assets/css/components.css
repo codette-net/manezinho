@@ -355,7 +355,7 @@ ul.alt {
 }
 
 ul.alt li {
-  border-top: solid 1px rgba(255, 255, 255, 0.25);
+  border-top: solid 1px hsla(var(--neutral-100),0.25);
   padding: 0.5rem 0.25rem;
   width: min(100%, 40ch);
 }
@@ -488,7 +488,7 @@ ul.grid-icons .icon:before {
   height: 6rem;
   line-height: 6rem;
   border-radius: 6rem;
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 0 0 2px hsla(var(--neutral-100),0.25);
   font-size: 2.5rem;
   margin: 0 auto;
   text-align: center;
@@ -514,7 +514,7 @@ ul.grid-icons.connected > li:before {
   height: 2px;
   top: 50%;
   left: -1.5rem;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: hsla(var(--neutral-100),0.25);
 }
 
 ul.grid-icons.connected > li:after {
@@ -525,7 +525,7 @@ ul.grid-icons.connected > li:after {
   height: 1.5rem;
   top: -1.5rem;
   left: 50%;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: hsla(var(--neutral-100),0.25);
 }
 
 ul.grid-icons.two {
@@ -679,13 +679,13 @@ table {
 }
 
 table tbody tr {
-  border: solid 1px rgba(255, 255, 255, 0.25);
+  border: solid 1px hsla(var(--neutral-100),0.25);
   border-left: 0;
   border-right: 0;
 }
 
 table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: hsl(var(--neutral-900),0.15);
 }
 
 table td {
@@ -693,7 +693,7 @@ table td {
 }
 
 table th {
-  color: rgba(255, 255, 255, 0.875);
+  color: hsla(var(--neutral-100),0.8);
   font-size: 0.9rem;
   font-weight: 400;
   padding: 0 0.75rem 0.75rem 0.75rem;
@@ -701,11 +701,11 @@ table th {
 }
 
 table thead {
-  border-bottom: solid 2px rgba(255, 255, 255, 0.25);
+  border-bottom: solid 2px hsla(var(--neutral-100),0.25);
 }
 
 table tfoot {
-  border-top: solid 2px rgba(255, 255, 255, 0.25);
+  border-top: solid 2px hsla(var(--neutral-100),0.25);
 }
 
 table.alt {
@@ -713,7 +713,7 @@ table.alt {
 }
 
 table.alt tbody tr td {
-  border: solid 1px rgba(255, 255, 255, 0.25);
+  border: solid 1px hsla(var(--neutral-100),0.25);
   border-left-width: 0;
   border-top-width: 0;
 }
@@ -1006,7 +1006,7 @@ data {
 address {
   margin-top: 0.5rem;
   padding-top: 0.5rem;
-  border-top: solid 1px rgba(255, 255, 255, 0.25);
+  border-top: solid 1px hsla(var(--neutral-100),0.25);
   width: min(100% - 1rem, 30ch);
 }
 
@@ -1190,7 +1190,7 @@ address {
   width: 4rem;
   height: 4rem;
   margin: -2rem 0 0 -2rem;
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='96px' height='96px' viewBox='0 0 96 96' zoomAndPan='disable'%3E%3Cstyle%3Ecircle %7Bfill: transparent%3B stroke: rgba(255, 255, 255, 0.875)%3B stroke-width: 1.5px%3B %7D%3C/style%3E%3Cdefs%3E%3CclipPath id='corner'%3E%3Cpolygon points='0,0 48,0 48,48 96,48 96,96 0,96' /%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23corner)'%3E%3Ccircle cx='48' cy='48' r='32'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='96px' height='96px' viewBox='0 0 96 96' zoomAndPan='disable'%3E%3Cstyle%3Ecircle %7Bfill: transparent%3B stroke: hsla(var(--neutral-100),0.8)%3B stroke-width: 1.5px%3B %7D%3C/style%3E%3Cdefs%3E%3CclipPath id='corner'%3E%3Cpolygon points='0,0 48,0 48,48 96,48 96,96 0,96' /%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23corner)'%3E%3Ccircle cx='48' cy='48' r='32'/%3E%3C/g%3E%3C/svg%3E");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 4rem;
@@ -1205,7 +1205,7 @@ address {
   right: 0.5rem;
   width: 4rem;
   height: 4rem;
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='64px' height='64px' viewBox='0 0 64 64' zoomAndPan='disable'%3E%3Cstyle%3Eline %7Bstroke: rgba(255, 255, 255, 0.875)%3Bstroke-width: 1.5px%3B%7D%3C/style%3E%3Cline x1='20' y1='20' x2='44' y2='44' /%3E%3Cline x1='20' y1='44' x2='44' y2='20' /%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='64px' height='64px' viewBox='0 0 64 64' zoomAndPan='disable'%3E%3Cstyle%3Eline %7Bstroke: hsla(var(--neutral-100),0.8)%3Bstroke-width: 1.5px%3B%7D%3C/style%3E%3Cline x1='20' y1='20' x2='44' y2='44' /%3E%3Cline x1='20' y1='44' x2='44' y2='20' /%3E%3C/svg%3E");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 3rem;
@@ -1539,7 +1539,7 @@ address {
   width: 2px;
   height: calc(100% - 7rem);
   margin-left: -3.5rem;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: hsla(var(--neutral-100),0.25);
 }
 
 .panel > .inner.columns.divided > :first-child {

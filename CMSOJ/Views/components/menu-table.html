@@ -5,9 +5,9 @@ if (!$sectionItems) return;
 ?>
 
 <table class="menu-table">
-    <?php $thead_open = false; ?>
+  <?php $thead_open = false; ?>
 
-    <?php foreach ($sectionItems as $it):
+  <?php foreach ($sectionItems as $it):
 
         $type = $it['display_type'] ?: 'item';
         $name = trim($it["name_$lang"] ?: $it["name_en"]);
@@ -45,16 +45,26 @@ if (!$sectionItems) return;
             echo $name;
         } elseif ($desc) {
             echo "<small><em>$desc</em></small>";
+        } else {
+          echo "&nbsp;";
         }
 
         echo "</td>";
 
-        echo $p1 ? "<td class='price'>$p1</td>" : "<td></td>";
-        echo $p2 ? "<td class='price'>$p2</td>" : "<td></td>";
-
+          // --- PRICE CELLS ---
+        if ($p1 && $p2) {
+            echo "<td class='price'>".htmlspecialchars($p1)."</td>";
+            echo "<td class='price'>".htmlspecialchars($p2)."</td>";
+        } elseif (!$p1 && $p2) {
+            echo "<td></td><td class='price'>".htmlspecialchars($p2)."</td>";
+        } elseif ($p1 && !$p2) {
+            echo "<td class='price'>".htmlspecialchars($p1)."</td>";
+        } else {
+            echo "<td></td><td></td>";
+        }
         echo "</tr>";
 
     endforeach; ?>
 
-    <?php if ($thead_open) echo "</tbody>"; ?>
+  <?php if ($thead_open) echo "</tbody>"; ?>
 </table>
