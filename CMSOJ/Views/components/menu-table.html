@@ -20,7 +20,7 @@ if (!$sectionItems) return;
         // Headers
         if ($type === 'thead'):
             if ($thead_open) echo "</tbody>";
-            echo "<thead><tr><th></th><th>$u1</th><th>$u2</th></tr></thead><tbody>";
+            echo "<thead><tr><th>$name</th></tr></thead><tbody>";
             $thead_open = true;
             continue;
         endif;

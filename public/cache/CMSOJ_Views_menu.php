@@ -129,73 +129,75 @@
       <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">English</a>
       <a href="?lang=pt" class="<?= $lang === 'pt' ? 'active' : '' ?>">Português</a>
     </div>
-    <div class="section-links">
+    <div class="sub-menu-nav">
+      <ul>
       <?php foreach ($tree as $main): ?>
-      <span>
+      <li>
         <a href="/menu#<?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>">
           <?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>
         </a>
-      </span>
+      </li>
       <?php endforeach; ?>
+      </ul>
 
     </div>
   </header>
 
-  <div class="wrapper">
 
-    <?php foreach ($tree as $main): ?>
-    <section class="menu-section">
-      <h2 id="<?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>">
-        <?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"]) ?>
-      </h2>
 
-      <?php if ($main["description_$lang"]): ?>
+  <?php foreach ($tree as $main): ?>
+  <section class="menu-section">
+    <h2 id="<?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"])?>">
+      <?= htmlspecialchars($main["name_$lang"] ?: $main["name_en"]) ?>
+    </h2>
+
+    <?php if ($main["description_$lang"]): ?>
+    <p>
+      <?= nl2br(htmlspecialchars($main["description_$lang"])) ?>
+    </p>
+    <?php endif; ?>
+
+    <?php if (!empty($main['children'])): ?>
+    <?php foreach ($main['children'] as $sub): ?>
+    <article class="menu-subsection">
+      <h3>
+        <?= htmlspecialchars($sub["name_$lang"] ?: $sub["name_en"]) ?>
+      </h3>
+      <?php if ($sub["description_$lang"]): ?>
       <p>
-        <?= nl2br(htmlspecialchars($main["description_$lang"])) ?>
+        <?= nl2br(htmlspecialchars($sub["description_$lang"])) ?>
       </p>
       <?php endif; ?>
-
-      <?php if (!empty($main['children'])): ?>
-      <?php foreach ($main['children'] as $sub): ?>
-      <div class="menu-subsection">
-        <h3>
-          <?= htmlspecialchars($sub["name_$lang"] ?: $sub["name_en"]) ?>
-        </h3>
-        <?php if ($sub["description_$lang"]): ?>
-        <p>
-          <?= nl2br(htmlspecialchars($sub["description_$lang"])) ?>
-        </p>
-        <?php endif; ?>
-        <?php 
+      <?php 
                 echo CMSOJ\Template::renderComponent(
                     'CMSOJ/Views/components/menu-table.html',
                     [
-        'id' => $sub['id'],
-        'items' => $itemsBySection,
-        'lang' => $lang
-        ]
+      'id' => $sub['id'],
+      'items' => $itemsBySection,
+      'lang' => $lang
+      ]
                 );
             ?>
 
 
-      </div>
-      <?php endforeach; ?>
-      <?php else: ?>
-      <?php 
+    </article>
+    <?php endforeach; ?>
+    <?php else: ?>
+    <?php 
                 echo CMSOJ\Template::renderComponent(
                     'CMSOJ/Views/components/menu-table.html',
                     ['id' => $main['id'], 'items' => $itemsBySection, 'lang' => $lang]
                 );
             ?>
 
-      <?php endif; ?>
+    <?php endif; ?>
 
-  </div>
+  </section>
   <?php endforeach; ?>
 
   </div>
 
-<section class="" id="reservation">
+  <section class="" id="reservation">
   <header class="full-width bg-primary">
 
     <h3 class="major"> Make a reservation</h3>
