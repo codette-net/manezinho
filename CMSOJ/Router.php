@@ -1,26 +1,28 @@
 <?php
-
 namespace CMSOJ;
 
 class Router
 {
     protected array $routes = [];
 
-    public function get(string $pattern, $callback): void
+    public function get(string $pattern, $callback, $middleware = null): void
     {
-        $this->addRoute('GET', $pattern, $callback);
+        $this->addRoute('GET', $pattern, $callback, $middleware);
     }
 
-    public function post(string $pattern, $callback): void
+    public function post(string $pattern, $callback, $middleware = null): void
     {
-        $this->addRoute('POST', $pattern, $callback);
+        $this->addRoute('POST', $pattern, $callback, $middleware);
     }
 
-    private function addRoute(string $method, string $pattern, $callback): void
+    private function addRoute(string $method, string $pattern, $callback, $middleware = null): void
     {
-        // Normalize: remove leading/trailing slashes
         $pattern = trim($pattern, '/');
-        $this->routes[$method][$pattern] = $callback;
+
+        $this->routes[$method][$pattern] = [
+            'callback' => $callback,
+            'middleware' => $middleware,
+        ];
     }
 
     public function dispatch()
@@ -28,23 +30,31 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-        foreach ($this->routes[$method] ?? [] as $pattern => $callback) {
+        foreach ($this->routes[$method] ?? [] as $pattern => $route) {
 
-            // Convert {param} → regex
+            // Convert {id} → regex
             $regex = preg_replace('/\{([^\/]+)\}/', '([^/]+)', $pattern);
 
             if (preg_match("#^$regex$#", $uri, $matches)) {
 
-                array_shift($matches); // remove full match
+                array_shift($matches);
 
-                // -------------------------------------------------------------
-                //  A) CONTROLLER SYNTAX: [ClassName::class, 'method']
-                // -------------------------------------------------------------
+                // ---------------------------------
+                // RUN MIDDLEWARE
+                // ---------------------------------
+                if (!empty($route['middleware']) && class_exists($route['middleware'])) {
+                    (new $route['middleware'])->handle();
+                }
+
+                $callback = $route['callback'];
+
+                // ---------------------------------
+                // CONTROLLER: [Class::class, 'method']
+                // ---------------------------------
                 if (is_array($callback) && count($callback) === 2) {
 
                     [$class, $method] = $callback;
 
-                    // Instantiate controller automatically if needed
                     if (is_string($class)) {
                         $class = new $class();
                     }
@@ -52,16 +62,14 @@ class Router
                     return call_user_func_array([$class, $method], $matches);
                 }
 
-                // -------------------------------------------------------------
-                //  B) Closure route: function (...) { }
-                // -------------------------------------------------------------
+                // ---------------------------------
+                // CLOSURE ROUTE
+                // ---------------------------------
                 return call_user_func_array($callback, $matches);
             }
         }
 
-        // -------------------------------------------------------------
-        // 404 fallback
-        // -------------------------------------------------------------
+        // 404
         http_response_code(404);
         \CMSOJ\Template::view('CMSOJ/Views/404.html');
         exit;
