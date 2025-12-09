@@ -1,4 +1,5 @@
 <?php
+
 namespace CMSOJ;
 
 class Router
@@ -42,15 +43,22 @@ class Router
                 // ---------------------------------
                 // RUN MIDDLEWARE
                 // ---------------------------------
-                if (!empty($route['middleware']) && class_exists($route['middleware'])) {
-                    (new $route['middleware'])->handle();
+                $middlewareClass = $route['middleware'] ?? null;
+
+                if ($middlewareClass) {
+                    if (!class_exists($middlewareClass)) {
+                        throw new \Exception("Middleware class '$middlewareClass' does not exist.");
+                    }
+                    (new $middlewareClass())->handle();
                 }
 
-                $callback = $route['callback'];
 
                 // ---------------------------------
                 // CONTROLLER: [Class::class, 'method']
                 // ---------------------------------
+
+                $callback = $route['callback'];
+
                 if (is_array($callback) && count($callback) === 2) {
 
                     [$class, $method] = $callback;

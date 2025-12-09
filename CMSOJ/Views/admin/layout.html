@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% yield title %} | CMSOJ </title>
+  {% yield css %}
+  <!-- here is the end of head  -->
+</head>
+
+<body class="{{ $body_class ?? '' }}">
+  {% yield nav %}
+
+  {% yield content %}
+
+  {% yield footer %}
+  {% yield scripts %}
+</body> 
+</html>
+
+{% block css %}
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
+<noscript>
+  <link rel="stylesheet" href='{{ "/assets/css/noscript.css" }}' />
+</noscript>
+{% endblock %}
+{% block footer%}
+<a id="scrolltop" href="#" title="Back to top" style="display: none;"></a>
+{% block scripts %}
+<!-- <script src='{{ "/assets/js/main.js" }}''></script> -->
+{% endblock %}

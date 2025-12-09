@@ -1,9 +1,19 @@
 <?php
-namespace CMSOJ;
-use CMSOJ\Template;
-use CMSOJ\Controllers\Admin\DashboardController;
-use CMSOJ\Middleware\AdminAuth;
 
-$router->get('admin/test', [DashboardController::class, 'index'], AdminAuth::class);
-// $router->get('admin/settings', [SettingsController::class, 'index'], AdminAuth::class);
-// $router->post('admin/settings', [SettingsController::class, 'save'], AdminAuth::class);
+use CMSOJ\Router;
+use CMSOJ\Middleware\AdminAuth;
+use CMSOJ\Controllers\Admin\DashboardController;
+use CMSOJ\Controllers\Admin\LoginController;
+use CMSOJ\Controllers\Admin\LogoutController;
+
+/** @var Router $router */
+
+// LOGIN (public)
+$router->get('admin/login', [LoginController::class, 'show']);
+$router->post('admin/login', [LoginController::class, 'submit']);
+
+// LOGOUT
+$router->get('admin/logout', [LogoutController::class, 'logout']);
+
+// DASHBOARD (protected)
+$router->get('admin', [DashboardController::class, 'index'], AdminAuth::class);

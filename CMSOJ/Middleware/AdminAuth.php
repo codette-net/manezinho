@@ -1,14 +1,16 @@
 <?php
+
 namespace CMSOJ\Middleware;
 
 class AdminAuth
 {
     public function handle()
     {
-        // if (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true) {
-        //     header("Location: /admin/login");
-        //     exit;
-        // }
-        return true;
+        session_start();
+
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /admin/login");
+            exit;
+        }
     }
 }
