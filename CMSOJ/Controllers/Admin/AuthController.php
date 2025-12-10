@@ -1,4 +1,5 @@
 <?php
+
 namespace CMSOJ\Controllers\Admin;
 
 use CMSOJ\Template;
@@ -6,35 +7,51 @@ use CMSOJ\Models\Account;
 
 class AuthController
 {
-    public function showLogin()
-    {
-        return Template::view('CMSOJ/Views/admin/login.html');
+  public function show()
+  {
+    return Template::view('CMSOJ/Views/admin/login.html', ['title' => 'Login', 'body_class' => 'login']);
+  }
+
+  public function submit()
+  {
+    session_start();
+
+    $email = $_POST['admin_email'] ?? '';
+    $password = $_POST['admin_password'] ?? '';
+
+    $email    = trim($_POST['admin_email'] ?? '');
+    $password = trim($_POST['admin_password'] ?? '');
+
+    // Validation
+    if ($email === '' || $password === '') {
+      $_SESSION['login_error'] = "Please fill in all fields.";
+      header("Location: /admin/login");
+      exit;
     }
 
-    public function login()
-    {
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+    $account = Account::find($email);
 
-        $account = Account::findByEmail($email);
-
-        if (!$account || !password_verify($password, $account['password'])) {
-            return Template::view('CMSOJ/Views/admin/login.html', [
-                'error' => 'Invalid login credentials'
-            ]);
-        }
-
-        $_SESSION['admin_loggedin'] = true;
-        $_SESSION['admin_id'] = $account['id'];
-
-        header("Location: /admin");
-        exit;
+    if (!$account || !password_verify($password, $account['password'])) {
+      $_SESSION['login_error'] = "Invalid login credentials.";
+      $this->show();
+      exit;
     }
 
-    public function logout()
-    {
-        session_destroy();
-        header("Location: /admin/login");
-        exit;
-    }
+    // Login OK
+    $_SESSION['admin_logged_in'] = true;
+    $_SESSION['admin_id'] = $account['id'];
+    $_SESSION['admin_name'] = $account['name'];
+    $_SESSION['account_name'] = $account['display_name'];
+
+
+    header("Location: /admin");
+    exit;
+  }
+  public function logout()
+  {
+    session_start();
+    session_destroy();
+    header("Location: /admin/login");
+    exit;
+  }
 }

@@ -1,3 +1,10 @@
+
+{% extends CMSOJ/Views/admin/layout.html %}
+
+{% block title %} {{ $title }} {% endblock %}
+
+{% block content %}
 <h1>Welcome to Admin </h1>
-<p>working !</p>
+<p>working ! {{ $display_name }} </p>
 <a href="/admin/logout">logout</a>
+{% endblock %}
