@@ -1,0 +1,13 @@
+<div class="logo">CMSOJ Admin</div>
+
+<nav class="menu">
+    <a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a>
+    <a href="/admin/accounts" class="<?= $selected === 'accounts' ? 'active' : '' ?>">Accounts</a>
+    <a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a>
+    <a href="/admin/messages" class="<?= $selected === 'messages' ? 'active' : '' ?>">Messages</a>
+    <a href="/admin/settings" class="<?= $selected === 'settings' ? 'active' : '' ?>">Settings</a>
+</nav>
+
+<div class="logout">
+    <a href="/admin/logout">Logout</a>
+</div>
