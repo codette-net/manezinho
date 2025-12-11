@@ -11,11 +11,11 @@ if (!$sectionItems) return;
 
         $type = $it['display_type'] ?: 'item';
         $name = trim($it["name_$lang"] ?: $it["name_en"]);
-        $desc = trim($it["description_$lang"] ?: $it["description_en"]);
-        $p1   = trim($it['price_1']);
-        $p2   = trim($it['price_2']);
-        $u1   = trim($it['unit_1_label']);
-        $u2   = trim($it['unit_2_label']);
+        $desc = trim($it["description_$lang"] ?? $it["description_pt"] ?? '');
+        $p1   = trim($it['price_1'] ?? '');
+        $p2   = trim($it['price_2'] ?? '');
+        $u1   = trim($it['unit_1_label'] ?? '');
+        $u2   = trim($it['unit_2_label'] ?? '');
 
         // Headers
         if ($type === 'thead'):

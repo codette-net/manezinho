@@ -100,7 +100,7 @@ class CalendarView
         // LEADING BLANKS
         for ($i = 0; $i < $data['offset']; $i++) {
             $html .= '<div class="day_num ignore"></div>';
-        }
+        }       
 
         // DAYS
         foreach ($data['days'] as $day) {
