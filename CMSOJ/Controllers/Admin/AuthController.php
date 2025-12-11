@@ -29,7 +29,7 @@ class AuthController
       exit;
     }
 
-    $account = Account::find($email);
+    $account = (new Account())->findByEmail($email);
 
     if (!$account || !password_verify($password, $account['password'])) {
       $_SESSION['login_error'] = "Invalid login credentials.";

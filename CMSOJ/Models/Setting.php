@@ -1,32 +1,33 @@
 <?php 
 namespace CMSOJ\Models;
 
-use CMSOJ\Core\Database;
+use CMSOJ\Core\Model;
 
-class Setting
+class Setting extends Model
 {
-    public static function get(string $key, $default = null)
+    protected string $table = 'settings';
+    public function getValue(string $key, $default = null)
     {
-        $db = Database::connect();
-        $stmt = $db->prepare("SELECT value FROM settings WHERE `key` = ? LIMIT 1");
+        $stmt = $this->db()->prepare("SELECT value FROM {$this->table} WHERE `key` = ? LIMIT 1");
         $stmt->execute([$key]);
         $row = $stmt->fetchColumn();
         return $row !== false ? $row : $default;
     }
 
-    public static function set(string $key, $value): void
+    public function setValue(string $key, $value): void
     {
-        $db = Database::connect();
-        $stmt = $db->prepare("
-            INSERT INTO settings (`key`, `value`) VALUES (?, ?)
+        $stmt = $this->db()->prepare("
+            INSERT INTO {$this->table} (`key`, `value`) VALUES (?, ?)
             ON DUPLICATE KEY UPDATE value = VALUES(value)
         ");
         $stmt->execute([$key, $value]);
     }
 
-    public static function all(): array
+    public function allSettings(): array
     {
-        $db = Database::connect();
-        return $db->query("SELECT `key`, `value` FROM settings")->fetchAll(\PDO::FETCH_KEY_PAIR);
+        $stmt = $this->db()->prepare("SELECT `key`, `value` FROM {$this->table}");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+
     }
 }
