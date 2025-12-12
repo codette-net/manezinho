@@ -5,29 +5,33 @@ namespace CMSOJ\Middleware;
 // Accounts can only be viewed by admin users except for the users account themselves.
 class AccountAuth
 {
-    public function handle()
-    {
-        session_start();
+  public function handle()
+  {
+    session_start();
 
-        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-            header("Location: /admin/login");
-            exit;
-        }
-
-        // Allow access if the user is an admin
-        if (isset($_SESSION['admin_role']) && strtolower($_SESSION['admin_role']) === 'admin') {
-            return;
-        }
-
-        // Extract account ID from the URL
-        $requestId = $_GET['id'] ?? null;
-
-        // Allow access if the user is accessing their own account
-        if (isset($_SESSION['admin_id']) && $_SESSION['admin_id'] == $requestId) {
-            return;
-        }
-
-        http_response_code(403);
-        exit("You are not allowed to access this account.");
+    // Must be logged in
+    if (empty($_SESSION['admin_logged_in'])) {
+      header("Location: /admin/login");
+      exit;
     }
+
+    $role = strtolower($_SESSION['admin_role'] ?? 'user');
+
+    // Admins can access all accounts
+    if ($role === 'admin') {
+      return;
+    }
+
+    // check if id set  accounts/edit/{id} or accounts/{id}
+    preg_match('/\/admin\/accounts\/(?:edit\/)?(\d+)/', $_SERVER['REQUEST_URI'], $m);
+    $requestId = $m[1] ?? null;
+
+    // Normal users: can access only their own account
+    if ((int)$requestId === (int)($_SESSION['admin_id'] ?? 0)) {
+      return;
+    }
+
+    http_response_code(403);
+    exit("You are not allowed to access this account.");
+  }
 }

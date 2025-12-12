@@ -23,6 +23,7 @@ $router->get('admin', [DashboardController::class, 'index'], AdminAuth::class);
 // Accounts management (protected)
 $router->get('admin/accounts', [AccountsController::class, 'index'], AccountAuth::class);
 $router->get('admin/accounts/{id}', [AccountsController::class, 'index'], AccountAuth::class);
+$router->get('admin/accounts/edit/{id}', [AccountsController::class, 'edit'], AccountAuth::class);
 
 // Settings management (protected)
 $router->get('admin/settings', [SettingsController::class, 'index'], AdminAuth::class);

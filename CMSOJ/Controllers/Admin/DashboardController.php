@@ -17,7 +17,7 @@ class DashboardController
     $totalEvents = $db->query("SELECT COUNT(*) FROM events")->fetchColumn();
 
 
-    return Template::view('CMSOJ/Views/admin/dashboard.html', [
+    return Template::view('CMSOJ/Views/admin/main.html', [
       'title' => 'Admin Dashboard',
       'display_name' => $_SESSION['account_name'] ?? 'no_name',
       'totalAccounts' => $totalAccounts,

@@ -40,7 +40,7 @@ class AuthController
     // Login OK
     $_SESSION['admin_logged_in'] = true;
     $_SESSION['admin_id'] = $account['id'];
-    $_SESSION['admin_name'] = $account['name'];
+    $_SESSION['admin_email'] = $account['email'];
     $_SESSION['account_name'] = $account['display_name'];
     $_SESSION['admin_role'] = $account['role'];
 

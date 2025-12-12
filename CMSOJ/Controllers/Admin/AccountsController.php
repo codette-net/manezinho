@@ -2,6 +2,7 @@
 
 namespace CMSOJ\Controllers\Admin;
 
+use CMSOJ\Controllers\Admin\AuthController;
 use CMSOJ\Models\Account;
 use CMSOJ\Template;
 
@@ -9,9 +10,12 @@ class AccountsController
 {
     public function index()
     {
-        $accounts = (new Account())->all();
-
-
+        // only users with admin role can view/edit all accounts
+        if (strtolower($_SESSION['admin_role']) === 'admin') {
+            $accounts = (new Account())->all();
+        } else {
+            $accounts = [(new Account())->find($_SESSION['admin_id'])];
+        }
         return Template::view('CMSOJ/Views/admin/accounts/index.html', compact('accounts'));
     }
 
@@ -19,10 +23,14 @@ class AccountsController
     {
         $account = (new Account())->find((int)$id);
 
-        if (!$account) {
-            http_response_code(404);
-            exit("Account not found.");
+        $isAdmin = strtolower($_SESSION['admin_role']) === 'admin';
+        $isSelf  = $account['id'] == $_SESSION['admin_id'];
+
+        if (!$isAdmin && !$isSelf) {
+            http_response_code(403);
+            exit("You are not allowed to edit this account.");
         }
+
 
         return Template::view('CMSOJ/Views/admin/accounts/edit.html', compact('account'));
     }
@@ -37,6 +45,17 @@ class AccountsController
         ];
 
         (new Account())->update((int)$id, $data);
+
+
+
+        if (isset($data['password']) && !empty($data['password'])) {
+            // If the user updated their own password, log them out
+            if ($id == $_SESSION['admin_id']) {
+                (new AuthController())->logout();
+            }
+        }
+
+        $_SESSION['flash_success'] = "Account updated successfully.";
 
         header("Location: /admin/accounts");
         exit;

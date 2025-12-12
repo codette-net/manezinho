@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Settings  | CMSOJ </title>
+  <title> | CMSOJ </title>
   
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
 <noscript>
@@ -50,29 +50,30 @@
       
 
   
-<h1>Settings</h1>
+      <div class="dashboard-grid">
 
-<form method="POST" action="/admin/settings">
+    <div class="stat-box">
+        <h3>Total Accounts</h3>
+        <span><?= $totalAccounts ?></span>
+    </div>
 
-    <label>Restaurant Name</label>
-    <input type="text" name="restaurant_name" value="<?php echo \CMSOJ\Template::asset($settings['site_name']) ?>">
+    <div class="stat-box">
+        <h3>Total Messages</h3>
+        <span><?= $totalMessages ?></span>
+    </div>
 
-    <label>Contact Email</label>
-    <input type="email" name="contact_email" value="<?php echo \CMSOJ\Template::asset($settings['contact_email']) ?>">
+    <div class="stat-box">
+        <h3>Unread Messages</h3>
+        <span><?= $unreadMessages ?></span>
+    </div>
 
-    <label>Default Language</label>
-    <select name="default_lang">
-        <option value="en" <?php echo \CMSOJ\Template::asset($settings['default_lang']=='en'?'selected':'') ?>>English</option>
-        <option value="pt" <?php echo \CMSOJ\Template::asset($settings['default_lang']=='pt'?'selected':'') ?>>Português</option>
-    </select>
+    <div class="stat-box">
+        <h3>Total Events</h3>
+        <span><?= $totalEvents ?></span>
+    </div>
 
-    <label>Reservation Max Persons</label>
-    <input type="number" name="reservation_max_persons" min="1" max="50" value="<?php echo \CMSOJ\Template::asset($settings['reservation_max_persons']) ?>">
-
-    <button type="submit">Save Settings</button>
-
-</form>
-
+</div>
+      
 
   
     </div>
@@ -92,7 +93,3 @@
 
       
       
-
-
-
-

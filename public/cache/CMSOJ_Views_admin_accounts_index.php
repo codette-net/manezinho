@@ -1,2 +1,100 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
-<h1>accounts</h1>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Accounts  | CMSOJ </title>
+  
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
+<noscript>
+  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css") ?>' />
+</noscript>
+
+  <!-- here is the end of head  -->
+</head>
+
+<body class="<?php echo \CMSOJ\Template::asset($body_class ?? '') ?>">
+  
+<div class="admin-wrapper">
+  <aside class="admin-sidebar">
+    <div class="logo">CMSOJ Admin</div>
+
+<nav class="menu">
+    <a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a>
+    <a href="/admin/accounts" class="<?= $selected === 'accounts' ? 'active' : '' ?>">Accounts</a>
+    <a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a>
+    <a href="/admin/messages" class="<?= $selected === 'messages' ? 'active' : '' ?>">Messages</a>
+    <a href="/admin/settings" class="<?= $selected === 'settings' ? 'active' : '' ?>">Settings</a>
+</nav>
+
+<div class="logout">
+    <a href="/admin/logout">Logout</a>
+</div>
+
+  </aside>
+
+
+  <main class="admin-content">
+    <header class="admin-header">
+
+    <div class="breadcrumbs">
+        <strong><?= $title ?? '' ?></strong>
+    </div>
+
+    <div class="profile">
+        <span class="name"><?= $_SESSION['display_name'] ?? '' ?></span>
+    </div>
+
+</header>
+  
+    <div class="admin-page">
+      
+
+  
+<h1>Accounts</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>Display Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($accounts as $account): ?>
+        <tr>
+            <td><?php echo \CMSOJ\Template::asset($account['id']) ?></td>
+            <td><?php echo \CMSOJ\Template::asset($account['email']) ?></td>
+            <td><?php echo \CMSOJ\Template::asset($account['display_name']) ?></td>
+            <td><?php echo \CMSOJ\Template::asset($account['role']) ?></td>
+            <td>
+                <a href="/admin/accounts/edit/<?php echo \CMSOJ\Template::asset($account['id']) ?>">Edit</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+
+  
+    </div>
+  </main>
+</div>
+
+<a id="scrolltop" href="#" title="Back to top" style="display:none;"></a>
+
+  
+</body> 
+</html>
+
+
+
+
+{# Sidebar + header wrapper #}
+
+      
+      
+
+
+

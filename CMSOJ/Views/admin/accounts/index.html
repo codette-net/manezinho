@@ -1,1 +1,31 @@
-<h1>accounts</h1>
+  {% extends CMSOJ/Views/admin/main.html %}
+
+{% block title %} Accounts {% endblock %}
+
+{% block content %}
+<h1>Accounts</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>Display Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($accounts as $account): ?>
+        <tr>
+            <td>{{ $account['id'] }}</td>
+            <td>{{ $account['email'] }}</td>
+            <td>{{ $account['display_name'] }}</td>
+            <td>{{ $account['role'] }}</td>
+            <td>
+                <a href="/admin/accounts/edit/{{ $account['id'] }}">Edit</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+{% endblock %}

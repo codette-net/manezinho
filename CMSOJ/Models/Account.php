@@ -17,4 +17,3 @@ class Account extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
- 
