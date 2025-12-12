@@ -31,6 +31,11 @@ class AccountAuth
       return;
     }
 
+    // check if accessing profile page
+    if (strpos($_SERVER['REQUEST_URI'], '/admin/profile') === 0) {
+      return;
+    }
+
     http_response_code(403);
     exit("You are not allowed to access this account.");
   }

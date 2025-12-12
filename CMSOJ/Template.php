@@ -61,10 +61,11 @@ class Template
 		$code = self::compileComponents($code);
 		$code = self::compileBlock($code);
 		$code = self::compileYield($code);
+		$code = self::compileForLoops($code);
 		$code = self::compileEscapedEchos($code);
 		$code = self::compileEchos($code);
-		$code = self::stripLeftoverBlockTags($code);
 		$code = self::compilePHP($code);
+		$code = self::stripLeftoverBlockTags($code);
 		return $code;
 	}
 
@@ -80,6 +81,26 @@ class Template
 		return $code;
 	}
 
+	static function compileForLoops($code)
+	{
+		// {% for item in items %}
+		$code = preg_replace(
+			'/\{%[\s]*for\s+([A-Za-z_][A-Za-z0-9_]*)\s+in\s+([A-Za-z_][A-Za-z0-9_]*)\s*%}/',
+			'<?php foreach ($$2 as $$1): ?>',
+			$code
+		);
+
+		// {% endfor %}
+		$code = preg_replace(
+			'/\{%[\s]*endfor[\s]*%}/',
+			'<?php endforeach; ?>',
+			$code
+		);
+
+		return $code;
+	}
+
+
 	static function compilePHP($code)
 	{
 		return preg_replace('~\{%\s*(.+?)\s*\%}~is', '<?php $1 ?>', $code);
@@ -87,12 +108,29 @@ class Template
 
 	static function compileEchos($code)
 	{
-		return preg_replace(
-			'~\{{\s*(.+?)\s*\}}~is',
-			'<?php echo \CMSOJ\Template::asset($1) ?>',
+		return preg_replace_callback(
+			'/\{{\s*(.+?)\s*\}}/s',
+			function ($m) {
+
+				$expr = trim($m[1]);
+
+				// If literal string beginning with "/", treat as asset
+				if (preg_match('/^[\'"]\/.+[\'"]$/', $expr)) {
+					return "<?php echo \\CMSOJ\\Template::asset($expr); ?>";
+				}
+
+				// If variable name (letters, numbers, underscores)
+				if (preg_match('/^[A-Za-z_][A-Za-z0-9_]*$/', $expr)) {
+					return "<?php echo \$$expr; ?>";
+				}
+
+				// Fallback: echo raw PHP expression
+				return "<?php echo $expr; ?>";
+			},
 			$code
 		);
 	}
+
 
 	static function compileEscapedEchos($code)
 	{
@@ -159,19 +197,12 @@ class Template
 	static function compileComponents($code)
 	{
 		return preg_replace_callback(
-			'/\{%[\s]*component[\s]+\'(.+?)\'\s*,\s*(.+?)\s*%}/is',
+			'/\{%[\s]*component[\s]+\'([^\'"]+)\'\s*,\s*(\[[^\}]+\])\s*%}/is',
 			function ($matches) {
-
 				$componentFile = 'CMSOJ/Views/components/' . $matches[1] . '.html';
 				$propsCode     = $matches[2];
 
-				// Produce executable PHP instead of evaluating now
-				return "<?php 
-                echo CMSOJ\\Template::renderComponent(
-                    '$componentFile',
-                    $propsCode
-                );
-            ?>";
+				return "<?php echo CMSOJ\\Template::renderComponent('$componentFile', $propsCode); ?>";
 			},
 			$code
 		);
@@ -179,16 +210,13 @@ class Template
 
 	public static function renderComponent(string $path, array $props)
 	{
-		$file = self::resolvePath($path);
+		$compiled = self::cache($path);
 
 		ob_start();
 		extract($props, EXTR_SKIP);
-		include $file;
+		include $compiled;
 		return ob_get_clean();
 	}
-
-
-
 
 	static function asset($path)
 	{

@@ -16,8 +16,33 @@ class AccountsController
         } else {
             $accounts = [(new Account())->find($_SESSION['admin_id'])];
         }
-        return Template::view('CMSOJ/Views/admin/accounts/index.html', compact('accounts'));
+        $rows = array_map(function ($a) {
+            return [
+                $a['id'],
+                $a['email'],
+                $a['display_name'],
+                $a['role'],
+                "<a href='/admin/accounts/edit/{$a['id']}'>Edit</a>"
+            ];
+        }, $accounts);
+
+        return Template::view('CMSOJ/Views/admin/accounts/index.html', [
+            'headers' => ["ID", "Email", "Display Name", "Role", "Actions"],
+            'rows'    => $rows,
+            'title'   => 'Accounts'
+        ]);
     }
+
+    public function profile()
+    {
+        $account = (new Account())->find($_SESSION['admin_id']);
+
+        return Template::view('CMSOJ/Views/admin/accounts/profile.html', [
+            'title' => 'Profile',
+            'account' => $account
+        ]);
+    }
+
 
     public function edit($id)
     {
@@ -32,7 +57,7 @@ class AccountsController
         }
 
 
-        return Template::view('CMSOJ/Views/admin/accounts/edit.html', compact('account'));
+        return Template::view('CMSOJ/Views/admin/accounts/edit.html',['title' => 'Edit Accounts', 'account' => $account]);
     }
 
     public function update($id)

@@ -1,24 +1,14 @@
-{% extends CMSOJ/Views/admin/layout.html %}
+{% extends CMSOJ/Views/admin/main.html %}
 
 {# <title> tag content #}
 {% block title %}
     {{ $title ?? 'Dashboard' }}
 {% endblock %}
 
-{# Sidebar + header wrapper #}
-{% block nav %}
-<div class="admin-wrapper">
-    <aside class="admin-sidebar">
-        {% include CMSOJ/Views/admin/partials/sidebar.html %}
-    </aside>
 
-    <main class="admin-content">
-        {% include CMSOJ/Views/admin/partials/header.html %}
-        <div class="admin-page">
-{% endblock %}
 
 {# Main page content #}
-{% block content %}
+{% block page %}
 <div class="dashboard-grid">
 
     <div class="stat-box">
@@ -43,13 +33,3 @@
 
 </div>
 {% endblock %}
-
-{# Close wrappers + extra footer stuff #}
-{% block footer %}
-        </div> {# .admin-page #}
-    </main>
-</div>
-
-<a id="scrolltop" href="#" title="Back to top" style="display:none;"></a>
-{% endblock %}
-{% block scripts %}

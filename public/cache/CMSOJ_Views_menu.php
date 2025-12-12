@@ -168,27 +168,17 @@
         <?= nl2br(htmlspecialchars($sub["description_$lang"])) ?>
       </p>
       <?php endif; ?>
-      <?php 
-                echo CMSOJ\Template::renderComponent(
-                    'CMSOJ/Views/components/menu-table.html',
-                    [
+      <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/menu-table.html', [
       'id' => $sub['id'],
       'items' => $itemsBySection,
       'lang' => $lang
-      ]
-                );
-            ?>
+      ]); ?>
 
 
     </article>
     <?php endforeach; ?>
     <?php else: ?>
-    <?php 
-                echo CMSOJ\Template::renderComponent(
-                    'CMSOJ/Views/components/menu-table.html',
-                    ['id' => $main['id'], 'items' => $itemsBySection, 'lang' => $lang]
-                );
-            ?>
+    <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/menu-table.html', ['id' => $main['id'], 'items' => $itemsBySection, 'lang' => $lang]); ?>
 
     <?php endif; ?>
 
