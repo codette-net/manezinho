@@ -1,49 +1,110 @@
-# 📘 ** CMSOJ Lightweight PHP Framework – Documentation**
+#  ** CMSOJ Lightweight PHP Framework – Documentation**
 
-This document describes the core architecture of the lightweight PHP framework used for the Manezinho website, including routing, views, template engine, partials, components, and cache busting.
-
----
-
-# 📁 **1. Project Structure**
-
-```
-manezinho/
-│
-├─ public/                   # Web root (only folder exposed to browser)
-│   ├─ index.php             # Front controller (loads Router + Template + routes)
-│   ├─ router.php            # Built-in PHP server router
-│   └─ assets/
-│       ├─ css/
-│       ├─ js/
-│       └─ img/
-│
-├─ CMSOJ/
-│   ├─ Template.php          # Template engine
-│   ├─ Router.php            # Router class
-│   ├─ Routes/
-│   │   ├─ web.php           # Frontend routes
-│   │   └─ admin.php         # Admin routes
-│   ├─ Views/                # Frontend views
-│   │   ├─ layout.html
-│   │   ├─ index.html
-│   │   ├─ events.html
-│   │   ├─ 404.html
-│   │   ├─ partials/
-│   │   │   ├─ nav.html
-│   │   │   └─ footer.html
-│   │   └─ components/
-│   │       └─ card.html
-│   └─ Admin/
-│       └─ Views/            # Admin dashboard templates
-│           ├─ dashboard.html
-│           └─ login.html
-│
-└─ cache/                    # Compiled templates
-```
+A reusable, lightweight MVC framework powering Art Restaurant Manezinho, designed to gradually replace a legacy procedural system.
+It supports:
+    • Modern routing (GET/POST, middleware, parameters)
+    • Custom template engine (extends, blocks, partials, components, echo)
+    • MVC structure (Controllers, Models, Views)
+    • Services layer
+    • Admin panel with authentication
+    • Calendar system with AJAX frontend
+    • Reservation/contact form with PHPMailer service
+    • Menu system (sections, items, CRUD-ready)
+    • Autoloading (Composer + internal autoloader)
+    • Cache-compiled templates for speed
 
 ---
 
-# 🌐 **2. Routing System**
+#  **1. Project Structure**
+
+```
+manezinho/                         # real site for the first implementation
+│
+├── public/                        # Web root (only public-facing directory)
+│   ├── index.php                  # Front controller
+│   ├── router.php                 # Built-in PHP server router
+│   ├── assets/                    # JS/CSS images
+│   ├── .htaccess
+│   ├── config.php (legacy)
+│   └── calendar.php (legacy)
+│
+├── CMSOJ/
+│   ├── Core/                      # Framework internals
+│   │   ├── Config.php
+│   │   ├── Database.php
+│   │   ├── Env.php
+│   │   └── Model.php
+│   │
+│   ├── Router.php                 # Route registration + dispatch + middleware
+│   ├── Template.php               # Template engine (parser + compiler)
+│   │
+│   ├── Middleware/
+│   │   └── AdminAuth.php          # Protects admin routes
+│   │
+│   ├── Models/                    # Database models
+│   │   ├── Account.php
+│   │   ├── Event.php
+│   │   ├── MenuItem.php
+│   │   ├── MenuSection.php
+│   │   ├── Calendar.php
+│   │   ├── Setting.php
+│   │   └── UnavailableDate.php
+│   │
+│   ├── Controllers/
+│   │   ├── MenuController.php
+│   │   ├── CalendarController.php
+│   │   ├── ReservationController.php
+│   │   ├── Admin/
+│   │   │   ├── AuthController.php
+│   │   │   ├── DashboardController.php
+│   │   │   ├── SettingsController.php
+│   │   │   └── AccountsController.php
+│   │
+│   ├── Services/
+│   │   ├── MenuService.php
+│   │   ├── CalendarService.php
+│   │   ├── ReservationService.php
+│   │   └── MailerService.php
+│   │
+│   ├── Routes/
+│   │   ├── web.php                # Frontend routes
+│   │   └── admin.php              # Admin routes
+│   │
+│   └── Views/
+│       ├── layout.html
+│       ├── index.html
+│       ├── menu.html
+│       ├── events.html
+│       ├── flavours.html
+│       ├── 404.html
+│       ├── partials/
+│       ├── components/
+│       └── admin/                 # Full admin interface
+│           ├── layout.html
+│           ├── login.html
+│           ├── dashboard.html
+│           ├── settings/
+│           └── accounts/
+│
+├── cache/                         # Compiled templates
+│
+├── vendor/                        # Composer + PHPMailer
+│
+└── .env                           # Environment variables
+
+```
+
+---
+
+#  **2. Routing System**
+
+Router (CMSOJ/Router.php)
+  Handles:
+    • GET + POST
+    • Route parameters: /menu/{id}
+    • Middleware: AdminAuth::class
+    • Controller dispatch
+    • 404 fallback
 
 Routes are defined in:
 
@@ -55,9 +116,9 @@ CMSOJ/Routes/admin.php
 Each route is registered using:
 
 ```php
-$router->get('events', function() {
-    Template::view('CMSOJ/Views/events.html');
-});
+$router->get('menu/{id}', [MenuController::class, 'show']);
+$router->post('reservation', [ReservationController::class, 'submit']);
+$router->get('admin', [DashboardController::class, 'index'], AdminAuth::class);
 ```
 
 ### **Dynamic parameters**
@@ -83,15 +144,26 @@ CMSOJ/Views/404.html
 `public/index.php` bootstraps the framework:
 
 ```php
-require '../CMSOJ/Template.php';
-require '../CMSOJ/Router.php';
+// 1. Composer autoload
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+// 2. Load .env + config
+use CMSOJ\Core\Config;
+Config::load();
+
+// 3. Initialize router + template
+use CMSOJ\Router;
+use CMSOJ\Template;
 
 $router = new Router();
 
-require '../CMSOJ/Routes/web.php';
-require '../CMSOJ/Routes/admin.php';
+// 4. Load routes
+require dirname(__DIR__) . '/CMSOJ/Routes/web.php';
+require dirname(__DIR__) . '/CMSOJ/Routes/admin.php';
 
+// 5. Dispatch
 $router->dispatch();
+
 ```
 
 ---
@@ -120,7 +192,7 @@ php -S localhost:8000 router.php
 
 ---
 
-# 🖼️ **5. Template Engine**
+#  **5. Template Engine**
 
 The custom engine supports:
 
@@ -179,7 +251,7 @@ The custom engine supports:
 
 ---
 
-# 🧩 **7. Partials**
+#  **7. Partials**
 
 Reusable fragments inside:
 
@@ -196,7 +268,7 @@ Use in templates:
 
 ---
 
-# 🧱 **8. Components**
+#  **8. Components**
 
 Reusable UI elements with props.
 
@@ -217,7 +289,7 @@ Reusable UI elements with props.
 
 ---
 
-# ⚡ **9. Cache Busting**
+#  **9. Cache Busting**
 
 All `{{ "/assets/.../file" }}` paths become:
 
@@ -245,7 +317,7 @@ Template::asset("/something");
 
 ---
 
-# 🗂️ **10. View Include (Extends + Includes)**
+#  **10. View Include (Extends + Includes)**
 
 ### Extending a layout:
 
@@ -261,7 +333,7 @@ Template::asset("/something");
 
 ---
 
-# 🧹 **11. Cache Directory**
+#  **11. Cache Directory**
 
 Compiled templates are stored in `/cache/`.
 
@@ -275,7 +347,7 @@ Or delete files inside `/cache`.
 
 ---
 
-# 🧰 **12. File Path Resolving (Important)**
+#  **12. File Path Resolving (Important)**
 
 Because views are outside `/public`, paths must be resolved manually.
 
@@ -293,18 +365,40 @@ This ensures:
 
 ---
 
-# 🔒 **13. Admin Routes Structure**
+#  **13. Admin Authentication **
 
-Admin dashboard templates live in:
+##  Middleware:
 
-```
-CMSOJ/Admin/Views/
-```
-
-Routes declared in:
-
+namespace CMSOJ\Middleware;
 ```php
-$router->get('admin', function() {
-    Template::view('CMSOJ/Admin/Views/dashboard.html');
-});
+class AdminAuth {
+    public function handle() {
+        session_start();
+        if (!isset($_SESSION['admin_logged_in'])) {
+            header("Location: /admin/login");
+            exit;
+        }
+    }
+}
 ```
+
+## Admin login
+
+    • Email + password via Account Model
+    • Sessions for login persistence
+    • Redirect protected sections to /admin/login
+
+## Models
+All models extend the base class:
+```php
+class Account extends Model {
+    protected string $table = 'accounts';
+}
+```
+
+Base Model supports:
+    • all()
+    • find(id)
+    • create(array)
+    • update(id, array)
+    • delete(id)

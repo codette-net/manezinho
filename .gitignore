@@ -3,3 +3,5 @@ assets/img/scaledImg
 .htaccess
 .env
 ./legacy
+tree.txt
+vendor/
