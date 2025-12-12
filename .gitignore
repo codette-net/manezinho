@@ -4,4 +4,4 @@ assets/img/scaledImg
 .env
 ./legacy
 tree.txt
-vendor/
+./vendor

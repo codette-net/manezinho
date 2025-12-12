@@ -9,13 +9,15 @@ class AccountsController
 {
     public function index()
     {
-        $accounts = Account::all();
+        $accounts = (new Account())->all();
+
+
         return Template::view('CMSOJ/Views/admin/accounts/index.html', compact('accounts'));
     }
 
     public function edit($id)
     {
-        $account = Account::find((int) $id);
+        $account = (new Account())->find((int)$id);
 
         if (!$account) {
             http_response_code(404);
@@ -34,7 +36,7 @@ class AccountsController
             'password'     => $_POST['password'] ?? null
         ];
 
-        Account::update((int)$id, $data);
+        (new Account())->update((int)$id, $data);
 
         header("Location: /admin/accounts");
         exit;

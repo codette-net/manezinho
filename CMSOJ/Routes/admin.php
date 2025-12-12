@@ -2,6 +2,7 @@
 
 use CMSOJ\Router;
 use CMSOJ\Middleware\AdminAuth;
+use CMSOJ\Middleware\AccountAuth;
 use CMSOJ\Controllers\Admin\DashboardController;
 use CMSOJ\Controllers\Admin\AuthController;
 use CMSOJ\Controllers\Admin\AccountsController;
@@ -20,7 +21,9 @@ $router->get('admin/logout', [AuthController::class, 'logout']);
 $router->get('admin', [DashboardController::class, 'index'], AdminAuth::class);
 
 // Accounts management (protected)
-$router->get('admin/accounts', [AccountsController::class, 'index'], AdminAuth::class);
+$router->get('admin/accounts', [AccountsController::class, 'index'], AccountAuth::class);
+$router->get('admin/accounts/{id}', [AccountsController::class, 'index'], AccountAuth::class);
 
+// Settings management (protected)
 $router->get('admin/settings', [SettingsController::class, 'index'], AdminAuth::class);
 $router->post('admin/settings', [SettingsController::class, 'save'], AdminAuth::class);

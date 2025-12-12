@@ -42,6 +42,7 @@ class AuthController
     $_SESSION['admin_id'] = $account['id'];
     $_SESSION['admin_name'] = $account['name'];
     $_SESSION['account_name'] = $account['display_name'];
+    $_SESSION['admin_role'] = $account['role'];
 
 
     header("Location: /admin");
