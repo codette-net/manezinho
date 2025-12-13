@@ -197,12 +197,15 @@ class Template
 	static function compileComponents($code)
 	{
 		return preg_replace_callback(
-			'/\{%[\s]*component[\s]+\'([^\'"]+)\'\s*,\s*(\[[^\}]+\])\s*%}/is',
-			function ($matches) {
-				$componentFile = 'CMSOJ/Views/components/' . $matches[1] . '.html';
-				$propsCode     = $matches[2];
+			'/\{%[\s]*component[\s]+\'([^\'"]+)\'(?:\s*,\s*(\[[^\%]*\]))?\s*%}/is',
+			function ($m) {
 
-				return "<?php echo CMSOJ\\Template::renderComponent('$componentFile', $propsCode); ?>";
+				$componentFile = 'CMSOJ/Views/components/' . $m[1] . '.html';
+
+				// If props exist, use them; else use empty array
+				$props = $m[2] ?? '[]';
+
+				return "<?php echo CMSOJ\\Template::renderComponent('$componentFile', $props); ?>";
 			},
 			$code
 		);

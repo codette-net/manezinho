@@ -3,10 +3,11 @@
 <head>
   <title>{% yield title %} | CMSOJ </title>
   {% yield css %}
-  <!-- here is the end of head  -->
 </head>
 
 <body class="{{ $body_class ?? '' }}">
+  {% component 'flash', [] %}
+
   {% yield nav %}
 
   {% yield content %}
@@ -22,10 +23,17 @@
   <link rel="stylesheet" href='{{ "/assets/css/noscript.css" }}' />
 </noscript>
 {% endblock %}
+
 {% block footer %}
 <a id="scrolltop" ...></a>
 {% endblock %}
 
 {% block scripts %}
 <!-- JS includes -->
+ <script>
+setTimeout(() => {
+  document.querySelectorAll('.flash').forEach(el => el.remove());
+}, 3000);
+</script>
+
 {% endblock %}

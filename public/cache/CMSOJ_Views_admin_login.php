@@ -2,17 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> <?php echo \CMSOJ\Template::asset($title) ?>  | CMSOJ </title>
+  <title> <?php echo $title; ?>  | CMSOJ </title>
   
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
 <noscript>
-  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css") ?>' />
+  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
-  <!-- here is the end of head  -->
 </head>
 
-<body class="<?php echo \CMSOJ\Template::asset($body_class ?? '') ?>">
+<body class="<?php echo $body_class ?? ''; ?>">
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
+
   
 
   
@@ -37,13 +38,23 @@
 
 
   
-<a id="scrolltop" href="#" title="Back to top" style="display: none;"></a>
-
-<!-- <script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js") ?>''></script> -->
+<a id="scrolltop" ...></a>
 
   
+<!-- JS includes -->
+ <script>
+setTimeout(() => {
+  document.querySelectorAll('.flash').forEach(el => el.remove());
+}, 3000);
+</script>
+
+
 </body> 
 </html>
+
+
+
+
 
 
 

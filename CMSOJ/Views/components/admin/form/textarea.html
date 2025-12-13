@@ -1,0 +1,14 @@
+<div class="form-group">
+    <label for="{{ id }}">{{ label }}</label>
+
+    <textarea 
+        id="{{ id }}"
+        name="{{ name }}"
+        class="form-control {{ error ? 'is-invalid' : '' }}"
+        rows="{{ rows ?? 4 }}"
+    >{{ value ?? '' }}</textarea>
+
+    {% if error %}
+        <div class="invalid-feedback">{{ error }}</div>
+    {% endif %}
+</div>

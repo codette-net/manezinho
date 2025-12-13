@@ -1,4 +1,4 @@
-  {% extends CMSOJ/Views/admin/main.html %}
+{% extends CMSOJ/Views/admin/main.html %}
 
 {% block title %} Accounts {% endblock %}
 
@@ -6,5 +6,43 @@
 <h1>Edit Account</h1>
 <h2>{{ $account['display_name'] }} | {{ $account['email'] }}</h2>
 
+<form method="POST" action="/admin/accounts/edit/{{ $account['id'] }}">
+  <!-- include CMSOJ/Views/components/csrf.html  -->
 
-{% endblock %}
+  {% component 'admin/form/input', [
+  'label' => 'Display name',
+  'name' => 'display_name',
+  'id' => 'display_name',
+  'value' => $account['display_name'],
+  'error' => $errors['display_name'] ?? null
+  ] %}
+
+  {% component 'admin/form/input', [
+  'label' => 'Password',
+  'name' => 'password',
+  'id' => 'password',
+  'type' => 'password',
+  'placeholder' => 'Leave empty to keep current password',
+  'error' => $errors['password'] ?? null
+  ] %}
+
+  {% component 'admin/form/select', [
+    'label' => 'Role',
+    'name' => 'role',
+    'id' => 'role',
+    'options' => [
+        'Admin' => 'Admin',
+        'User' => 'User'
+    ],
+    'value' => $account['role'],
+    'error' => $errors['role'] ?? null
+] %}
+
+<button type="submit" class="btn btn-primary">Update Account</button>
+</form>
+
+
+
+
+
+  {% endblock %}

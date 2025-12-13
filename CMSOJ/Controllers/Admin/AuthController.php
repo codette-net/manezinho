@@ -4,6 +4,7 @@ namespace CMSOJ\Controllers\Admin;
 
 use CMSOJ\Template;
 use CMSOJ\Models\Account;
+use CMSOJ\Helpers\Flash;
 
 class AuthController
 {
@@ -44,6 +45,7 @@ class AuthController
     $_SESSION['account_name'] = $account['display_name'];
     $_SESSION['admin_role'] = $account['role'];
 
+    Flash::set('success', 'Account updated successfully.');
 
     header("Location: /admin");
     exit;

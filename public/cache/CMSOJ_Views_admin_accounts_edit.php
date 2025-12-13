@@ -1,5 +1,5 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title> Accounts  | CMSOJ </title>
@@ -9,10 +9,11 @@
   <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
-  <!-- here is the end of head  -->
 </head>
 
 <body class="<?php echo $body_class ?? ''; ?>">
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
+
   
 <div class="admin-wrapper">
     <aside class="admin-sidebar">
@@ -39,6 +40,7 @@
 
 
   
+
     <main class="admin-content">
         <header class="admin-header">
 
@@ -58,8 +60,46 @@
 <h1>Edit Account</h1>
 <h2><?php echo $account['display_name']; ?> | <?php echo $account['email']; ?></h2>
 
+<form method="POST" action="/admin/accounts/edit/<?php echo $account['id']; ?>">
+  <!-- include CMSOJ/Views/components/csrf.html  -->
+
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Display name',
+  'name' => 'display_name',
+  'id' => 'display_name',
+  'value' => $account['display_name'],
+  'error' => $errors['display_name'] ?? null
+  ]); ?>
+
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Password',
+  'name' => 'password',
+  'id' => 'password',
+  'type' => 'password',
+  'placeholder' => 'Leave empty to keep current password',
+  'error' => $errors['password'] ?? null
+  ]); ?>
+
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/select.html', [
+    'label' => 'Role',
+    'name' => 'role',
+    'id' => 'role',
+    'options' => [
+        'Admin' => 'Admin',
+        'User' => 'User'
+    ],
+    'value' => $account['role'],
+    'error' => $errors['role'] ?? null
+]); ?>
+
+<button type="submit" class="btn btn-primary">Update Account</button>
+</form>
 
 
+
+
+
+  
         </div>
     </main>
 </div> 
@@ -70,9 +110,16 @@
 
   
 <!-- JS includes -->
+ <script>
+setTimeout(() => {
+  document.querySelectorAll('.flash').forEach(el => el.remove());
+}, 3000);
+</script>
+
 
 </body> 
 </html>
+
 
 
 

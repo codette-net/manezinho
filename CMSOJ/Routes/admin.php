@@ -24,6 +24,7 @@ $router->get('admin', [DashboardController::class, 'index'], AdminAuth::class);
 $router->get('admin/accounts', [AccountsController::class, 'index'], AccountAuth::class);
 $router->get('admin/accounts/{id}', [AccountsController::class, 'index'], AccountAuth::class);
 $router->get('admin/accounts/edit/{id}', [AccountsController::class, 'edit'], AccountAuth::class);
+$router->post('admin/accounts/edit/{id}', [AccountsController::class, 'update'], AccountAuth::class);
 $router->get('admin/profile', [AccountsController::class, 'profile'], AccountAuth::class);
 
 // Settings management (protected)

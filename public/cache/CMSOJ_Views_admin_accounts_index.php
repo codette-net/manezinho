@@ -9,10 +9,11 @@
   <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
-  <!-- here is the end of head  -->
 </head>
 
 <body class="<?php echo $body_class ?? ''; ?>">
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
+
   
 <div class="admin-wrapper">
     <aside class="admin-sidebar">
@@ -39,6 +40,7 @@
 
 
   
+
     <main class="admin-content">
         <header class="admin-header">
 
@@ -72,9 +74,16 @@
 
   
 <!-- JS includes -->
+ <script>
+setTimeout(() => {
+  document.querySelectorAll('.flash').forEach(el => el.remove());
+}, 3000);
+</script>
+
 
 </body> 
 </html>
+
 
 
 

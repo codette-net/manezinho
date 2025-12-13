@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label for="{{ id }}">{{ label }}</label>
+
+    <select name="{{ $name }}" id="{{ $id }}" class="form-control">
+        {% for key in options %}
+            <option value="{{ $key }}" <?= $value == $key ? 'selected' : '' ?>>
+                {{ $options[$key] }}
+            </option>
+        {% endfor %}
+    </select>
+
+    {% if ($error) : %}
+        <div class="invalid-feedback">{{ $error }}</div>
+    {% endif %}
+</div>
