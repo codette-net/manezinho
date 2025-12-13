@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Manezinho | <?php echo \CMSOJ\Template::asset($title) ?> </title>
+  <title>Manezinho | <?php echo $title; ?> </title>
   
 
 <meta charset="utf-8" />
@@ -12,11 +12,11 @@
 
   
 
-<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css") ?>' />
-<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css") ?>'>
-<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/style.css") ?>'>
+<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css"); ?>' />
+<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css"); ?>'>
+<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/style.css"); ?>'>
 <noscript>
-  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css") ?>' />
+  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
 <link rel="stylesheet" href="/assets/css/calendar.css">
@@ -298,6 +298,50 @@
    
   </main>
 
+  
+
+  
+<a id="scrolltop" href="#" title="Back to top" style="display: none;"></a>
+
+  
+
+<script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js"); ?>''></script>
+<script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js"); ?>''></script>
+
+<script src="/assets/js/Calendar.js"></script>
+<!-- <script src="CMSOJ/Views/js/events.js"></script> -->
+ <script>
+   new Calendar({
+      // Unique ID - each page should have a unique ID
+      uid: 1,
+      // Size of the calendar - normal | mini | auto
+      size: 'mini',
+      // Display calendar - true | false
+      display_calendar: true,
+      // Expanded list - true | false
+      expanded_list: true
+    });
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <footer class="footer">
     <div class="footer-content">
@@ -373,46 +417,5 @@
       <small>Designed & developped by Codette web & media services</small>
     </div>
   </footer>
-
-
-
-<script src="/assets/js/Calendar.js"></script>
-<!-- <script src="CMSOJ/Views/js/events.js"></script> -->
- <script>
-   new Calendar({
-      // Unique ID - each page should have a unique ID
-      uid: 1,
-      // Size of the calendar - normal | mini | auto
-      size: 'mini',
-      // Display calendar - true | false
-      display_calendar: true,
-      // Expanded list - true | false
-      expanded_list: true
-    });
-</script>
-
-
-  
-<a id="scrolltop" href="#" title="Back to top" style="display: none;"></a>
-
-<script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js") ?>''></script>
-<script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js") ?>''></script>
-
-  
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Manezinho |  <?php echo \CMSOJ\Template::asset($title) ?>  </title>
+  <title>Manezinho |  <?php echo $title; ?>  </title>
   
 <meta name="description"
   content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
 
   
 
-<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css") ?>' />
-<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css") ?>'>
-<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/style.css") ?>'>
+<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css"); ?>' />
+<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css"); ?>'>
+<link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/style.css"); ?>'>
 <noscript>
-  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css") ?>' />
+  <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
 <link rel="stylesheet" href="/assets/css/menu.css">
@@ -286,13 +286,14 @@
   
 <a id="scrolltop" href="#" title="Back to top" style="display: none;"></a>
 
-<script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js") ?>''></script>
-<script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js") ?>''></script>
-
   
+<script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js"); ?>''></script>
+<script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js"); ?>''></script>
+
 </body>
 
 </html>
+
 
 
 
