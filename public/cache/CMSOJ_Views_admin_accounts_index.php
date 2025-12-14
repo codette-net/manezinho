@@ -58,6 +58,12 @@
         <div class="admin-page">
             
 <h1>Accounts</h1>
+<?php if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : ?>
+  <div class="actions">
+      <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
+  </div>
+<?php endif ?>
+
 
 <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/table.html', [
     'headers' => $headers,

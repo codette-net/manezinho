@@ -2,9 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>
-    <?php echo $title ?? 'Dashboard'; ?>
- | CMSOJ </title>
+  <title> Create Account  | CMSOJ </title>
   
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
 <noscript>
@@ -59,29 +57,57 @@
 
         <div class="admin-page">
             
-<div class="dashboard-grid">
+<h1>Create Account</h1>
 
-    <div class="stat-box">
-        <h3>Total Accounts</h3>
-        <span><?= $totalAccounts ?></span>
-    </div>
+<form method="POST" action="/admin/accounts/create">
+  <!-- include CMSOJ/Views/components/csrf.html  -->
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Name',
+  'name' => 'name',
+  'id' => 'name',
+  'value' => $old['name'] ?? '',
+  'error' => $errors['name'] ?? null
+  ]); ?>
 
-    <div class="stat-box">
-        <h3>Total Messages</h3>
-        <span><?= $totalMessages ?></span>
-    </div>
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Display name',
+  'name' => 'display_name',
+  'id' => 'display_name',
+  'value' => $old['display_name'] ?? '',
+  'error' => $errors['display_name'] ?? null
+  ]); ?>
 
-    <div class="stat-box">
-        <h3>Unread Messages</h3>
-        <span><?= $unreadMessages ?></span>
-    </div>
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Email',
+  'name' => 'email',
+  'id' => 'email',
+  'type' => 'email',
+  'value' => $old['email'] ?? '',
+  'error' => $errors['email'] ?? null
+  ]); ?>
 
-    <div class="stat-box">
-        <h3>Total Events</h3>
-        <span><?= $totalEvents ?></span>
-    </div>
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Password',
+  'name' => 'password',
+  'id' => 'password',
+  'type' => 'password',
+  'error' => $errors['password'] ?? null
+  ]); ?>
 
-</div>
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/select.html', [
+  'label' => 'Role',
+  'name' => 'role',
+  'id' => 'role',
+  'options' => [
+  'Admin' => 'Admin',
+  'User' => 'User'
+  ],
+  'value' => $old['role'] ?? '',
+  'error' => $errors['role'] ?? null
+  ]); ?>
+
+  <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
 
         </div>
     </main>
@@ -107,12 +133,6 @@ setTimeout(() => {
 
 
 
-
-
-<?php 
-  $errors = $errors ?? $GLOBALS['errors'] ?? [];
-  $old    = $old ?? $GLOBALS['old'] ?? [];
-?>
 
 
 

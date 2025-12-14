@@ -15,10 +15,20 @@ class Template
 
 		// Make view variables accessible to components via $GLOBALS
 		$GLOBALS['__TEMPLATE_VIEW_VARS'] = $data;
+		$GLOBALS['errors'] = $data['errors'] ?? ($_SESSION['errors'] ?? []);
+		$GLOBALS['old']    = $data['old'] ?? ($_SESSION['old'] ?? []);
+
 
 		$cached_file = self::cache($file);
+
 		extract($data, EXTR_SKIP);
+
+		$errors = $data['errors'] ?? ($_SESSION['errors'] ?? []);
+		$old    = $data['old'] ?? ($_SESSION['old'] ?? []);
+
 		require $cached_file;
+
+		unset($_SESSION['errors'], $_SESSION['old']);
 	}
 
 	static function resolvePath($file)

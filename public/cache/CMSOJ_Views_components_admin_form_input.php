@@ -2,7 +2,7 @@
 <div class="form-group">
     <label for="<?php echo $id; ?>"><?php echo $label; ?></label>
 
-    <input 
+    <input
         type="<?php echo $type ?? 'text'; ?>"
         id="<?php echo $id; ?>"
         name="<?php echo $name; ?>"
@@ -11,7 +11,7 @@
         class="form-control <?php echo $error ? 'is-invalid' : ''; ?>"
     >
 
-    <?php if ($error): ?>
+    <?php if (!empty($error)): ?>
         <div class="invalid-feedback"><?php echo $error; ?></div>
-    <?php endif ?>
+    <?php endif; ?>
 </div>

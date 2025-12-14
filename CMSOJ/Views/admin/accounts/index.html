@@ -4,6 +4,12 @@
 
 {% block page %}
 <h1>Accounts</h1>
+{% if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : %}
+  <div class="actions">
+      <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
+  </div>
+{% endif %}
+
 
 {% component 'admin/table', [
     'headers' => $headers,

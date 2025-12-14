@@ -66,7 +66,7 @@
   'label' => 'Name',
   'name' => 'name',
   'id' => 'name',
-  'value' => $account['name'] ?? '',
+  'value' => $old['name'] ?? $account['name'] ?? '' ,
   'error' => $errors['name'] ?? null
   ]); ?>
 
@@ -74,8 +74,17 @@
   'label' => 'Display name',
   'name' => 'display_name',
   'id' => 'display_name',
-  'value' => $account['display_name'],
+  'value' => $old['display_name'] ?? $account['display_name'] ?? '',
   'error' => $errors['display_name'] ?? null
+  ]); ?>
+
+<?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Email',
+  'name' => 'email',
+  'id' => 'email',
+  'type' => 'email',
+  'value' => $old['email'] ?? $account['email'] ?? '',
+  'error' => $errors['email'] ?? null
   ]); ?>
 
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
@@ -95,14 +104,10 @@
   'Admin' => 'Admin',
   'User' => 'User'
   ],
-  'value' => $account['role'],
+  'value' => $old['role'] ?? $account['role'] ?? '',
   'error' => $errors['role'] ?? null
   ]); ?>
   <?php endif ?>
-
-  <p><strong>Last seen:</strong> <?php echo $account['last_seen']; ?></p>
-  <p><strong>Updated at:</strong> <?php echo $account['updated_at']; ?></p>
-
 
   <button type="submit" class="btn btn-primary">Update Account</button>
 </form>

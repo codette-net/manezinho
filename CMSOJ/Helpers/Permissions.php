@@ -9,6 +9,7 @@ class Permissions
         $map = [
             'admin' => [
                 'accounts.view_all',
+                'accounts.create',
                 'accounts.edit_other',
                 'accounts.edit_self',
                 'accounts.update_role',
