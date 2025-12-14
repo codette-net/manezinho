@@ -4,6 +4,7 @@ namespace CMSOJ\Controllers\Admin;
 
 use CMSOJ\Template;
 use CMSOJ\Models\Account;
+use CMSOJ\Helpers\Permissions;
 use CMSOJ\Helpers\Flash;
 
 class AuthController
@@ -43,7 +44,16 @@ class AuthController
     $_SESSION['admin_id'] = $account['id'];
     $_SESSION['admin_email'] = $account['email'];
     $_SESSION['account_name'] = $account['display_name'];
-    $_SESSION['admin_role'] = $account['role'];
+    $_SESSION['admin_role'] = strtolower($account['role']); 
+
+    // set permissions for this role
+    Permissions::loadForRole($_SESSION['admin_role']);
+
+    // update last seen to now
+    (new Account())->update($_SESSION['admin_id'], [
+      'last_seen' => date('Y-m-d H:i:s')
+    ]);
+
 
     Flash::set('success', 'Account updated successfully.');
 

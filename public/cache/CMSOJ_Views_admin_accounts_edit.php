@@ -62,6 +62,13 @@
 
 <form method="POST" action="/admin/accounts/edit/<?php echo $account['id']; ?>">
   <!-- include CMSOJ/Views/components/csrf.html  -->
+  <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
+  'label' => 'Name',
+  'name' => 'name',
+  'id' => 'name',
+  'value' => $account['name'] ?? '',
+  'error' => $errors['name'] ?? null
+  ]); ?>
 
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/input.html', [
   'label' => 'Display name',
@@ -79,27 +86,32 @@
   'placeholder' => 'Leave empty to keep current password',
   'error' => $errors['password'] ?? null
   ]); ?>
-
+  <?php if (\CMSOJ\Helpers\Permissions::can('accounts.update_role')) : ?>
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/select.html', [
-    'label' => 'Role',
-    'name' => 'role',
-    'id' => 'role',
-    'options' => [
-        'Admin' => 'Admin',
-        'User' => 'User'
-    ],
-    'value' => $account['role'],
-    'error' => $errors['role'] ?? null
-]); ?>
+  'label' => 'Role',
+  'name' => 'role',
+  'id' => 'role',
+  'options' => [
+  'Admin' => 'Admin',
+  'User' => 'User'
+  ],
+  'value' => $account['role'],
+  'error' => $errors['role'] ?? null
+  ]); ?>
+  <?php endif ?>
 
-<button type="submit" class="btn btn-primary">Update Account</button>
+  <p><strong>Last seen:</strong> <?php echo $account['last_seen']; ?></p>
+  <p><strong>Updated at:</strong> <?php echo $account['updated_at']; ?></p>
+
+
+  <button type="submit" class="btn btn-primary">Update Account</button>
 </form>
 
 
 
 
 
-  
+
         </div>
     </main>
 </div> 
