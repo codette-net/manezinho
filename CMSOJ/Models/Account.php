@@ -24,7 +24,7 @@ class Account extends Model
             'sort'     => $params['sort'] ?? 'id',
             'dir'      => $params['dir'] ?? 'desc',
             'page'     => $params['page'] ?? 1,
-            'perPage'  => $params['perPage'] ?? 10,
+            'perPage'  => $params['perPage'] ?? 5,
             'search'   => $params['search'] ?? null,
             'searchIn' => ['email', 'role', 'display_name', 'name']
         ]);

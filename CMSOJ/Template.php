@@ -197,12 +197,15 @@ class Template
 
 	static function compilePartials($code)
 	{
-		// {% partial 'file' %}
-		return preg_replace_callback('/\{%[\s]*partial[\s]+\'(.+?)\'[\s]*%}/i', function ($matches) {
-			$file = 'CMSOJ/Views/partials/' . $matches[1] . '.html';
-			return self::includeFiles(self::resolvePath($file));
-		}, $code);
+		return preg_replace_callback(
+			'/\{%[\s]*partial[\s]+(.+?)\s*%\}/is', // 👈 note the "s"
+			function ($matches) {
+				return "<?php \\CMSOJ\\Template::partial({$matches[1]}); ?>";
+			},
+			$code
+		);
 	}
+
 
 	static function compileComponents($code)
 	{
@@ -238,5 +241,28 @@ class Template
 			return $path . '?v=' . filemtime($full);
 		}
 		return $path;
+	}
+
+	public static function partial(string $file, array $data = []): void
+	{
+		extract($data, EXTR_SKIP);
+
+		$path = dirname(__DIR__) . '/' . ltrim($file, '/');
+
+		if (!file_exists($path)) {
+			throw new \Exception("Partial not found: {$file}");
+		}
+
+		include $path;
+	}
+
+	public static function merge(array $a, array $b): array
+	{
+		return array_merge($a, $b);
+	}
+
+	public static function http_build_query(array $params): string
+	{
+		return http_build_query($params);
 	}
 }

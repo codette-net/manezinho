@@ -16,3 +16,8 @@
     'rows'    => $rows
 ] %}
 {% endblock %}
+
+{% partial 'CMSOJ/Views/partials/pagination.html', [
+    'meta' => $meta,
+    'query' => $query
+] %}

@@ -107,3 +107,8 @@ setTimeout(() => {
 
 
 
+
+<?php \CMSOJ\Template::partial('CMSOJ/Views/partials/pagination.html', [
+    'meta' => $meta,
+    'query' => $query
+]); ?>

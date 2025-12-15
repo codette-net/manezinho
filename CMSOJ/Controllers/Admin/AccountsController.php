@@ -19,8 +19,8 @@ class AccountsController
                 'columns' => ['id', 'name', 'email', 'display_name', 'role', 'updated_at', 'last_seen'],
                 'sort'    => 'id',
                 'dir'     => 'asc',
-                'page'    => 1,
-                'perPage' => 10,
+                'page'    => (int)$_GET['page'] ?? 1,
+                'perPage' => 5,
             ]);
 
             $accounts = $result['data'];
@@ -55,7 +55,8 @@ class AccountsController
                 "Actions"
             ],
             'rows'  => $rows,
-            'meta'  => $meta, 
+            'meta'  => $meta,
+            'query' => $_GET,
             'title' => 'Accounts'
         ]);
     }
