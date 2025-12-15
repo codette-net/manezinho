@@ -14,12 +14,22 @@ class AccountsController
 {
     public function index()
     {
-        // only users with admin role can view/edit all accounts
         if (Permissions::can('accounts.view_all')) {
-            $accounts = (new Account())->all();
+            $result = (new Account())->list([
+                'columns' => ['id', 'name', 'email', 'display_name', 'role', 'updated_at', 'last_seen'],
+                'sort'    => 'id',
+                'dir'     => 'asc',
+                'page'    => 1,
+                'perPage' => 10,
+            ]);
+
+            $accounts = $result['data'];
+            $meta     = $result['meta'];
         } else {
             $accounts = [(new Account())->find($_SESSION['admin_id'])];
+            $meta = null;
         }
+
         $rows = array_map(function ($a) {
             return [
                 $a['id'],
@@ -27,16 +37,26 @@ class AccountsController
                 $a['email'],
                 $a['display_name'],
                 $a['role'],
-                date('Y-m-d H:i', strtotime($a['updated_at'] ?? 'N/A')),
-                date('Y-m-d H:i', strtotime($a['last_seen'] ?? 'N/A')),
+                date('Y-m-d H:i', strtotime($a['updated_at'] ?? '')),
+                date('Y-m-d H:i', strtotime($a['last_seen'] ?? '')),
                 "<a href='/admin/accounts/edit/{$a['id']}'>Edit</a>"
             ];
         }, $accounts);
 
         return Template::view('CMSOJ/Views/admin/accounts/index.html', [
-            'headers' => ["ID", "Name", "Email", "Display Name", "Role", "Last Updated", "Last seen", "Actions"],
-            'rows'    => $rows,
-            'title'   => 'Accounts'
+            'headers' => [
+                "ID",
+                "Name",
+                "Email",
+                "Display Name",
+                "Role",
+                "Last Updated",
+                "Last Seen",
+                "Actions"
+            ],
+            'rows'  => $rows,
+            'meta'  => $meta, 
+            'title' => 'Accounts'
         ]);
     }
 

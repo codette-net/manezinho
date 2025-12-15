@@ -109,10 +109,6 @@ setTimeout(() => {
 
 
 
-<?php 
-  $errors = $errors ?? $GLOBALS['errors'] ?? [];
-  $old    = $old ?? $GLOBALS['old'] ?? [];
-?>
 
 
 

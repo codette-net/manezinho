@@ -14,32 +14,43 @@ class Event extends Model
      */
     public function getEventsForMonth(int $uid, int $year, int $month): array
     {
-        $stmt = $this->db()->prepare("
-            SELECT *
-            FROM events
-            WHERE uid = ?
-            AND (
-                recurring != 'never'
-                OR 
-                (
-                    (datestart >= ? OR dateend >= ?)
-                    AND CAST(datestart AS DATE) <= ?
-                )
-            )
-            ORDER BY datestart ASC
-        ");
+        // $stmt = $this->db()->prepare("
+        //     SELECT *
+        //     FROM events
+        //     WHERE uid = ?
+        //     AND (
+        //         recurring != 'never'
+        //         OR 
+        //         (
+        //             (datestart >= ? OR dateend >= ?)
+        //             AND CAST(datestart AS DATE) <= ?
+        //         )
+        //     )
+        //     ORDER BY datestart ASC
+        // ");
 
-        $firstOfMonth = "$year-$month-01";
-        $lastOfMonth  = "$year-$month-31";
+        // $firstOfMonth = "$year-$month-01";
+        // $lastOfMonth  = "$year-$month-31";
 
-        $stmt->execute([
-            $uid,
-            $firstOfMonth . " 00:00:00",
-            $firstOfMonth . " 00:00:00",
-            $lastOfMonth,
+        // $stmt->execute([
+        //     $uid,
+        //     $firstOfMonth . " 00:00:00",
+        //     $firstOfMonth . " 00:00:00",
+        //     $lastOfMonth,
+        // ]);
+
+        $result = $this->list([
+            'where' => [
+                'uid' => $uid
+            ],
+            'sort' => 'datestart',
+            'dir'  => 'asc',
         ]);
+        return $result['data'];
+        
 
-        return $stmt->fetchAll();
+
+        // return $stmt->fetchAll();
     }
 
     /** Create event (calendar uses this) */
