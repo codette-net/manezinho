@@ -15,19 +15,16 @@ class AccountsController
     public function index()
     {
         if (Permissions::can('accounts.view_all')) {
-            $result = (new Account())->list([
-                'columns' => ['id', 'name', 'email', 'display_name', 'role', 'updated_at', 'last_seen'],
-                'sort'    => 'id',
-                'dir'     => 'asc',
-                'page'    => (int)$_GET['page'] ?? 1,
-                'perPage' => 5,
-            ]);
+            $model = new Account();
+            $result = $model->listAccounts($_GET);
 
             $accounts = $result['data'];
             $meta     = $result['meta'];
+            $sortable  = $model->sortable;
         } else {
             $accounts = [(new Account())->find($_SESSION['admin_id'])];
             $meta = null;
+            $sortable = [];
         }
 
         $rows = array_map(function ($a) {
@@ -45,18 +42,19 @@ class AccountsController
 
         return Template::view('CMSOJ/Views/admin/accounts/index.html', [
             'headers' => [
-                "ID",
-                "Name",
-                "Email",
-                "Display Name",
-                "Role",
-                "Last Updated",
-                "Last Seen",
-                "Actions"
+                "id" => "ID",
+                "name" => "Name",
+                "email" => "Email",
+                "display_name" => "Display Name",
+                "role" => "Role",
+                "updated_at" => "Last Updated",
+                "last_seen" => "Last Seen",
+                "actions" => "Actions"
             ],
             'rows'  => $rows,
             'meta'  => $meta,
             'query' => $_GET,
+            'sortable' => $sortable,
             'title' => 'Accounts'
         ]);
     }

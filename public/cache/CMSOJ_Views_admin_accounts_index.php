@@ -67,7 +67,10 @@
 
 <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/table.html', [
     'headers' => $headers,
-    'rows'    => $rows
+    'rows'    => $rows,
+    'sortable' => $sortable,
+    'query'   => $query
+    
 ]); ?>
 
         </div>

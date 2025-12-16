@@ -13,7 +13,10 @@
 
 {% component 'admin/table', [
     'headers' => $headers,
-    'rows'    => $rows
+    'rows'    => $rows,
+    'sortable' => $sortable,
+    'query'   => $query
+    
 ] %}
 {% endblock %}
 
