@@ -35,7 +35,7 @@
 
 <div class="logout">
     <a href="/admin/logout">Logout</a>
-</div>
+</div>  
     </aside>
 
 
@@ -63,36 +63,21 @@
     <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
 </div>
 <?php endif ?>
-<form method="get" class="search-form">
-    <label for="search" class="visually-hidden">Search accounts</label>
 
-    <input type="search" id="search" name="q" value="<?= htmlspecialchars($query['q'] ?? '') ?>"
-        placeholder="Search accounts…">
+<?php var_dump($meta); ?>
 
-    <?php
-    // Preserve sort & dir when searching
-    foreach (['sort', 'dir'] as $key) {
-        if (!empty($query[$key])) {
-            echo '<input type="hidden" name="'.$key.'" value="'.htmlspecialchars($query[$key]).'">';
-        }
-    }
-  ?>
-    <!-- build query for submit  -->
-    <button type="submit" class="btn btn-secondary">Search</button>
-
-    <?php if (!empty($query['q'])): ?>
-    <a href="/admin/accounts" class="btn-reset">Reset</a>
-    <?php endif; ?>
-</form>
-
+<?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/search.html', [
+    'query' => $query,
+    'meta'  => $meta
+]); ?>
 
 <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/table.html', [
 'headers' => $headers,
 'rows' => $rows,
 'sortable' => $sortable,
 'query' => $query
-
 ]); ?>
+
 
         </div>
     </main>

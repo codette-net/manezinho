@@ -27,12 +27,13 @@ class AccountsController
             $sortable = [];
         }
 
+        
         $rows = array_map(function ($a) {
             return [
                 $a['id'],
-                $a['name'],
-                $a['email'],
-                $a['display_name'],
+                Template::highlightSearch($a['name']),
+                Template::highlightSearch($a['email']),
+                Template::highlightSearch($a['display_name']),
                 $a['role'],
                 date('Y-m-d H:i', strtotime($a['updated_at'] ?? '')),
                 date('Y-m-d H:i', strtotime($a['last_seen'] ?? '')),

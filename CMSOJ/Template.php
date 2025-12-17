@@ -265,4 +265,19 @@ class Template
 	{
 		return http_build_query($params);
 	}
+
+	public static function highlightSearch(string $text, string $term = ''): string
+	{
+		
+		$term = trim($_GET['q'] ?? '');
+		if ($term === '') {
+			return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+		}
+
+		return preg_replace(
+			'/' . preg_quote($term, '/') . '/i',
+			'<mark>$0</mark>',
+			htmlspecialchars($text, ENT_QUOTES, 'UTF-8')
+		);
+	}
 }

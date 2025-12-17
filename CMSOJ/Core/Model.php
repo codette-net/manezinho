@@ -49,9 +49,10 @@ abstract class Model
             $where[] = "$col = ?";
             $params[] = $val;
         }
-
+        $searching = false;
         // simple search (LIKE)
         if (!empty($options['search']) && !empty($options['searchIn'])) {
+            $searching = true;
             $likes = [];
             foreach ($options['searchIn'] as $col) {
                 $likes[] = "$col LIKE ?";
@@ -61,6 +62,8 @@ abstract class Model
         }
 
         $whereSql = $where ? 'WHERE ' . implode(' AND ', $where) : '';
+
+
 
         // main query
         $stmt = $db->prepare("
@@ -77,12 +80,27 @@ abstract class Model
         $total = $db->query("SELECT FOUND_ROWS()")->fetchColumn();
         $pages = (int) ceil($total / $perPage);
 
+        // count when searching
+
+        
+        if ($searching) {
+            $countStmt = $db->prepare("
+            SELECT COUNT(*) as cnt
+            FROM {$this->table}
+            {$whereSql}");
+            $countStmt->execute($params);
+            $totalFiltered = (int)$countStmt->fetchColumn();
+        }
+
+
         return [
             'data' => $data,
             'meta' => [
                 'page'  => $page,
                 'pages' => $pages,
-                'total' => (int)$total
+                'per_page' => $perPage,
+                'total' => (int)$total,
+                'totalFiltered' => $totalFiltered ?? (int)0,
             ]
         ];
     }
