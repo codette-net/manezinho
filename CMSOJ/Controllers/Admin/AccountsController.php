@@ -55,7 +55,8 @@ class AccountsController
             'meta'  => $meta,
             'query' => $_GET,
             'sortable' => $sortable,
-            'title' => 'Accounts'
+            'title' => 'Accounts',
+            'selected' => 'accounts'
         ]);
     }
 

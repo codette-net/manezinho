@@ -1996,3 +1996,9 @@ main .pagination span {
   cursor: pointer;
   padding: 0 6px;
 }
+
+.sidebar-nav li a.active {
+  background-color: #e4e6ed;
+  color: #2d81e2;
+
+}

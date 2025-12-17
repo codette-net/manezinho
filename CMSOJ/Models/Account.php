@@ -10,7 +10,7 @@ class Account extends Model
 {
     protected string $table = 'accounts';
 
-       public array $sortable = [
+    public array $sortable = [
         'id',
         'name',
         'email',
@@ -18,6 +18,13 @@ class Account extends Model
         'role',
         'updated_at',
         'last_seen',
+    ];
+
+    public array $searchable = [
+        'name',
+        'email',
+        'display_name',
+        'role',
     ];
 
     public function findByEmail(string $email)
@@ -31,12 +38,13 @@ class Account extends Model
     {
         return $this->list([
             'columns'  => $this->sortable,
+            'searchIn' => $this->searchable,
+            'search' => trim($params['q'] ?? ''),
             'sort'     => $params['sort'] ?? 'id',
             'dir'      => $params['dir'] ?? 'desc',
-            'page'     => $params['page'] ?? (int)($params['page'] ?? 1),
-            'perPage'  => $params['perPage'] ?? 5,
-            'search'   => $params['search'] ?? null,
-            'searchIn' => ['email', 'role', 'display_name', 'name']
+            'page'     =>(int)($params['page'] ?? 1),
+            'perPage'  => $params['perPage'] ?? 5
+          
         ]);
     }
 }

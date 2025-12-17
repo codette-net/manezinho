@@ -5,22 +5,43 @@
 {% block page %}
 <h1>Accounts</h1>
 {% if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : %}
-  <div class="actions">
-      <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
-  </div>
+<div class="actions">
+    <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
+</div>
 {% endif %}
+<form method="get" class="search-form">
+    <label for="search" class="visually-hidden">Search accounts</label>
+
+    <input type="search" id="search" name="q" value="<?= htmlspecialchars($query['q'] ?? '') ?>"
+        placeholder="Search accounts…">
+
+    <?php
+    // Preserve sort & dir when searching
+    foreach (['sort', 'dir'] as $key) {
+        if (!empty($query[$key])) {
+            echo '<input type="hidden" name="'.$key.'" value="'.htmlspecialchars($query[$key]).'">';
+        }
+    }
+  ?>
+    <!-- build query for submit  -->
+    <button type="submit" class="btn btn-secondary">Search</button>
+
+    <?php if (!empty($query['q'])): ?>
+    <a href="/admin/accounts" class="btn-reset">Reset</a>
+    <?php endif; ?>
+</form>
 
 
 {% component 'admin/table', [
-    'headers' => $headers,
-    'rows'    => $rows,
-    'sortable' => $sortable,
-    'query'   => $query
-    
+'headers' => $headers,
+'rows' => $rows,
+'sortable' => $sortable,
+'query' => $query
+
 ] %}
 {% endblock %}
 
 {% partial 'CMSOJ/Views/partials/pagination.html', [
-    'meta' => $meta,
-    'query' => $query
+'meta' => $meta,
+'query' => $query
 ] %}
