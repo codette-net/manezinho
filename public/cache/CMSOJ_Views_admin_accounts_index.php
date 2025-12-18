@@ -64,7 +64,6 @@
 </div>
 <?php endif ?>
 
-<?php var_dump($meta); ?>
 
 <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/search.html', [
     'query' => $query,
@@ -75,7 +74,8 @@
 'headers' => $headers,
 'rows' => $rows,
 'sortable' => $sortable,
-'query' => $query
+'query' => $query,
+'bulk' => $bulk
 ]); ?>
 
 

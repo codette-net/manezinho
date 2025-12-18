@@ -10,7 +10,6 @@
 </div>
 {% endif %}
 
-<?php var_dump($meta); ?>
 
 {% component 'admin/search', [
     'query' => $query,
@@ -21,7 +20,8 @@
 'headers' => $headers,
 'rows' => $rows,
 'sortable' => $sortable,
-'query' => $query
+'query' => $query,
+'bulk' => $bulk
 ] %}
 
 {% endblock %}

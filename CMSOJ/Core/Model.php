@@ -82,7 +82,7 @@ abstract class Model
 
         // count when searching
 
-        
+
         if ($searching) {
             $countStmt = $db->prepare("
             SELECT COUNT(*) as cnt
@@ -129,5 +129,48 @@ abstract class Model
     {
         $stmt = $this->db()->prepare("DELETE FROM {$this->table} WHERE {$this->primaryKey} = ?");
         return $stmt->execute([$id]);
+    }
+
+
+    public function bulkUpdate(array $ids, array $data): int
+    {
+        if (empty($ids) || empty($data)) {
+            return 0;
+        }
+
+        $ids = array_map('intval', $ids);
+
+        $set = implode(', ', array_map(
+            fn($col) => "$col = ?",
+            array_keys($data)
+        ));
+
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+
+        $sql = "UPDATE {$this->table}
+            SET {$set}
+            WHERE {$this->primaryKey} IN ($placeholders)";
+
+        $stmt = $this->db()->prepare($sql);
+        $stmt->execute([...array_values($data), ...$ids]);
+
+        return $stmt->rowCount();
+    }
+
+    public function bulkDelete(array $ids): int
+    {
+        if (empty($ids)) {
+            return 0;
+        }
+
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+
+        $stmt = $this->db()->prepare(
+            "DELETE FROM {$this->table} WHERE {$this->primaryKey} IN ($placeholders)"
+        );
+
+        $stmt->execute(array_map('intval', $ids));
+
+        return $stmt->rowCount();
     }
 }

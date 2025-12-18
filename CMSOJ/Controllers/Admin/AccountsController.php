@@ -9,6 +9,8 @@ use CMSOJ\Helpers\Permissions;
 use CMSOJ\Helpers\Validator;
 use CMSOJ\Helpers\Redirect;
 use CMSOJ\Helpers\Flash;
+use CMSOJ\Helpers\Csrf;
+use CMSOJ\Helpers\BulkAction;
 
 class AccountsController
 {
@@ -27,7 +29,7 @@ class AccountsController
             $sortable = [];
         }
 
-        
+
         $rows = array_map(function ($a) {
             return [
                 $a['id'],
@@ -40,6 +42,10 @@ class AccountsController
                 "<a href='/admin/accounts/edit/{$a['id']}'>Edit</a>"
             ];
         }, $accounts);
+
+        $bulkActions = array_filter($this->bulkActions(), function ($action) {
+            return Permissions::can($action['permission']);
+        });
 
         return Template::view('CMSOJ/Views/admin/accounts/index.html', [
             'headers' => [
@@ -55,6 +61,10 @@ class AccountsController
             'rows'  => $rows,
             'meta'  => $meta,
             'query' => $_GET,
+            'bulk' => [
+                'endpoint' => '/admin/accounts/bulk',
+                'actions' => $bulkActions ?? []
+            ],
             'sortable' => $sortable,
             'title' => 'Accounts',
             'selected' => 'accounts'
@@ -189,6 +199,42 @@ class AccountsController
 
         Flash::set('success', 'Account updated successfully.');
         header("Location: /admin/accounts");
+        exit;
+    }
+
+    protected function bulkActions(): array
+    {
+        return [
+            'delete' => [
+                'label'      => 'Delete',
+                'permission' => 'accounts.delete',
+                'handler'    => 'delete',
+                'confirm'    => 'Delete selected accounts?',
+            ],
+            'deactivate' => [
+                'label'      => 'Deactivate',
+                'permission' => 'accounts.edit',
+                'handler'    => 'update',
+                'data'       => ['active' => 0],
+            ],
+        ];
+    }
+
+    public function bulk()
+    {
+        if (!Csrf::validate($_POST['_csrf'] ?? null)) {
+            http_response_code(403);
+            exit('Invalid CSRF token.');
+        }
+
+        $model   = new Account();
+        $actions = $this->bulkActions();
+
+        $count = BulkAction::handle($model, $actions, $_POST);
+
+        $_SESSION['success'][] = "{$count} accounts updated.";
+
+        header('Location: /admin/accounts');
         exit;
     }
 }

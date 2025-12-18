@@ -37,7 +37,7 @@
 
 <div class="logout">
     <a href="/admin/logout">Logout</a>
-</div>
+</div>  
     </aside>
 
 
