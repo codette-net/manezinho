@@ -1,9 +1,11 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
 <?php
 $hasBulk = isset($bulk) && !empty($bulk['actions']);
+
 ?>
 
 <?php if ($hasBulk): ?>
+var_
 <form method="post" action="<?= htmlspecialchars($bulk['endpoint']) ?>">
   <input type="hidden" name="_csrf" value="<?= \CMSOJ\Helpers\Csrf::token() ?>">
   <?php endif; ?>
@@ -48,22 +50,27 @@ $hasBulk = isset($bulk) && !empty($bulk['actions']);
         <?php endforeach; ?>
       </tr>
     </thead>
-
-
     <tbody>
       <?php foreach ($rows as $row): ?>
       <tr>
+
         <?php if ($hasBulk): ?>
         <td>
-          <input type="checkbox" name="ids[]" value="<?= (int)$row[0] ?>" aria-label="Select row <?= (int) $row[0] ?>">
+          <input type="checkbox" name="ids[]" value="<?= (int)$row['id'] ?>"
+            aria-label="Select row <?= (int)$row['id'] ?>">
         </td>
         <?php endif; ?>
-        <?php foreach ($row as $cell): ?>
-        <td><?php echo $cell; ?></td>
+
+        <?php foreach ($row['cells'] as $cell): ?>
+        <td>
+          <?= $cell ?>
+        </td>
         <?php endforeach; ?>
+
       </tr>
       <?php endforeach; ?>
     </tbody>
+
   </table>
 
   <?php if ($hasBulk): ?>

@@ -32,7 +32,8 @@ class AccountsController
 
         $rows = array_map(function ($a) {
             return [
-                $a['id'],
+                'id' => $a['id'],
+                'cells' => [
                 Template::highlightSearch($a['name']),
                 Template::highlightSearch($a['email']),
                 Template::highlightSearch($a['display_name']),
@@ -40,6 +41,7 @@ class AccountsController
                 date('Y-m-d H:i', strtotime($a['updated_at'] ?? '')),
                 date('Y-m-d H:i', strtotime($a['last_seen'] ?? '')),
                 "<a href='/admin/accounts/edit/{$a['id']}'>Edit</a>"
+                ]
             ];
         }, $accounts);
 
@@ -227,14 +229,38 @@ class AccountsController
             exit('Invalid CSRF token.');
         }
 
-        $model   = new Account();
+        $action = $_POST['action'] ?? '';
+        $ids    = $_POST['ids'] ?? [];
+
         $actions = $this->bulkActions();
 
-        $count = BulkAction::handle($model, $actions, $_POST);
+        if (!isset($actions[$action])) {
+            Flash::set('error', 'Invalid bulk action.');
+            return Redirect::back()->send();
+        }
 
-        $_SESSION['success'][] = "{$count} accounts updated.";
+        if (
+            BulkAction::requiresConfirmation($actions, $action)
+            && empty($_POST['confirmed'])
+        ) {
+            return Template::view('CMSOJ/Views/admin/bulk-confirm.html', [
+                'action'  => $action,
+                'label'   => $actions[$action]['label'],
+                'confirm' => $actions[$action]['confirm'],
+                'ids'     => $ids,
+                '_csrf'   => Csrf::token(),
+                'back'    => '/admin/accounts'
+            ]);
+        }
+        
+        $count = BulkAction::handle(
+            new Account(),
+            $actions,
+            $_POST
+        );
 
-        header('Location: /admin/accounts');
-        exit;
+        Flash::set('success', "{$count} accounts updated.");
+
+        return Redirect::back()->send();
     }
 }

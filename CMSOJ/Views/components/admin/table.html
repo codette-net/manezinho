@@ -1,8 +1,10 @@
 <?php
 $hasBulk = isset($bulk) && !empty($bulk['actions']);
+
 ?>
 
 <?php if ($hasBulk): ?>
+var_
 <form method="post" action="<?= htmlspecialchars($bulk['endpoint']) ?>">
   <input type="hidden" name="_csrf" value="<?= \CMSOJ\Helpers\Csrf::token() ?>">
   <?php endif; ?>
@@ -47,22 +49,27 @@ $hasBulk = isset($bulk) && !empty($bulk['actions']);
         <?php endforeach; ?>
       </tr>
     </thead>
-
-
     <tbody>
-      {% for row in rows %}
+      <?php foreach ($rows as $row): ?>
       <tr>
+
         <?php if ($hasBulk): ?>
         <td>
-          <input type="checkbox" name="ids[]" value="<?= (int)$row[0] ?>" aria-label="Select row <?= (int) $row[0] ?>">
+          <input type="checkbox" name="ids[]" value="<?= (int)$row['id'] ?>"
+            aria-label="Select row <?= (int)$row['id'] ?>">
         </td>
         <?php endif; ?>
-        {% for cell in row %}
-        <td>{{ cell }}</td>
-        {% endfor %}
+
+        <?php foreach ($row['cells'] as $cell): ?>
+        <td>
+          <?= $cell ?>
+        </td>
+        <?php endforeach; ?>
+
       </tr>
-      {% endfor %}
+      <?php endforeach; ?>
     </tbody>
+
   </table>
 
   <?php if ($hasBulk): ?>

@@ -1,8 +1,10 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Accounts  | CMSOJ </title>
+  <title>
+    <?php echo $label ?? 'Confirm'; ?>
+ | CMSOJ </title>
   
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
 <noscript>
@@ -41,9 +43,48 @@
 
   
 
-<h1>Profile</h1>
-<h2><?php echo $account['display_name']; ?> | <?php echo $account['email']; ?></h2>
+    <main class="admin-content">
+        <header class="admin-header">
 
+    <div class="breadcrumbs">
+        <strong><?= $title ?? '' ?></strong>
+    </div>
+
+    <div class="profile">
+        <span class="name"><?= $_SESSION['display_name'] ?? '' ?></span>
+    </div>
+
+</header>
+  
+
+        <div class="admin-page">
+            
+<h1>Confirm action</h1>
+
+<p><?= htmlspecialchars($confirm) ?></p>
+
+<form method="post">
+  <input type="hidden" name="_csrf" value="<?= $_csrf ?>">
+  <input type="hidden" name="action" value="<?= htmlspecialchars($action) ?>">
+  <input type="hidden" name="confirmed" value="1">
+
+  <?php foreach ($ids as $id): ?>
+    <input type="hidden" name="ids[]" value="<?= (int)$id ?>">
+  <?php endforeach; ?>
+
+  <button type="submit" class="btn btn-danger">
+    <?= htmlspecialchars($label) ?>
+  </button>
+
+  <a href="<?= htmlspecialchars($back) ?>" class="btn">
+    Cancel
+  </a>
+</form>
+
+
+        </div>
+    </main>
+</div> 
 
 
   
@@ -60,7 +101,6 @@ setTimeout(() => {
 
 </body> 
 </html>
-
 
 
 
