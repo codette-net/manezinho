@@ -1,17 +1,23 @@
-#  ** CMSOJ Lightweight PHP Framework – Documentation**
+# **CMSOJ Lightweight PHP Framework – Documentation**
 
 A reusable, lightweight MVC framework powering Art Restaurant Manezinho, designed to gradually replace a legacy procedural system.
+
+CMSOJ focuses on **clarity, explicitness, and progressive enhancement** rather than feature completeness.  
+It intentionally avoids “magic” abstractions in favor of understandable, hackable code.
+
 It supports:
-    • Modern routing (GET/POST, middleware, parameters)
-    • Custom template engine (extends, blocks, partials, components, echo)
-    • MVC structure (Controllers, Models, Views)
-    • Services layer
-    • Admin panel with authentication
-    • Calendar system with AJAX frontend
-    • Reservation/contact form with PHPMailer service
-    • Menu system (sections, items, CRUD-ready)
-    • Autoloading (Composer + internal autoloader)
-    • Cache-compiled templates for speed
+
+- Modern routing (GET/POST, middleware, parameters)
+- Custom template engine (extends, blocks, partials, components, echo)
+- MVC structure (Controllers, Models, Views)
+- Services layer
+- Admin panel with authentication
+- Admin data tables (pagination, sorting, search, bulk actions)
+- Calendar system with AJAX frontend
+- Reservation/contact form with PHPMailer service
+- Menu system (sections, items, CRUD-ready)
+- Autoloading (Composer + internal autoloader)
+- Cache-compiled templates for speed
 
 ---
 
@@ -95,6 +101,29 @@ manezinho/                         # real site for the first implementation
 ```
 
 ---
+
+### ✅ Core Infrastructure
+- Central front controller (`public/index.php`)
+- Custom router with middleware support
+- PDO-based database layer
+- Base `Model` class with CRUD helpers
+- Environment-based configuration (`.env`)
+
+### ✅ Custom Template Engine
+- Server-side rendering with compiled templates
+- Layout inheritance (`extends`, `blocks`, `yield`)
+- Partials and components
+- Cache busting for assets
+- PHP-first philosophy (no Twig clone, no DSL overreach)
+
+### ✅ Admin System
+- Authentication middleware
+- Role/permission checks
+- Flash messaging
+- Modular admin views
+
+---
+
 
 #  **2. Routing System**
 
@@ -399,6 +428,20 @@ class Account extends Model {
 Base Model supports:
     • all()
     • find(id)
+    • list (where, sort, pagination)
     • create(array)
     • update(id, array)
     • delete(id)
+    • Bulk Delete
+    • Bulk Update
+
+
+# **🛡️ CSRF Protection**
+
+CSRF protection is implemented at the framework level and is required for all state-changing requests.
+
+### CSRF Helper
+
+```php
+\CMSOJ\Helpers\Csrf::token();
+\CMSOJ\Helpers\Csrf::validate($token);

@@ -152,7 +152,12 @@ class AccountsController
     }
 
     public function update($id)
-    {
+    {   
+        if (!Csrf::validate($_POST['_csrf'] ?? null)) {
+            http_response_code(403);
+            exit('Invalid CSRF token.');
+        }
+
         $account = (new Account())->find($id);
 
         // Permissions
