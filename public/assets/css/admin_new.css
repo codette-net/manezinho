@@ -1,0 +1,30 @@
+.admin-wrapper {
+    display: grid;
+    grid-template-columns: min(20%, 250px) auto;
+    height: 100dvh;
+}
+
+aside {
+    display: flex;
+    gap: 1rem;
+    flex-flow: column;
+    background-color: #242a36;
+    overflow-y: auto;
+}
+
+main.admin-content {
+    overflow-y: auto;
+}
+
+.admin-header {
+    padding: 1.5rem;
+    background-color: #1f2533;
+}
+
+.admin-page {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-bottom: 1px solid #2225;
+}

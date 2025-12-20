@@ -432,8 +432,8 @@ Base Model supports:
     • create(array)
     • update(id, array)
     • delete(id)
-    • Bulk Delete
-    • Bulk Update
+    • bulkDelete(array $ids)
+    • bulkUpdate(array $ids, array $data)
 
 
 # **🛡️ CSRF Protection**

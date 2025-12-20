@@ -23,18 +23,7 @@ h1, h2, h3, h4, h5 {
   padding: 0;
 }
 
-header {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-left: 260px;
-  z-index: 999;
-  width: 100%;
-  height: 55px;
-  background-color: #fff;
-  box-shadow: 0px 0px 8px 1px rgba(45, 54, 68, 0.12);
-}
+
 header .responsive-toggle {
   position: relative;
   display: inline-flex;
@@ -136,7 +125,7 @@ header .dropdown:hover > .list, header .dropdown:active > .list {
   flex-flow: column;
 }
 
-aside {
+/* aside {
   position: fixed;
   z-index: 999999;
   height: 100%;
@@ -145,7 +134,7 @@ aside {
   flex-flow: column;
   background-color: #242a36;
   overflow-y: auto;
-}
+} */
 aside h1 {
   display: inline-flex;
   width: 100%;
@@ -327,11 +316,11 @@ aside.minimal + main header {
   padding-left: 60px;
 }
 
-main {
+/* main {
   padding: 30px;
   padding-left: 290px;
   padding-top: 85px;
-}
+} */
 main h2 {
   font-size: 20px;
   padding-bottom: 5px;
