@@ -34,6 +34,7 @@ class AccountsController
             return [
                 'id' => $a['id'],
                 'cells' => [
+                $a['id'],
                 Template::highlightSearch($a['name']),
                 Template::highlightSearch($a['email']),
                 Template::highlightSearch($a['display_name']),

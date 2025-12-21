@@ -4,7 +4,7 @@
 <head>
   <title> Accounts  | CMSOJ </title>
   
-<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/classless.css") ?>' />
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin_new.css") ?>' />
 
 <noscript>
@@ -57,13 +57,14 @@
 </header>
   
 
-        <div class="admin-page">
+        <section class="admin-page">
             
-<h1>Accounts</h1>
+<header class="content-header">
 <?php if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : ?>
 <div class="actions">
     <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
 </div>
+</header>
 <?php endif ?>
 
 
@@ -81,7 +82,7 @@
 ]); ?>
 
 
-        </div>
+        </section>
     </main>
 </div> 
 

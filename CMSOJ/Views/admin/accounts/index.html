@@ -3,11 +3,12 @@
 {% block title %} Accounts {% endblock %}
 
 {% block page %}
-<h1>Accounts</h1>
+<header class="content-header">
 {% if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : %}
 <div class="actions">
     <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
 </div>
+</header>
 {% endif %}
 
 

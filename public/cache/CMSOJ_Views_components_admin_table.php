@@ -5,8 +5,8 @@ $hasBulk = isset($bulk) && !empty($bulk['actions']);
 ?>
 
 <?php if ($hasBulk): ?>
-var_
-<form method="post" action="<?= htmlspecialchars($bulk['endpoint']) ?>">
+
+<form method="post" action="<?= htmlspecialchars($bulk['endpoint']) ?>" class="form-table">
   <input type="hidden" name="_csrf" value="<?= \CMSOJ\Helpers\Csrf::token() ?>">
   <?php endif; ?>
 
