@@ -5,7 +5,7 @@
   {% yield css %}
 </head>
 
-<body class="{{ $body_class ?? '' }}">
+<body class="{{ $body_class ?? 'admin-main' }}">
   {% component 'flash' %}
 
   {% yield nav %}

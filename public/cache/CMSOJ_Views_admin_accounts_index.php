@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="<?php echo $body_class ?? ''; ?>">
+<body class="<?php echo $body_class ?? 'admin-main'; ?>">
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
 
   

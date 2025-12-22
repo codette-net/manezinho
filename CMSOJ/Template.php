@@ -247,7 +247,13 @@ class Template
 	{
 		extract($data, EXTR_SKIP);
 
-		$path = dirname(__DIR__) . '/' . ltrim($file, '/');
+		// If no extension is provided, assume Views/partials/*.html
+		if (!str_contains($file, '.')) {
+			$file = 'CMSOJ/Views/partials/' . $file . '.html';
+		}
+
+		// Resolve absolute path
+		$path = self::resolvePath($file);
 
 		if (!file_exists($path)) {
 			throw new \Exception("Partial not found: {$file}");
@@ -255,6 +261,7 @@ class Template
 
 		include $path;
 	}
+
 
 	public static function merge(array $a, array $b): array
 	{
@@ -268,7 +275,7 @@ class Template
 
 	public static function highlightSearch(string $text, string $term = ''): string
 	{
-		
+
 		$term = trim($_GET['q'] ?? '');
 		if ($term === '') {
 			return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');

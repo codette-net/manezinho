@@ -215,7 +215,7 @@
 
 
 
-<?php \CMSOJ\Template::partial('footer'); ?>
+<?php \CMSOJ\Template::partial('footer'); ?>  
 
 
 

@@ -4,6 +4,7 @@
 
 {% block page %}
 <header class="content-header">
+<h2>Accounts</h2>
 {% if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : %}
 <div class="actions">
     <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
@@ -27,7 +28,7 @@
 
 {% endblock %}
 
-{% partial 'CMSOJ/Views/partials/pagination.html', [
+{% partial 'pagination.html', [
 'meta' => $meta,
 'query' => $query
 ] %}
