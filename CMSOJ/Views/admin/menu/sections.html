@@ -1,0 +1,25 @@
+{% extends CMSOJ/Views/admin/main.html %}
+
+{% block title %} Menu Sections {% endblock %}
+
+{% block page %}
+<header class="content-header">
+  <div>
+    <h2>Menu Sections</h2>
+    <p>Manage multilingual sections and subsections.</p>
+  </div>
+
+  <div class="actions">
+    <a href="/admin/menu/sections/new" class="btn btn-primary">+ New Section</a>
+  </div>
+</header>
+
+{% component 'admin/table', [
+  'headers'  => $headers,
+  'rows'     => $rows,
+  'sortable' => $sortable,
+  'query'    => $query,
+  'bulk'     => $bulk
+] %}
+
+{% endblock %}

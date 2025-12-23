@@ -52,7 +52,7 @@ $hasBulk = isset($bulk) && !empty($bulk['actions']);
     </thead>
     <tbody>
       <?php foreach ($rows as $row): ?>
-      <tr>
+      <tr data-id="<?= (int)$row['id'] ?>">
 
         <?php if ($hasBulk): ?>
         <td>

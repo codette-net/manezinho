@@ -2,9 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>
-    <?php echo $title ?? 'Dashboard'; ?>
- | CMSOJ </title>
+  <title> Menu Sections  | CMSOJ </title>
   
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/classless.css") ?>' />
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin_new.css") ?>' />
@@ -61,29 +59,25 @@
 
         <section class="admin-page">
             
-<div class="dashboard-grid">
+<header class="content-header">
+  <div>
+    <h2>Menu Sections</h2>
+    <p>Manage multilingual sections and subsections.</p>
+  </div>
 
-    <div class="stat-box">
-        <h3>Total Accounts</h3>
-        <span><?= $totalAccounts ?></span>
-    </div>
+  <div class="actions">
+    <a href="/admin/menu/sections/new" class="btn btn-primary">+ New Section</a>
+  </div>
+</header>
 
-    <div class="stat-box">
-        <h3>Total Messages</h3>
-        <span><?= $totalMessages ?></span>
-    </div>
+<?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/table.html', [
+  'headers'  => $headers,
+  'rows'     => $rows,
+  'sortable' => $sortable,
+  'query'    => $query,
+  'bulk'     => $bulk
+]); ?>
 
-    <div class="stat-box">
-        <h3>Unread Messages</h3>
-        <span><?= $unreadMessages ?></span>
-    </div>
-
-    <div class="stat-box">
-        <h3>Total Events</h3>
-        <span><?= $totalEvents ?></span>
-    </div>
-
-</div>
 
         </section>
     </main>
@@ -104,7 +98,6 @@ setTimeout(() => {
 
 </body> 
 </html>
-
 
 
 

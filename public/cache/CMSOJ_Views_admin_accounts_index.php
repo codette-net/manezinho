@@ -60,6 +60,7 @@
         <section class="admin-page">
             
 <header class="content-header">
+<h2>Accounts</h2>
 <?php if (\CMSOJ\Helpers\Permissions::can('accounts.create')) : ?>
 <div class="actions">
     <a href="/admin/accounts/create" class="btn btn-primary">+ Create Account</a>
@@ -120,7 +121,7 @@ setTimeout(() => {
 
 
 
-<?php \CMSOJ\Template::partial('CMSOJ/Views/partials/pagination.html', [
+<?php \CMSOJ\Template::partial('pagination.html', [
 'meta' => $meta,
 'query' => $query
 ]); ?>

@@ -2,21 +2,13 @@
 <div class="form-group">
     <label for="<?php echo $id; ?>"><?php echo $label; ?></label>
 
-    <select
+    <textarea
         id="<?php echo $id; ?>"
         name="<?php echo $name; ?>"
+        rows="<?php echo $rows ?? 5; ?>"
         class="form-control <?php echo $error ? 'is-invalid' : ''; ?>"
-    >
-        <?php foreach ($options as $option => $optionLabel): ?>
-            <option value="<?= htmlspecialchars($option, ENT_QUOTES, 'UTF-8') ?>" <?= (isset($value) && $value == $option) ? 'selected' : '' ?>><?= htmlspecialchars($optionLabel, ENT_QUOTES, 'UTF-8') ?></option>
-        </option>
-        <?php endforeach; ?>
-    </select>
-
+    ><?php echo $value ?? ''; ?></textarea>
     <?php if (!empty($error)): ?>
         <div class="invalid-feedback"><?php echo $error; ?></div>
     <?php endif; ?>
-
 </div>
-
-

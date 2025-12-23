@@ -4,14 +4,16 @@
 <head>
   <title> <?php echo $title; ?>  | CMSOJ </title>
   
-<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/classless.css") ?>' />
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin_new.css") ?>' />
+
 <noscript>
   <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
 </head>
 
-<body class="<?php echo $body_class ?? ''; ?>">
+<body class="<?php echo $body_class ?? 'admin-main'; ?>">
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
 
   
