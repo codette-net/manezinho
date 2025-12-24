@@ -8,6 +8,7 @@ use CMSOJ\Controllers\Admin\AuthController;
 use CMSOJ\Controllers\Admin\AccountsController;
 use CMSOJ\Controllers\Admin\SettingsController;
 use CMSOJ\Controllers\Admin\MenuSectionController;
+use CMSOJ\Controllers\Admin\MenuItemController;
 
 /** @var Router $router */
 
@@ -69,5 +70,42 @@ $router->get(
 $router->post(
     'admin/menu/sections/save',
     [MenuSectionController::class, 'save'],
+    AdminAuth::class
+);
+
+
+$router->get(
+    'admin/menu/items',
+    [MenuItemController::class, 'index'],
+    AdminAuth::class
+);
+
+$router->get(
+    'admin/menu/items/create',
+    [MenuItemController::class, 'create'],
+    AdminAuth::class
+);
+
+$router->post(
+    'admin/menu/items/store',
+    [MenuItemController::class, 'store'],
+    AdminAuth::class
+);
+
+$router->get(
+    'admin/menu/items/edit/{id}',
+    [MenuItemController::class, 'edit'],
+    AdminAuth::class
+);
+
+$router->post(
+    'admin/menu/items/update/{id}',
+    [MenuItemController::class, 'update'],
+    AdminAuth::class
+);
+
+$router->post(
+    'admin/menu/items/update-inline',
+    [MenuItemController::class, 'updateInline'],
     AdminAuth::class
 );

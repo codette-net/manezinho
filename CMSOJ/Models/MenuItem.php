@@ -1,23 +1,19 @@
 <?php
 
 namespace CMSOJ\Models;
+use CMSOJ\Core\Model;
 
-use CMSOJ\Core\Database;
 use PDO;
 
-class MenuItem
+class MenuItem extends Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        $this->db = Database::connect();
-    }
+    
+    protected string $table = 'menu_items';
 
     public function getActiveItems(): array
     {
-        $stmt = $this->db->query("
-            SELECT * FROM menu_items
+        $stmt = $this->db()->query("
+            SELECT * FROM {$this->table}
             WHERE is_active = 1
             ORDER BY section_id ASC, sort_order ASC, id ASC
         ");
