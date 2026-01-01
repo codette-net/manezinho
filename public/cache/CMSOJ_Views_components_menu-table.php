@@ -11,7 +11,7 @@ if (!$sectionItems) return;
   <?php foreach ($sectionItems as $it):
 
         $type = $it['display_type'] ?: 'item';
-        $name = trim($it["name_$lang"] ?: $it["name_en"]);
+        $name = trim($it["name_$lang"] ?? $it["name_en"] ?? '') ;
         $desc = trim($it["description_$lang"] ?? $it["description_pt"] ?? '');
         $p1   = trim($it['price_1'] ?? '');
         $p2   = trim($it['price_2'] ?? '');
