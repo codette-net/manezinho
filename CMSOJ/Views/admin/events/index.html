@@ -1,7 +1,7 @@
-{% extends 'CMSOJ/Views/admin/layout.html' %}
+{% extends 'CMSOJ/Views/admin/main.html' %}
 
-{% block content %}
-  {% partial 'CMSOJ/Views/admin/partials/header.html' %}
+{% block page %}
+ 
 
   <section class="admin-head">
     <div>
@@ -14,12 +14,6 @@
     </div>
   </section>
 
-  {% if flash.success %}
-    <div class="msg success" role="status">{{ flash.success }}</div>
-  {% endif %}
-  {% if flash.error %}
-    <div class="msg error" role="alert">{{ flash.error }}</div>
-  {% endif %}
 
   <form class="filters" method="get" action="/admin/events">
     <div class="grid">
@@ -41,22 +35,22 @@
       <div>
         <label for="recurring">Recurring</label>
         <select id="recurring" name="recurring">
-          <option value="" {% if query.recurring == "" %}selected{% endif %}>All</option>
-          <option value="never" {% if query.recurring == "never" %}selected{% endif %}>Never</option>
-          <option value="daily" {% if query.recurring == "daily" %}selected{% endif %}>Daily</option>
-          <option value="weekly" {% if query.recurring == "weekly" %}selected{% endif %}>Weekly</option>
-          <option value="monthly" {% if query.recurring == "monthly" %}selected{% endif %}>Monthly</option>
-          <option value="yearly" {% if query.recurring == "yearly" %}selected{% endif %}>Yearly</option>
+          <option value="" {% if (query.recurring == ""): %}selected{% endif; %}>All</option>
+          <option value="never" {% if (query.recurring == "never") : %}selected{% endif %}>Never</option>
+          <option value="daily" {% if (query.recurring == "daily") : %}selected{% endif %}>Daily</option>
+          <option value="weekly" {% if (query.recurring == "weekly") : %}selected{% endif %}>Weekly</option>
+          <option value="monthly" {% if (query.recurring == "monthly") : %}selected{% endif %}>Monthly</option>
+          <option value="yearly" {% if( query.recurring == "yearly") : %}selected{% endif %}>Yearly</option>
         </select>
       </div>
 
       <div>
         <label for="status">Status</label>
         <select id="status" name="status">
-          <option value="" {% if query.status == "" %}selected{% endif %}>All</option>
-          <option value="active" {% if query.status == "active" %}selected{% endif %}>Active</option>
-          <option value="upcoming" {% if query.status == "upcoming" %}selected{% endif %}>Upcoming</option>
-          <option value="ended" {% if query.status == "ended" %}selected{% endif %}>Ended</option>
+          <option value="" {% if (query.status == "" ) :%}selected{% endif %}>All</option>
+          <option value="active" {% if (query.status == "active") : %}selected{% endif %}>Active</option>
+          <option value="upcoming" {% if (query.status == "upcoming") : %}selected{% endif %}>Upcoming</option>
+          <option value="ended" {% if( query.status == "ended") : %}selected{% endif %}>Ended</option>
         </select>
       </div>
 
@@ -80,23 +74,23 @@
     <table class="table">
       <thead>
         <tr>
-          {% for key, label in headers %}
-            <th scope="col">{{ label }}</th>
-          {% endfor %}
+          {% foreach($headers as $key => $label) :%}
+            <th scope="col">{{ $label }}</th>
+          {% endforeach; %}
         </tr>
       </thead>
 
       <tbody>
-        {% if rows|length == 0 %}
+        {% if (rows|length == 0) : %}
           <tr>
             <td colspan="9" class="muted">There are no events.</td>
           </tr>
         {% endif %}
 
-        {% for row in rows %}
+        {% foreach($rows as $row): %}
           <tr>
-            {% for cell in row.cells %}
-              <td>{{{ cell }}}</td>
+            {% foreach($row.cells as $cell): %}
+              <td>{{{ $cell }}}</td>
             {% endfor %}
           </tr>
         {% endfor %}
@@ -111,11 +105,11 @@
     </div>
 
     <div class="pager-buttons">
-      {% if meta.page > 1 %}
+      {% if (meta.page > 1): %}
         <a class="btn alt" href="/admin/events?{% include 'CMSOJ/Views/admin/events/querystring-prev.html' %}">Prev</a>
       {% endif %}
 
-      {% if meta.page < meta.pages %}
+      {% if (meta.page < meta.pages): %}
         <a class="btn alt" href="/admin/events?{% include 'CMSOJ/Views/admin/events/querystring-next.html' %}">Next</a>
       {% endif %}
     </div>
