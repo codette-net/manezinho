@@ -9,6 +9,7 @@ use CMSOJ\Controllers\Admin\AccountsController;
 use CMSOJ\Controllers\Admin\SettingsController;
 use CMSOJ\Controllers\Admin\MenuSectionController;
 use CMSOJ\Controllers\Admin\MenuItemController;
+use CMSOJ\Controllers\Admin\EventController;
 
 /** @var Router $router */
 
@@ -33,6 +34,13 @@ $router->post('admin/accounts/edit/{id}', [AccountsController::class, 'update'],
 $router->post('admin/accounts/bulk', [AccountsController::class, 'bulk'], AccountAuth::class);
 
 $router->get('admin/profile', [AccountsController::class, 'profile'], AccountAuth::class);
+
+// EVENTS (protected)
+$router->get('admin/events', [EventController::class, 'index'], AdminAuth::class);
+$router->get('admin/events/create', [EventController::class, 'create'], AdminAuth::class);
+$router->get('admin/events/edit/{id}', [EventController::class, 'edit'], AdminAuth::class);
+$router->post('admin/events/save', [EventController::class, 'save'], AdminAuth::class);
+$router->post('admin/events/delete/{id}', [EventController::class, 'delete'], AdminAuth::class);
 
 // Settings management (protected)
 $router->get('admin/settings', [SettingsController::class, 'index'], AdminAuth::class);

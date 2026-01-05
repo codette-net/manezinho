@@ -1,0 +1,100 @@
+{% extends 'CMSOJ/Views/admin/layout.html' %}
+
+{% block content %}
+  {% partial 'CMSOJ/Views/admin/partials/header.html' %}
+
+  <section class="admin-head">
+    <div>
+      <h1>{{ title }}</h1>
+      <p class="muted">{% if editing %}Update the event details.{% else %}Create a new event.{% endif %}</p>
+    </div>
+    <div class="admin-actions">
+      <a class="btn alt" href="/admin/events">Cancel</a>
+    </div>
+  </section>
+
+  <form method="post" action="/admin/events/save" enctype="multipart/form-data" class="form">
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+    {% if editing %}
+      <input type="hidden" name="id" value="{{ event.id }}">
+    {% endif %}
+
+    <div class="grid">
+      <div>
+        <label for="uid">Page ID</label>
+        <input id="uid" name="uid" type="number" value="{{ event.uid }}">
+      </div>
+
+      <div>
+        <label for="title">Title <span aria-hidden="true">*</span></label>
+        <input id="title" name="title" required type="text" value="{{ event.title }}">
+      </div>
+
+      <div class="col-span-2">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5">{{ event.description }}</textarea>
+      </div>
+
+      <div>
+        <label for="datestart">Start Date <span aria-hidden="true">*</span></label>
+        <input id="datestart" name="datestart" required type="datetime-local" value="{{ event.datestart }}">
+      </div>
+
+      <div>
+        <label for="dateend">End Date <span aria-hidden="true">*</span></label>
+        <input id="dateend" name="dateend" required type="datetime-local" value="{{ event.dateend }}">
+      </div>
+
+      <div>
+        <label for="color">Color</label>
+        <input id="color" name="color" type="text" value="{{ event.color }}" placeholder="#2163BA">
+      </div>
+
+      <div>
+        <label for="recurring">Recurring <span aria-hidden="true">*</span></label>
+        <select id="recurring" name="recurring" required>
+          <option value="never" {% if event.recurring == "never" %}selected{% endif %}>Never</option>
+          <option value="daily" {% if event.recurring == "daily" %}selected{% endif %}>Daily</option>
+          <option value="weekly" {% if event.recurring == "weekly" %}selected{% endif %}>Weekly</option>
+          <option value="monthly" {% if event.recurring == "monthly" %}selected{% endif %}>Monthly</option>
+          <option value="yearly" {% if event.recurring == "yearly" %}selected{% endif %}>Yearly</option>
+        </select>
+      </div>
+
+      <div class="col-span-2">
+        <label for="photo">Photo</label>
+
+        {% if event.photo_url %}
+          <figure class="preview">
+            <img src="/{{ event.photo_url }}" alt="{{ event.title }}">
+            <figcaption class="muted">Current image</figcaption>
+          </figure>
+        {% endif %}
+
+        <input id="photo" name="photo" type="file" accept="image/*">
+        <p class="muted">Uploading a new image will replace the existing one.</p>
+      </div>
+
+      <div class="col-span-2">
+        <label for="redirect_url">Redirect URL</label>
+        <input id="redirect_url" name="redirect_url" type="url" value="{{ event.redirect_url }}" placeholder="https://...">
+      </div>
+
+      <div>
+        <label for="submit_date">Submit Date <span aria-hidden="true">*</span></label>
+        <input id="submit_date" name="submit_date" required type="datetime-local" value="{{ event.submit_date }}">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn" type="submit">Save</button>
+
+      {% if editing %}
+        <form method="post" action="/admin/events/delete/{{ event.id }}" style="display:inline" onsubmit="return confirm('Delete this event?');">
+          <input type="hidden" name="_csrf" value="{{ csrf }}">
+          <button class="btn red" type="submit">Delete</button>
+        </form>
+      {% endif %}
+    </div>
+  </form>
+{% endblock %}

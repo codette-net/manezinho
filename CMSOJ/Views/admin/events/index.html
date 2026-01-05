@@ -1,0 +1,123 @@
+{% extends 'CMSOJ/Views/admin/layout.html' %}
+
+{% block content %}
+  {% partial 'CMSOJ/Views/admin/partials/header.html' %}
+
+  <section class="admin-head">
+    <div>
+      <h1>Events</h1>
+      <p class="muted">View, edit, and create events.</p>
+    </div>
+
+    <div class="admin-actions">
+      <a class="btn" href="/admin/events/create">Create Event</a>
+    </div>
+  </section>
+
+  {% if flash.success %}
+    <div class="msg success" role="status">{{ flash.success }}</div>
+  {% endif %}
+  {% if flash.error %}
+    <div class="msg error" role="alert">{{ flash.error }}</div>
+  {% endif %}
+
+  <form class="filters" method="get" action="/admin/events">
+    <div class="grid">
+      <div>
+        <label for="search_query">Search</label>
+        <input id="search_query" name="search_query" type="search" value="{{ query.search_query }}">
+      </div>
+
+      <div>
+        <label for="datestart">Date Start</label>
+        <input id="datestart" name="datestart" type="datetime-local" value="{{ query.datestart }}">
+      </div>
+
+      <div>
+        <label for="dateend">Date End</label>
+        <input id="dateend" name="dateend" type="datetime-local" value="{{ query.dateend }}">
+      </div>
+
+      <div>
+        <label for="recurring">Recurring</label>
+        <select id="recurring" name="recurring">
+          <option value="" {% if query.recurring == "" %}selected{% endif %}>All</option>
+          <option value="never" {% if query.recurring == "never" %}selected{% endif %}>Never</option>
+          <option value="daily" {% if query.recurring == "daily" %}selected{% endif %}>Daily</option>
+          <option value="weekly" {% if query.recurring == "weekly" %}selected{% endif %}>Weekly</option>
+          <option value="monthly" {% if query.recurring == "monthly" %}selected{% endif %}>Monthly</option>
+          <option value="yearly" {% if query.recurring == "yearly" %}selected{% endif %}>Yearly</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option value="" {% if query.status == "" %}selected{% endif %}>All</option>
+          <option value="active" {% if query.status == "active" %}selected{% endif %}>Active</option>
+          <option value="upcoming" {% if query.status == "upcoming" %}selected{% endif %}>Upcoming</option>
+          <option value="ended" {% if query.status == "ended" %}selected{% endif %}>Ended</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="page_id">Page ID</label>
+        <input id="page_id" name="page_id" type="number" value="{{ query.page_id }}">
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn" type="submit">Apply</button>
+      <a class="btn alt" href="/admin/events">Reset</a>
+    </div>
+
+    <!-- keep sort state -->
+    <input type="hidden" name="order" value="{{ meta.order }}">
+    <input type="hidden" name="order_by" value="{{ meta.order_by }}">
+  </form>
+
+  <div class="table-wrap" role="region" aria-label="Events table" tabindex="0">
+    <table class="table">
+      <thead>
+        <tr>
+          {% for key, label in headers %}
+            <th scope="col">{{ label }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if rows|length == 0 %}
+          <tr>
+            <td colspan="9" class="muted">There are no events.</td>
+          </tr>
+        {% endif %}
+
+        {% for row in rows %}
+          <tr>
+            {% for cell in row.cells %}
+              <td>{{{ cell }}}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <nav class="pagination" aria-label="Pagination">
+    <div>
+      <span class="muted">Page {{ meta.page }} of {{ meta.pages }}</span>
+      <span class="muted">· Total {{ meta.total }}</span>
+    </div>
+
+    <div class="pager-buttons">
+      {% if meta.page > 1 %}
+        <a class="btn alt" href="/admin/events?{% include 'CMSOJ/Views/admin/events/querystring-prev.html' %}">Prev</a>
+      {% endif %}
+
+      {% if meta.page < meta.pages %}
+        <a class="btn alt" href="/admin/events?{% include 'CMSOJ/Views/admin/events/querystring-next.html' %}">Next</a>
+      {% endif %}
+    </div>
+  </nav>
+{% endblock %}
