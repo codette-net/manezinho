@@ -84,6 +84,7 @@ class EventController
       'editing' => false,
       'title' => 'Create Event',
       'csrf' => Csrf::token(),
+      'pages' => $this->pageOptions(),
     ]);
   }
 
@@ -105,6 +106,8 @@ class EventController
       'editing' => true,
       'title' => 'Edit Event',
       'csrf' => Csrf::token(),
+      'pages' => $this->pageOptions(),
+
     ]);
   }
 
@@ -268,16 +271,30 @@ class EventController
 
   protected function pageIdCell(array $e): string
   {
-    $uid = (int)($e['uid'] ?? 0);
+    $pid = (int)($e['page_id'] ?? 0);
     $url = (string)($e['url'] ?? '');
+
+    if ($pid <= 0) return '--';
 
     if ($url !== '') {
       $safeUrl = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
-      return "<a class=\"link\" href=\"{$safeUrl}\" target=\"_blank\" rel=\"noopener\">{$uid}</a>";
+      return "<a class=\"link\" href=\"{$safeUrl}\" target=\"_blank\" rel=\"noopener\">{$pid}</a>";
     }
 
-    return (string)$uid;
+    return (string)$pid;
   }
+
+  protected function pageOptions(): array
+  {
+    $pages = (new \CMSOJ\Models\Page())->all(); // or list with big perPage
+    // build as [id => title]
+    $out = [];
+    foreach ($pages as $p) {
+      $out[(int)$p['id']] = $p['title'] ?: ('Page #' . (int)$p['id']);
+    }
+    return $out;
+  }
+
 
   protected function actionLinks(int $id): string
   {

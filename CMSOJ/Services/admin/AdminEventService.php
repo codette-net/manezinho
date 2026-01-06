@@ -64,7 +64,7 @@ class AdminEventService
     // sorting coming from table component
     $dir = strtolower((string)($q['dir'] ?? 'asc')) === 'desc' ? 'DESC' : 'ASC';
 
-    $whitelist = ['id', 'title', 'description', 'color', 'datestart', 'dateend', 'recurring', 'photo_url', 'submit_date', 'uid'];
+    $whitelist = ['id', 'title', 'description', 'color', 'datestart', 'dateend', 'recurring', 'photo_url', 'submit_date', 'page_id'];
     $sortKey = (string)($q['sort'] ?? 'id');
     $orderBy = in_array($sortKey, $whitelist, true) ? $sortKey : 'id';
 
@@ -102,7 +102,7 @@ class AdminEventService
     }
 
     if ($pageId !== '') {
-      $where[] = "e.uid = :page_id";
+      $where[] = "e.page_id = :page_id";
       $params['page_id'] = (int)$pageId;
     }
 
@@ -116,12 +116,14 @@ class AdminEventService
 
     // rows (+ optional join to event_page_details like legacy)
     $sql = "
-      SELECT e.*, epd.url
+      SELECT e.*, p.url
       FROM events e
-      LEFT JOIN event_page_details epd ON epd.page_id = e.uid
-      {$whereSql} ORDER BY {$orderBy} {$dir}
+      LEFT JOIN pages p ON p.id = e.page_id
+      {$whereSql}
+      ORDER BY {$orderBy} {$dir}
       LIMIT :offset, :perpage
     ";
+
     $stmt = $this->db->prepare($sql);
     foreach ($params as $k => $v) $stmt->bindValue(':' . $k, $v);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);

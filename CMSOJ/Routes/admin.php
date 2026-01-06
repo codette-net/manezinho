@@ -9,6 +9,7 @@ use CMSOJ\Controllers\Admin\AccountsController;
 use CMSOJ\Controllers\Admin\SettingsController;
 use CMSOJ\Controllers\Admin\MenuSectionController;
 use CMSOJ\Controllers\Admin\MenuItemController;
+use CMSOJ\Controllers\Admin\PageController;
 use CMSOJ\Controllers\Admin\EventController;
 
 /** @var Router $router */
@@ -34,6 +35,18 @@ $router->post('admin/accounts/edit/{id}', [AccountsController::class, 'update'],
 $router->post('admin/accounts/bulk', [AccountsController::class, 'bulk'], AccountAuth::class);
 
 $router->get('admin/profile', [AccountsController::class, 'profile'], AccountAuth::class);
+
+// pages 
+$router->get('admin/pages', [PageController::class, 'index'], AdminAuth::class);
+$router->get('admin/pages/create', [PageController::class, 'create'], AdminAuth::class);
+$router->get('admin/pages/edit/{id}', [PageController::class, 'edit'], AdminAuth::class);
+$router->post('admin/pages/save', [PageController::class, 'save'], AdminAuth::class);
+$router->post('admin/pages/delete/{id}', [PageController::class, 'delete'], AdminAuth::class);
+
+// bulk optional
+$router->post('admin/pages/bulk', [PageController::class, 'bulk'], AdminAuth::class);
+
+
 
 // EVENTS (protected)
 $router->get('admin/events', [EventController::class, 'index'], AdminAuth::class);
