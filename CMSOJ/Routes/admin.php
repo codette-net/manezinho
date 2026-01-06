@@ -41,6 +41,8 @@ $router->get('admin/events/create', [EventController::class, 'create'], AdminAut
 $router->get('admin/events/edit/{id}', [EventController::class, 'edit'], AdminAuth::class);
 $router->post('admin/events/save', [EventController::class, 'save'], AdminAuth::class);
 $router->post('admin/events/delete/{id}', [EventController::class, 'delete'], AdminAuth::class);
+$router->post('admin/events/bulk', [EventController::class, 'bulk'], AdminAuth::class);
+
 
 // Settings management (protected)
 $router->get('admin/settings', [SettingsController::class, 'index'], AdminAuth::class);

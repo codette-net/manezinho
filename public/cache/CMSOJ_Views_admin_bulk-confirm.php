@@ -6,14 +6,16 @@
     <?php echo $label ?? 'Confirm'; ?>
  | CMSOJ </title>
   
-<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin.css") ?>' />
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/classless.css") ?>' />
+<link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin_new.css") ?>' />
+
 <noscript>
   <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
 </head>
 
-<body class="<?php echo $body_class ?? ''; ?>">
+<body class="<?php echo $body_class ?? 'admin-main'; ?>">
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
 
   
@@ -25,6 +27,11 @@
     <ul class="sidebar-nav">
         <li><a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
         <li><a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a></li>
+        <!-- todo : make submenu's  -->
+        <li><a href="/admin/menu/sections" class="<?= $selected === 'menu_sections' ? 'active' : '' ?>">Menu Sections</a></li>
+        <li><a href="/admin/menu/items" class="<?= $selected === 'menu_items' ? 'active' : '' ?>">Menu Items</a></li>
+
+
         <li><a href="/admin/messages" class="<?= $selected === 'messages' ? 'active' : '' ?>">Messages</a></li>
         <?php if (strtolower($_SESSION['admin_role']) === 'admin') : ?>
         <li><a href="/admin/accounts" class="<?= $selected === 'accounts' ? 'active' : '' ?>">Accounts</a></li>
@@ -57,7 +64,7 @@
 </header>
   
 
-        <div class="admin-page">
+        <section class="admin-page">
             
 <h1>Confirm action</h1>
 
@@ -82,7 +89,7 @@
 </form>
 
 
-        </div>
+        </section>
     </main>
 </div> 
 

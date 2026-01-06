@@ -8,6 +8,24 @@ class Event extends Model
 {
     protected string $table = 'events';
     protected string $primaryKey = 'id';
+    public array $sortable = [
+        'id',
+        'title',
+        'description',
+        'datestart',
+        'dateend',
+        'recurring',
+        'uid',
+        'submit_date'
+    ];
+
+    public array $searchable = [
+        'title',
+        'description'
+    ];
+
+    // optional hardening
+    public array $bulkUpdatable = ['recurring', 'uid', 'color'];
 
     /**
      * Get all events for a given UID and month.
@@ -47,7 +65,7 @@ class Event extends Model
             'dir'  => 'asc',
         ]);
         return $result['data'];
-        
+
 
 
         // return $stmt->fetchAll();

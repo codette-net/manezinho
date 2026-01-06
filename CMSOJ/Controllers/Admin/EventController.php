@@ -5,13 +5,18 @@ namespace CMSOJ\Controllers\Admin;
 use CMSOJ\Template;
 use CMSOJ\Services\Admin\AdminEventService;
 use CMSOJ\Helpers\Flash;
+use CMSOJ\Helpers\Permissions;
 use CMSOJ\Helpers\Validator;
 use CMSOJ\Helpers\Redirect;
 use CMSOJ\Helpers\Csrf;
+use CMSOJ\Controllers\Admin\Concerns\Bulkable;
+use CMSOJ\Models\Event;
+
 
 class EventController
 {
   protected AdminEventService $service;
+  use Bulkable;
 
   public function __construct()
   {
@@ -57,7 +62,7 @@ class EventController
       'rows' => $rows,
       'meta' => $result['meta'],
       'query' => $_GET,
-      'sortable' => ['id','title','description','datestart','dateend','recurring','uid'],
+      'sortable' => ['id', 'title', 'description', 'datestart', 'dateend', 'recurring', 'uid'],
       'title' => 'Events',
       'selected' => 'events',
       'flash' => [
@@ -65,6 +70,10 @@ class EventController
         'error' => Flash::get('error'),
       ],
       'csrf' => Csrf::token(),
+      'bulk' => [
+        'endpoint' => '/admin/events/bulk',
+        'actions'  => $this->bulkActions(),
+      ],
     ]);
   }
 
@@ -191,7 +200,7 @@ class EventController
 
     $ext = strtolower(pathinfo($_FILES[$field]['name'] ?? '', PATHINFO_EXTENSION));
     $ext = preg_replace('/[^a-z0-9]/', '', $ext);
-    if (!in_array($ext, ['jpg','jpeg','png','gif','webp'], true)) {
+    if (!in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
       Flash::set('error', 'Unsupported image type.');
       return null;
     }
@@ -280,5 +289,58 @@ class EventController
         <input type=\"hidden\" name=\"_csrf\" value=\"{$csrf}\">
         <button type=\"submit\" class=\"link-button danger\">Delete</button>
       </form>";
+  }
+
+  protected function bulkActions(): array
+  {
+    return [
+      'delete' => [
+        'label'      => 'Delete',
+        'permission' => 'events.delete',
+        'handler'    => 'delete',
+        'confirm'    => 'Delete selected events?',
+      ],
+      'recurring_never' => [
+        'label'      => 'Recurring: Never',
+        'permission' => 'events.edit',
+        'handler'    => 'update',
+        'data'       => ['recurring' => 'never'],
+      ],
+      'recurring_daily' => [
+        'label'      => 'Recurring: Daily',
+        'permission' => 'events.edit',
+        'handler'    => 'update',
+        'data'       => ['recurring' => 'daily'],
+      ],
+      'recurring_weekly' => [
+        'label'      => 'Recurring: Weekly',
+        'permission' => 'events.edit',
+        'handler'    => 'update',
+        'data'       => ['recurring' => 'weekly'],
+      ],
+      'recurring_monthly' => [
+        'label'      => 'Recurring: Monthly',
+        'permission' => 'events.edit',
+        'handler'    => 'update',
+        'data'       => ['recurring' => 'monthly'],
+      ],
+      'recurring_yearly' => [
+        'label'      => 'Recurring: Yearly',
+        'permission' => 'events.edit',
+        'handler'    => 'update',
+        'data'       => ['recurring' => 'yearly'],
+      ],
+    ];
+  }
+
+  public function bulk()
+  {
+    // Uses the shared trait method 
+    return $this->bulkEndpoint(
+      new Event(),
+      $this->bulkActions(),
+      '/admin/events',
+      'events'
+    );
   }
 }
