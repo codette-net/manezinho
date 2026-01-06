@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> | CMSOJ </title>
+  <title> <?= htmlspecialchars($title ?? 'Event', ENT_QUOTES, 'UTF-8') ?>  | CMSOJ </title>
   
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/classless.css") ?>' />
 <link rel="stylesheet" href='<?= \CMSOJ\Template::asset("/assets/css/admin_new.css") ?>' />
@@ -17,108 +17,173 @@
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/flash.html', []); ?>
 
   
+<div class="admin-wrapper">
+    <aside class="admin-sidebar">
+        <div class="logo">CMSOJ Admin</div>
+
+<nav class="menu">
+    <ul class="sidebar-nav">
+        <li><a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
+        <li><a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a></li>
+        <!-- todo : make submenu's  -->
+        <li><a href="/admin/menu/sections" class="<?= $selected === 'menu_sections' ? 'active' : '' ?>">Menu Sections</a></li>
+        <li><a href="/admin/menu/items" class="<?= $selected === 'menu_items' ? 'active' : '' ?>">Menu Items</a></li>
+
+
+        <li><a href="/admin/messages" class="<?= $selected === 'messages' ? 'active' : '' ?>">Messages</a></li>
+        <?php if (strtolower($_SESSION['admin_role']) === 'admin') : ?>
+        <li><a href="/admin/accounts" class="<?= $selected === 'accounts' ? 'active' : '' ?>">Accounts</a></li>
+        <?php endif; ?>
+        
+        <li><a href="/admin/profile" class="<?= $selected === 'Profile' ? 'active' : '' ?>">My Profile</a></li>
+        <li><a href="/admin/settings" class="<?= $selected === 'settings' ? 'active' : '' ?>">Settings</a></li>
+    </ul>
+</nav>
+
+<div class="logout">
+    <a href="/admin/logout">Logout</a>
+</div>  
+    </aside>
+
 
   
-  <?php \CMSOJ\Template::partial('CMSOJ/Views/admin/partials/header.html'); ?>
 
-  <section class="admin-head">
+    <main class="admin-content">
+        <header class="admin-header">
+
+    <div class="breadcrumbs">
+        <strong><?= $title ?? '' ?></strong>
+    </div>
+
+    <div class="profile">
+        <span class="name"><?= $_SESSION['display_name'] ?? '' ?></span>
+    </div>
+
+</header>
+  
+
+        <section class="admin-page">
+            
+<header class="content-header">
+  <div>
+    <h2><?= htmlspecialchars($title ?? 'Event', ENT_QUOTES, 'UTF-8') ?></h2>
+    <p><?= !empty($editing) ? 'Update the event details.' : 'Create a new event.' ?></p>
+  </div>
+
+  <div class="actions">
+    <a href="/admin/events" class="btn">Cancel</a>
+  </div>
+</header>
+
+<?php if (!empty($flash['error'])): ?>
+  <div class="msg error" role="alert"><?= htmlspecialchars($flash['error'], ENT_QUOTES, 'UTF-8') ?></div>
+<?php endif; ?>
+
+<form method="post" action="/admin/events/save" enctype="multipart/form-data">
+  <input type="hidden" name="_csrf" value="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
+
+  <?php if (!empty($editing)): ?>
+    <input type="hidden" name="id" value="<?= (int)$event['id'] ?>">
+  <?php endif; ?>
+
+  <div class="form-grid">
     <div>
-      <h1><?php echo $title; ?></h1>
-      <p class="muted"><?php if editing ?>Update the event details.<?php else ?>Create a new event.<?php endif ?></p>
-    </div>
-    <div class="admin-actions">
-      <a class="btn alt" href="/admin/events">Cancel</a>
-    </div>
-  </section>
-
-  <form method="post" action="/admin/events/save" enctype="multipart/form-data" class="form">
-    <input type="hidden" name="_csrf" value="<?php echo $csrf; ?>">
-    <?php if editing ?>
-      <input type="hidden" name="id" value="<?php echo event.id; ?>">
-    <?php endif ?>
-
-    <div class="grid">
-      <div>
-        <label for="uid">Page ID</label>
-        <input id="uid" name="uid" type="number" value="<?php echo event.uid; ?>">
-      </div>
-
-      <div>
-        <label for="title">Title <span aria-hidden="true">*</span></label>
-        <input id="title" name="title" required type="text" value="<?php echo event.title; ?>">
-      </div>
-
-      <div class="col-span-2">
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="5"><?php echo event.description; ?></textarea>
-      </div>
-
-      <div>
-        <label for="datestart">Start Date <span aria-hidden="true">*</span></label>
-        <input id="datestart" name="datestart" required type="datetime-local" value="<?php echo event.datestart; ?>">
-      </div>
-
-      <div>
-        <label for="dateend">End Date <span aria-hidden="true">*</span></label>
-        <input id="dateend" name="dateend" required type="datetime-local" value="<?php echo event.dateend; ?>">
-      </div>
-
-      <div>
-        <label for="color">Color</label>
-        <input id="color" name="color" type="text" value="<?php echo event.color; ?>" placeholder="#2163BA">
-      </div>
-
-      <div>
-        <label for="recurring">Recurring <span aria-hidden="true">*</span></label>
-        <select id="recurring" name="recurring" required>
-          <option value="never" <?php if event.recurring == "never" ?>selected<?php endif ?>>Never</option>
-          <option value="daily" <?php if event.recurring == "daily" ?>selected<?php endif ?>>Daily</option>
-          <option value="weekly" <?php if event.recurring == "weekly" ?>selected<?php endif ?>>Weekly</option>
-          <option value="monthly" <?php if event.recurring == "monthly" ?>selected<?php endif ?>>Monthly</option>
-          <option value="yearly" <?php if event.recurring == "yearly" ?>selected<?php endif ?>>Yearly</option>
-        </select>
-      </div>
-
-      <div class="col-span-2">
-        <label for="photo">Photo</label>
-
-        <?php if event.photo_url ?>
-          <figure class="preview">
-            <img src="/<?php echo event.photo_url; ?>" alt="<?php echo event.title; ?>">
-            <figcaption class="muted">Current image</figcaption>
-          </figure>
-        <?php endif ?>
-
-        <input id="photo" name="photo" type="file" accept="image/*">
-        <p class="muted">Uploading a new image will replace the existing one.</p>
-      </div>
-
-      <div class="col-span-2">
-        <label for="redirect_url">Redirect URL</label>
-        <input id="redirect_url" name="redirect_url" type="url" value="<?php echo event.redirect_url; ?>" placeholder="https://...">
-      </div>
-
-      <div>
-        <label for="submit_date">Submit Date <span aria-hidden="true">*</span></label>
-        <input id="submit_date" name="submit_date" required type="datetime-local" value="<?php echo event.submit_date; ?>">
-      </div>
+      <label for="uid">Page ID</label>
+      <input id="uid" name="uid" type="number" value="<?= htmlspecialchars($event['uid'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     </div>
 
-    <div class="form-actions">
-      <button class="btn" type="submit">Save</button>
-
-      <?php if editing ?>
-        <form method="post" action="/admin/events/delete/<?php echo event.id; ?>" style="display:inline" onsubmit="return confirm('Delete this event?');">
-          <input type="hidden" name="_csrf" value="<?php echo $csrf; ?>">
-          <button class="btn red" type="submit">Delete</button>
-        </form>
-      <?php endif ?>
+    <div>
+      <label for="title">Title <span class="required">*</span></label>
+      <input id="title" name="title" required type="text" value="<?= htmlspecialchars($event['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     </div>
+
+    <div class="col-span-2">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="6"><?= htmlspecialchars($event['description'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+    </div>
+
+    <div>
+      <label for="datestart">Start Date <span class="required">*</span></label>
+      <input id="datestart" name="datestart" required type="datetime-local"
+        value="<?= htmlspecialchars($event['datestart'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+    </div>
+
+    <div>
+      <label for="dateend">End Date <span class="required">*</span></label>
+      <input id="dateend" name="dateend" required type="datetime-local"
+        value="<?= htmlspecialchars($event['dateend'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+    </div>
+
+    <div>
+      <label for="color">Color</label>
+      <input id="color" name="color" type="text" placeholder="#2163BA"
+        value="<?= htmlspecialchars($event['color'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+    </div>
+
+    <div>
+      <label for="recurring">Recurring <span class="required">*</span></label>
+      <?php $r = $event['recurring'] ?? 'never'; ?>
+      <select id="recurring" name="recurring" required>
+        <option value="never" <?= $r === 'never' ? 'selected' : '' ?>>Never</option>
+        <option value="daily" <?= $r === 'daily' ? 'selected' : '' ?>>Daily</option>
+        <option value="weekly" <?= $r === 'weekly' ? 'selected' : '' ?>>Weekly</option>
+        <option value="monthly" <?= $r === 'monthly' ? 'selected' : '' ?>>Monthly</option>
+        <option value="yearly" <?= $r === 'yearly' ? 'selected' : '' ?>>Yearly</option>
+      </select>
+    </div>
+
+    <div class="col-span-2">
+      <label for="photo">Photo</label>
+
+      <?php if (!empty($event['photo_url'])): ?>
+        <figure style="margin: 10px 0;">
+          <img src="/<?= htmlspecialchars($event['photo_url'], ENT_QUOTES, 'UTF-8') ?>"
+               alt="<?= htmlspecialchars($event['title'] ?? 'Event photo', ENT_QUOTES, 'UTF-8') ?>"
+               style="max-width:200px; height:auto;">
+          <figcaption class="muted">Current image</figcaption>
+        </figure>
+      <?php endif; ?>
+
+      <input id="photo" type="file" name="photo" accept="image/*">
+      <p class="muted">Uploading a new image will replace the existing one.</p>
+    </div>
+
+    <div class="col-span-2">
+      <label for="redirect_url">Redirect URL</label>
+      <input id="redirect_url" name="redirect_url" type="url"
+        value="<?= htmlspecialchars($event['redirect_url'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+        placeholder="https://...">
+    </div>
+
+    <div>
+      <label for="submit_date">Submit Date <span class="required">*</span></label>
+      <input id="submit_date" name="submit_date" required type="datetime-local"
+        value="<?= htmlspecialchars($event['submit_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+    </div>
+  </div>
+
+  <div class="actions" style="margin-top: 16px;">
+    <button class="btn btn-primary" type="submit">Save</button>
+  </div>
+</form>
+
+<?php if (!empty($editing)): ?>
+  <form method="post" action="/admin/events/delete/<?= (int)$event['id'] ?>"
+        onsubmit="return confirm('Delete this event?');"
+        style="margin-top: 10px;">
+    <input type="hidden" name="_csrf" value="<?= htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8') ?>">
+    <button class="btn btn-danger" type="submit">Delete</button>
   </form>
+<?php endif; ?>
+
+
+        </section>
+    </main>
+</div> 
 
 
   
-<a id="scrolltop" ...></a>
+<a id="scrolltop" href="#" title="Back to top" style="display:none;"></a>
 
   
 <!-- JS includes -->
@@ -131,6 +196,15 @@ setTimeout(() => {
 
 </body> 
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

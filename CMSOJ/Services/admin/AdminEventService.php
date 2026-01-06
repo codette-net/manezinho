@@ -61,9 +61,12 @@ class AdminEventService
     $status    = (string)($q['status'] ?? '');
     $pageId    = (string)($q['page_id'] ?? '');
 
-    $order = (isset($q['order']) && strtoupper((string)$q['order']) === 'DESC') ? 'DESC' : 'ASC';
-    $whitelist = ['id','title','description','color','datestart','dateend','recurring','photo_url','submit_date','uid'];
-    // $orderBy = in_array(($q['order_by'] ?? 'id'), $whitelist, true) ? $q['order_by'] : 'id';
+    // sorting coming from table component
+    $dir = strtolower((string)($q['dir'] ?? 'asc')) === 'desc' ? 'DESC' : 'ASC';
+
+    $whitelist = ['id', 'title', 'description', 'color', 'datestart', 'dateend', 'recurring', 'photo_url', 'submit_date', 'uid'];
+    $sortKey = (string)($q['sort'] ?? 'id');
+    $orderBy = in_array($sortKey, $whitelist, true) ? $sortKey : 'id';
 
     $where = [];
     $params = [];
@@ -116,8 +119,7 @@ class AdminEventService
       SELECT e.*, epd.url
       FROM events e
       LEFT JOIN event_page_details epd ON epd.page_id = e.uid
-      {$whereSql}
-      ORDER BY id {$order}
+      {$whereSql} ORDER BY {$orderBy} {$dir}
       LIMIT :offset, :perpage
     ";
     $stmt = $this->db->prepare($sql);
@@ -135,8 +137,8 @@ class AdminEventService
         'per_page' => $perPage,
         'total' => $total,
         'pages' => max(1, (int)ceil($total / $perPage)),
-        'order' => $order,
-        // 'order_by' => $orderBy,
+        'sort' => $orderBy,
+        'dir' => strtolower($dir) === 'desc' ? 'desc' : 'asc',
       ],
     ];
   }
