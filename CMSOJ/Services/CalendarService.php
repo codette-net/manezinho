@@ -188,29 +188,93 @@ class CalendarService
     return $this->uniqueEvents($events);
   }
 
-  private function addRecurringEvents(array $events, int $year, int $month): array
-  {
-    $result = $events;
+private function addRecurringEvents(array $events, int $year, int $month): array
+{
+  $result = $events;
 
-    foreach ($events as $event) {
-      switch ($event['recurring']) {
-        case 'daily':
-          $result = array_merge($result, $this->expandDaily($event, $year, $month));
-          break;
-        case 'weekly':
-          $result = array_merge($result, $this->expandWeekly($event, $year, $month));
-          break;
-        case 'monthly':
-          $result = array_merge($result, $this->expandMonthly($event, $year, $month));
-          break;
-        case 'yearly':
-          $result = array_merge($result, $this->expandYearly($event, $year, $month));
-          break;
-      }
+  $rangeStart = new DateTime(sprintf('%04d-%02d-01 00:00:00', $year, $month));
+  $rangeEnd   = (clone $rangeStart)->modify('last day of this month')->setTime(23, 59, 59);
+
+  foreach ($events as $event) {
+    $rec = (string)($event['recurring'] ?? 'never');
+    if ($rec === 'never') {
+      continue;
     }
 
-    return $result;
+    $result = array_merge($result, $this->expandRecurringInRange($event, $rangeStart, $rangeEnd));
   }
+
+  return $result;
+}
+
+/**
+ * Expand a recurring event into occurrences that overlap the requested month range.
+ * This fixes:
+ *  - repeats not showing in the same month
+ *  - repeats stopping after a fixed number of iterations
+ */
+private function expandRecurringInRange(array $event, DateTime $rangeStart, DateTime $rangeEnd): array
+{
+  $rec = (string)($event['recurring'] ?? 'never');
+  if ($rec === 'never') return [];
+
+  $start0 = new DateTime($event['datestart']);
+  $end0   = new DateTime($event['dateend']);
+
+  // duration in seconds (keep same duration on each occurrence)
+  $duration = max(0, $end0->getTimestamp() - $start0->getTimestamp());
+
+  // Determine step
+  $stepSpec = match ($rec) {
+    'daily'   => '+1 day',
+    'weekly'  => '+1 week',
+    'monthly' => '+1 month',
+    'yearly'  => '+1 year',
+    default   => null,
+  };
+
+  if ($stepSpec === null) return [];
+
+  // Move cursor to the first occurrence that could overlap the range.
+  // We do that by stepping forward until end >= rangeStart.
+  $cursorStart = clone $start0;
+  $cursorEnd   = (clone $cursorStart);
+  $cursorEnd->modify('+' . $duration . ' seconds');
+
+  // Safety cap to prevent infinite loop if bad data (should never hit)
+  $guard = 0;
+
+  while ($cursorEnd < $rangeStart) {
+    $cursorStart->modify($stepSpec);
+    $cursorEnd = (clone $cursorStart)->modify('+' . $duration . ' seconds');
+
+    if (++$guard > 5000) {
+      break;
+    }
+  }
+
+  $out = [];
+
+  // Now generate occurrences until start > rangeEnd
+  while ($cursorStart <= $rangeEnd) {
+    // include if overlaps [rangeStart, rangeEnd]
+    if ($cursorEnd >= $rangeStart) {
+      $clone = $event;
+      $clone['datestart'] = $cursorStart->format('Y-m-d H:i:s');
+      $clone['dateend']   = $cursorEnd->format('Y-m-d H:i:s');
+      $out[] = $clone;
+    }
+
+    $cursorStart->modify($stepSpec);
+    $cursorEnd = (clone $cursorStart)->modify('+' . $duration . ' seconds');
+
+    if (++$guard > 5000) {
+      break;
+    }
+  }
+
+  return $out;
+}
 
   private function uniqueEvents(array $events): array
   {
@@ -238,132 +302,6 @@ class CalendarService
     return $out;
   }
 
-  private function expandDaily(array $event, int $year, int $month): array
-  {
-    $out   = [];
-    $start = new DateTime($event['datestart']);
-    $end   = new DateTime($event['dateend']);
-
-    $origMonth   = date('Y-m', strtotime($event['datestart']));
-    $targetMonth = sprintf('%04d-%02d', $year, $month);
-
-    for ($i = 1; $i <= 31; $i++) {
-      $startClone = clone $start;
-      $endClone   = clone $end;
-
-      $startClone->modify("+$i day");
-      $endClone->modify("+$i day");
-
-      $cloneMonth = $startClone->format('Y-m');
-
-      // skip original month
-      if ($cloneMonth === $origMonth) {
-        continue;
-      }
-
-      if ($cloneMonth === $targetMonth || $endClone->format('Y-m') === $targetMonth) {
-        $clone              = $event;
-        $clone['datestart'] = $startClone->format('Y-m-d H:i:s');
-        $clone['dateend']   = $endClone->format('Y-m-d H:i:s');
-        $out[]              = $clone;
-      }
-    }
-
-    return $out;
-  }
-
-  private function expandWeekly(array $event, int $year, int $month): array
-  {
-    $out   = [];
-    $start = new DateTime($event['datestart']);
-    $end   = new DateTime($event['dateend']);
-
-    $origMonth   = date('Y-m', strtotime($event['datestart']));
-    $targetMonth = sprintf('%04d-%02d', $year, $month);
-
-    for ($i = -4; $i <= 8; $i++) {
-      $startClone = clone $start;
-      $endClone   = clone $end;
-
-      $startClone->modify("+$i week");
-      $endClone->modify("+$i week");
-
-      $cloneMonth = $startClone->format('Y-m');
-
-      // skip same month
-      if ($cloneMonth === $origMonth) continue;
-
-      if ($cloneMonth === $targetMonth || $endClone->format('Y-m') === $targetMonth) {
-        $clone              = $event;
-        $clone['datestart'] = $startClone->format('Y-m-d H:i:s');
-        $clone['dateend']   = $endClone->format('Y-m-d H:i:s');
-        $out[]              = $clone;
-      }
-    }
-
-    return $out;
-  }
-
-  private function expandMonthly(array $event, int $year, int $month): array
-  {
-    $out         = [];
-    $origMonth   = date('Y-m', strtotime($event['datestart']));
-    $targetMonth = sprintf('%04d-%02d', $year, $month);
-
-    $start = new DateTime($event['datestart']);
-    $end   = new DateTime($event['dateend']);
-
-    for ($i = -1; $i <= 1; $i++) {
-      $startClone = clone $start;
-      $endClone   = clone $end;
-
-      $startClone->modify("+$i month");
-      $endClone->modify("+$i month");
-
-      $cloneMonth = $startClone->format('Y-m');
-
-      if ($cloneMonth === $origMonth) continue;
-
-      if ($cloneMonth === $targetMonth || $endClone->format('Y-m') === $targetMonth) {
-        $clone              = $event;
-        $clone['datestart'] = $startClone->format('Y-m-d H:i:s');
-        $clone['dateend']   = $endClone->format('Y-m-d H:i:s');
-        $out[]              = $clone;
-      }
-    }
-
-    return $out;
-  }
-
-  private function expandYearly(array $event, int $year, int $month): array
-  {
-    $out = [];
-
-    $origMonth = date('m', strtotime($event['datestart']));
-
-    $start = new DateTime($event['datestart']);
-    $end   = new DateTime($event['dateend']);
-
-    // Apply the new year
-    $start->setDate($year, (int)$start->format('m'), (int)$start->format('d'));
-    $end->setDate($year, (int)$end->format('m'), (int)$end->format('d'));
-
-    $cloneMonth = $start->format('m');
-
-    // skip same month = original occurrence
-    if ($cloneMonth == $origMonth) {
-      return [];
-    }
-
-    if ((int)$cloneMonth === $month || (int)$end->format('m') === $month) {
-      $clone              = $event;
-      $clone['datestart'] = $start->format('Y-m-d H:i:s');
-      $clone['dateend']   = $end->format('Y-m-d H:i:s');
-      $out[]              = $clone;
-    }
-
-    return $out;
-  }
 
   /**
    * Attach events to day structures.
