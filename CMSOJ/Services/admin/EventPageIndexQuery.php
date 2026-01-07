@@ -24,15 +24,15 @@ class EventPageIndexQuery
         $params = [];
 
         // Sorting compatible with your table component (?sort=...&dir=...)
-        $sortable = ['uid', 'title', 'description', 'url', 'num_events'];
-        $sortKey  = (string)($q['sort'] ?? 'uid');
-        $sort     = in_array($sortKey, $sortable, true) ? $sortKey : 'uid';
+        $sortable = ['page_id', 'title', 'description', 'url', 'num_events'];
+        $sortKey  = (string)($q['sort'] ?? 'page_id');
+        $sort     = in_array($sortKey, $sortable, true) ? $sortKey : 'page_id';
         $dir      = strtolower((string)($q['dir'] ?? 'asc')) === 'desc' ? 'DESC' : 'ASC';
 
         $where = '';
         if ($search !== '') {
             $where = "WHERE (
-                CAST(e.uid AS CHAR) LIKE :s
+                CAST(e.page_id AS CHAR) LIKE :s
                 OR epd.title LIKE :s
                 OR epd.description LIKE :s
                 OR epd.url LIKE :s
@@ -40,14 +40,14 @@ class EventPageIndexQuery
             $params['s'] = '%' . $search . '%';
         }
 
-        // Total distinct pages (uids present in events)
+        // Total distinct pages (page_ids present in events)
         $sqlTotal = "
             SELECT COUNT(*) FROM (
-                SELECT e.uid
+                SELECT e.page_id
                 FROM events e
-                LEFT JOIN event_page_details epd ON epd.page_id = e.uid
+                LEFT JOIN event_page_details epd ON epd.page_id = e.page_id
                 {$where}
-                GROUP BY e.uid
+                GROUP BY e.page_id
             ) x
         ";
         $stmt = $this->db->prepare($sqlTotal);
@@ -55,18 +55,18 @@ class EventPageIndexQuery
         $stmt->execute();
         $total = (int)$stmt->fetchColumn();
 
-        // Main list: group by uid, include details + count
+        // Main list: group by page_id, include details + count
         $sql = "
             SELECT
-                e.uid,
+                e.page_id,
                 epd.title,
                 epd.description,
                 epd.url,
                 COUNT(e.id) AS num_events
             FROM events e
-            LEFT JOIN event_page_details epd ON epd.page_id = e.uid
+            LEFT JOIN event_page_details epd ON epd.page_id = e.page_id
             {$where}
-            GROUP BY e.uid, epd.title, epd.description, epd.url
+            GROUP BY e.page_id, epd.title, epd.description, epd.url
             ORDER BY {$sort} {$dir}
             LIMIT :limit OFFSET :offset
         ";

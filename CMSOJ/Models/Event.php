@@ -15,7 +15,7 @@ class Event extends Model
         'datestart',
         'dateend',
         'recurring',
-        'uid',
+        'page_id',
         'submit_date'
     ];
 
@@ -25,12 +25,12 @@ class Event extends Model
     ];
 
     // optional hardening
-    public array $bulkUpdatable = ['recurring', 'uid', 'color'];
+    public array $bulkUpdatable = ['recurring', 'page_id', 'color'];
 
     /**
      * Get all events for a given UID and month.
      */
-    public function getEventsForMonth(int $uid, int $year, int $month): array
+    public function getEventsForMonth(int $page_id, int $year, int $month): array
     {
         // $stmt = $this->db()->prepare("
         //     SELECT *
@@ -59,7 +59,7 @@ class Event extends Model
 
         $result = $this->list([
             'where' => [
-                'uid' => $uid
+                'page_id' => $page_id
             ],
             'sort' => 'datestart',
             'dir'  => 'asc',

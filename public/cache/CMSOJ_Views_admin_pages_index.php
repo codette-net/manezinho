@@ -24,6 +24,7 @@
 <nav class="menu">
     <ul class="sidebar-nav">
         <li><a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
+        <li><a href="/admin/pages" class="<?= $selected === 'pages' ? 'active' : '' ?>">Pages</a></li>
         <li><a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a></li>
         <!-- todo : make submenu's  -->
         <li><a href="/admin/menu/sections" class="<?= $selected === 'menu_sections' ? 'active' : '' ?>">Menu Sections</a></li>
@@ -78,7 +79,7 @@
   <div class="msg error" role="alert"><?= htmlspecialchars($flash['error'], ENT_QUOTES, 'UTF-8') ?></div>
 <?php endif; ?>
 
-<form method="get" action="/admin/events/pages" class="filters">
+<form method="get" action="/admin/pages" class="filters">
   <div class="filters-grid">
     <div>
       <label for="search_query">Search</label>

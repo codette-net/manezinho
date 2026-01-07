@@ -24,6 +24,7 @@
 <nav class="menu">
     <ul class="sidebar-nav">
         <li><a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
+        <li><a href="/admin/pages" class="<?= $selected === 'pages' ? 'active' : '' ?>">Pages</a></li>
         <li><a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a></li>
         <!-- todo : make submenu's  -->
         <li><a href="/admin/menu/sections" class="<?= $selected === 'menu_sections' ? 'active' : '' ?>">Menu Sections</a></li>
@@ -88,8 +89,8 @@
 
   <div class="form-grid">
     <div>
-      <label for="uid">Page ID</label>
-      <input id="uid" name="uid" type="number" value="<?= htmlspecialchars($event['uid'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+      <label for="page_id">Page ID</label>
+      <input id="page_id" name="page_id" type="number" value="<?= htmlspecialchars($event['page_id'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     </div>
 
     <div>

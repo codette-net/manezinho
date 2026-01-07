@@ -56,13 +56,13 @@ class EventController
         'dateend' => 'End',
         'recurring' => 'Recurring',
         'status' => 'Status',
-        'uid' => 'Page ID',
+        'page_id' => 'Page ID',
         'actions' => 'Actions',
       ],
       'rows' => $rows,
       'meta' => $result['meta'],
       'query' => $_GET,
-      'sortable' => ['id', 'title', 'description', 'datestart', 'dateend', 'recurring', 'uid'],
+      'sortable' => ['id', 'title', 'description', 'datestart', 'dateend', 'recurring', 'page_id'],
       'title' => 'Events',
       'selected' => 'events',
       'flash' => [
@@ -144,7 +144,7 @@ class EventController
     $photoUrl = $this->handleUpload('photo');
 
     $data = [
-      'uid' => ($_POST['uid'] ?? '') !== '' ? (int)$_POST['uid'] : 1,
+      'page_id' => ($_POST['page_id'] ?? '') !== '' ? (int)$_POST['page_id'] : 1,
       'title' => trim((string)$_POST['title']),
       'description' => trim((string)($_POST['description'] ?? '')),
       'color' => ($_POST['color'] ?? '') !== '' ? trim((string)$_POST['color']) : '#2163BA',

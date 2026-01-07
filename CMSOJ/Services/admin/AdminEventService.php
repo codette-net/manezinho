@@ -25,7 +25,7 @@ class AdminEventService
       'color' => '#2163BA',
       'datestart' => date('Y-m-d\TH:i'),
       'dateend' => date('Y-m-d\TH:i'),
-      'uid' => 1,
+      'page_id' => 1,
       'submit_date' => date('Y-m-d\TH:i'),
       'recurring' => 'never',
       'photo_url' => '',
