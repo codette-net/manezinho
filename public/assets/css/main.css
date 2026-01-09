@@ -526,7 +526,7 @@ body,
 input,
 select,
 textarea {
-    color: hsla(var(--neutral-100), 0.75);
+    color: hsla(var(--neutral-100), 0.85);
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-size: 1rem;
     font-weight: 400;
@@ -756,7 +756,8 @@ hr {
 
     h1 {
         font-size: 2.25rem;
-        line-height: 1.2;
+        line-height: 1.2 !important;
+        text-align: center;
     }
 
     h1.major {
@@ -1502,8 +1503,9 @@ h3 {
 }
 
 .hero-logo {
-    width: min(50%, 500px);
+    width: min(60%, 500px);
     filter: drop-shadow(0 0 6px hsla(var(--accent-900), 0.6));
+    color: hsl(var(--neutral-100));
 }
 
 .hero-sub {

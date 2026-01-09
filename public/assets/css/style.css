@@ -292,11 +292,20 @@ p.today-closed {
         width: initial;
     }
 }
-/* 
-@media (max-width: 480px) {
-  .nav-info-contact {
-  }
-} */
+
+@media (max-width: 768px) {
+ .nav-info-contact {
+    display: none;
+ }
+ #holiday-warning {
+    font-size: 0.8rem;
+    position: fixed;
+    top: calc(var(--nav-height) + 1rem);
+    z-index: 1000
+ }
+
+ 
+}
 
 main {
     position: relative;
