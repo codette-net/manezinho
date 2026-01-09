@@ -133,7 +133,6 @@ async function loadHours() {
 
         msg += "</ul>";
 
-        // holidayWarning.innerHTML = `your mum`;
         holidayWarning.classList.toggle("open");
         holidayWarning
             .querySelector("#holiday-warning-check")
@@ -355,4 +354,17 @@ navInfoHours.addEventListener('click', (e) => {
 
 exitBtn.addEventListener("click", () => {
     responseWrapper.style.display = "none";
+});
+
+// close modal when clicking outside of it or with the escape key
+window.addEventListener("click", (e) => {
+    if (e.target === responseWrapper) {
+        responseWrapper.style.display = "none";
+    }
+});
+
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        responseWrapper.style.display = "none";
+    }
 });

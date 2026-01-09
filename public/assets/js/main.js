@@ -3,7 +3,7 @@ const navBtn = document.querySelector("#menu-btn");
 const nav = document.querySelector("nav");
 const navOffset = nav.offsetTop;
 const navInfo = document.querySelector(".nav-info");
-
+const body = document.querySelector("body");
 const main = document.querySelector("main");
 const navLinks = document.querySelector(".nav-links");
 const navLink = document.querySelectorAll(".nav-link");
@@ -33,6 +33,27 @@ navBtn.addEventListener("click", () => {
 
     !isExpanded && nav.classList.add("active");
 });
+
+// close nav when clicking outside, a link or when esc is pressed
+
+main.addEventListener("click", () => {
+   // check if nav is active
+   if (nav.classList.contains("active")) {
+       navLinks.classList.remove("activated"); 
+       navBtn.setAttribute("aria-expanded", false);
+       nav.classList.remove("active");
+   }
+});
+
+body.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        navLinks.classList.remove("activated"); 
+        navBtn.setAttribute("aria-expanded", false);
+        nav.classList.remove("active");
+    }  
+});
+
+
 
 window.addEventListener("scroll", () => {
     if (window.scrollY > navOffset) {
@@ -64,19 +85,19 @@ document.querySelectorAll(".fade-up-delay").forEach((item) => {
     fadeUpObserver.observe(item);
 });
 
-// window.onscroll = function () {
-//     var e = document.getElementById("scrolltop");
-//     if (!e) {
-//         e = document.createElement("a");
-//         e.id = "scrolltop";
-//         e.href = "#";
-//         e.title = "Back to top";
-//         document.body.appendChild(e);
-//     }
-//     e.style.display =
-//         document.documentElement.scrollTop > 300 ? "block" : "none";
-//     e.onclick = (ev) => {
-//         ev.preventDefault();
-//         document.documentElement.scrollTop = 0;
-//     };
-// };
+window.onscroll = function () {
+    var e = document.getElementById("scrolltop");
+    if (!e) {
+        e = document.createElement("a");
+        e.id = "scrolltop";
+        e.href = "#";
+        e.title = "Back to top";
+        document.body.appendChild(e);
+    }
+    e.style.display =
+        document.documentElement.scrollTop > 300 ? "block" : "none";
+    e.onclick = (ev) => {
+        ev.preventDefault();
+        document.documentElement.scrollTop = 0;
+    };
+};

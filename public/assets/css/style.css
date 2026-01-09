@@ -307,3 +307,12 @@ main {
     padding-block: 0 var(--spacing-base);
     margin-top: 0.15rem;
 }
+
+.response-msg ul {
+      display: flex;
+  flex-direction: column;
+}
+
+#reservation header {
+    border-radius: var(--border-radius);
+}
