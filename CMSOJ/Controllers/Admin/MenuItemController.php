@@ -23,16 +23,16 @@ class MenuItemController
         $query   = $_GET;
         $items   = $this->service->listItems($query);
         $sectionsFilter = $this->service->getSectionOptions();
-
         // Transform into rows for the table component
         $rows = array_map(function ($i) {
             $id = (int)$i['id'];
+            $returnTo = urlencode($_SERVER['REQUEST_URI']);
 
             $displayTypeSelect = '<select class="inline-edit" data-inline="display_type">
                 <option value="item" '   . ($i['display_type'] === 'item'   ? 'selected' : '') . '>item</option>
                 <option value="thead" '  . ($i['display_type'] === 'thead'  ? 'selected' : '') . '>thead</option>
                 <option value="th" '     . ($i['display_type'] === 'th'     ? 'selected' : '') . '>th</option>
-                <option value="divider" '. ($i['display_type'] === 'divider'? 'selected' : '') . '>divider</option>
+                <option value="divider" ' . ($i['display_type'] === 'divider' ? 'selected' : '') . '>divider</option>
             </select>';
 
             $cells = [
@@ -49,7 +49,7 @@ class MenuItemController
                 '<input class="inline-edit" data-inline="price_2" value="' . htmlspecialchars($i['price_2'] ?? '', ENT_QUOTES, 'UTF-8') . '">',
                 '<input class="inline-edit" data-inline="sort_order" type="number" style="width:60px" value="' . (int)($i['sort_order'] ?? 0) . '">',
                 '<input type="checkbox" class="toggle-active" data-inline="is_active" ' . (!empty($i['is_active']) ? 'checked' : '') . '>',
-                "<a href=\"/admin/menu/items/edit/{$id}\">Full Edit</a>",
+                "<a href=\"/admin/menu/items/edit/{$id}?return_to={$returnTo}\">Full Edit</a>",
             ];
 
             return [
@@ -141,8 +141,8 @@ class MenuItemController
         $this->service->create($data);
 
         Flash::set('success', 'Menu item created successfully.');
-        header('Location: /admin/menu/items');
-        exit;
+        $returnTo = $_POST['return_to'] ?? '';
+        return Redirect::toReturnTo($returnTo, '/admin/menu/items')->send();
     }
 
     public function update(int $id)
@@ -170,8 +170,8 @@ class MenuItemController
         $this->service->update($id, $data);
 
         Flash::set('success', 'Menu item updated successfully.');
-        header('Location: /admin/menu/items');
-        exit;
+        $returnTo = $_POST['return_to'] ?? '';
+        return Redirect::toReturnTo($returnTo, '/admin/menu/items')->send();
     }
 
     protected function extractItemData(array $input): array

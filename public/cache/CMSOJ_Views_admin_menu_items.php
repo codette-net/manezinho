@@ -24,6 +24,7 @@
 <nav class="menu">
     <ul class="sidebar-nav">
         <li><a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
+        <li><a href="/admin/pages" class="<?= $selected === 'pages' ? 'active' : '' ?>">Pages</a></li>
         <li><a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a></li>
         <!-- todo : make submenu's  -->
         <li><a href="/admin/menu/sections" class="<?= $selected === 'menu_sections' ? 'active' : '' ?>">Menu Sections</a></li>
@@ -71,7 +72,9 @@
   </div>
 
   <div class="actions">
-    <a href="/admin/menu/items/create" class="btn btn-primary">+ New Item</a>
+    <?php $returnTo = $_SERVER['REQUEST_URI'] ?? '' ;
+    echo '<a href="/admin/menu/items/create/?return_to=' . $returnTo . '" class="btn btn-primary">+ New Item</a>';
+    ?>
   </div>
 </header>
 

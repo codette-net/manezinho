@@ -6,13 +6,20 @@ if (!$sectionItems) return;
 ?>
 
 <table class="menu-table">
-  <?php $thead_open = false; ?>
+    <?php $thead_open = false; ?>
 
-  <?php foreach ($sectionItems as $it):
-
+    <?php foreach ($sectionItems as $it):
+ 
         $type = $it['display_type'] ?: 'item';
-        $name = trim($it["name_$lang"] ?? $it["name_en"] ?? '') ;
-        $desc = trim($it["description_$lang"] ?? $it["description_pt"] ?? '');
+        $name = trim($it["name_$lang"] ?? '');
+        if ($name === '') {
+            $name = trim($it['name_en'] ?? '');
+        }
+        $desc = trim($it["description_$lang"] ?? '');
+        if ($desc === '') {
+            $desc = trim($it['description_en'] ?? '');
+        }
+
         $p1   = trim($it['price_1'] ?? '');
         $p2   = trim($it['price_2'] ?? '');
         $u1   = trim($it['unit_1_label'] ?? '');
@@ -67,5 +74,5 @@ if (!$sectionItems) return;
 
     endforeach; ?>
 
-  <?php if ($thead_open) echo "</tbody>"; ?>
+    <?php if ($thead_open) echo "</tbody>"; ?>
 </table>

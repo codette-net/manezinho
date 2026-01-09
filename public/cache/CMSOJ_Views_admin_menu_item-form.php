@@ -26,6 +26,7 @@
 <nav class="menu">
     <ul class="sidebar-nav">
         <li><a href="/admin" class="<?= $selected === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
+        <li><a href="/admin/pages" class="<?= $selected === 'pages' ? 'active' : '' ?>">Pages</a></li>
         <li><a href="/admin/events" class="<?= $selected === 'events' ? 'active' : '' ?>">Events</a></li>
         <!-- todo : make submenu's  -->
         <li><a href="/admin/menu/sections" class="<?= $selected === 'menu_sections' ? 'active' : '' ?>">Menu Sections</a></li>
@@ -70,6 +71,9 @@
 
 <form method="POST" action="<?php echo $editing ? '/admin/menu/items/update/' . $item['id'] : '/admin/menu/items/store'; ?>">
   <input type="hidden" name="_csrf" value="<?= \CMSOJ\Helpers\Csrf::token() ?>">
+  <input type="hidden" name="return_to"
+  value="<?= htmlspecialchars($_GET['return_to'] ?? ($_POST['return_to'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+
 
   <?php echo CMSOJ\Template::renderComponent('CMSOJ/Views/components/admin/form/select.html', [
     'label'   => 'Section',

@@ -188,93 +188,93 @@ class CalendarService
     return $this->uniqueEvents($events);
   }
 
-private function addRecurringEvents(array $events, int $year, int $month): array
-{
-  $result = $events;
+  private function addRecurringEvents(array $events, int $year, int $month): array
+  {
+    $result = $events;
 
-  $rangeStart = new DateTime(sprintf('%04d-%02d-01 00:00:00', $year, $month));
-  $rangeEnd   = (clone $rangeStart)->modify('last day of this month')->setTime(23, 59, 59);
+    $rangeStart = new DateTime(sprintf('%04d-%02d-01 00:00:00', $year, $month));
+    $rangeEnd   = (clone $rangeStart)->modify('last day of this month')->setTime(23, 59, 59);
 
-  foreach ($events as $event) {
+    foreach ($events as $event) {
+      $rec = (string)($event['recurring'] ?? 'never');
+      if ($rec === 'never') {
+        continue;
+      }
+
+      $result = array_merge($result, $this->expandRecurringInRange($event, $rangeStart, $rangeEnd));
+    }
+
+    return $result;
+  }
+
+  /**
+   * Expand a recurring event into occurrences that overlap the requested month range.
+   * This fixes:
+   *  - repeats not showing in the same month
+   *  - repeats stopping after a fixed number of iterations
+   */
+  private function expandRecurringInRange(array $event, DateTime $rangeStart, DateTime $rangeEnd): array
+  {
     $rec = (string)($event['recurring'] ?? 'never');
-    if ($rec === 'never') {
-      continue;
+    if ($rec === 'never') return [];
+
+    $start0 = new DateTime($event['datestart']);
+    $end0   = new DateTime($event['dateend']);
+
+    // duration in seconds (keep same duration on each occurrence)
+    $duration = max(0, $end0->getTimestamp() - $start0->getTimestamp());
+
+    // Determine step
+    $stepSpec = match ($rec) {
+      'daily'   => '+1 day',
+      'weekly'  => '+1 week',
+      'monthly' => '+1 month',
+      'yearly'  => '+1 year',
+      default   => null,
+    };
+
+    if ($stepSpec === null) return [];
+
+    // Move cursor to the first occurrence that could overlap the range.
+    // We do that by stepping forward until end >= rangeStart.
+    $cursorStart = clone $start0;
+    $cursorEnd   = (clone $cursorStart);
+    $cursorEnd->modify('+' . $duration . ' seconds');
+
+    // Safety cap to prevent infinite loop if bad data (should never hit)
+    $guard = 0;
+
+    while ($cursorEnd < $rangeStart) {
+      $cursorStart->modify($stepSpec);
+      $cursorEnd = (clone $cursorStart)->modify('+' . $duration . ' seconds');
+
+      if (++$guard > 5000) {
+        break;
+      }
     }
 
-    $result = array_merge($result, $this->expandRecurringInRange($event, $rangeStart, $rangeEnd));
+    $out = [];
+
+    // Now generate occurrences until start > rangeEnd
+    while ($cursorStart <= $rangeEnd) {
+      // include if overlaps [rangeStart, rangeEnd]
+      if ($cursorEnd >= $rangeStart) {
+        $clone = $event;
+        $clone['datestart'] = $cursorStart->format('Y-m-d H:i:s');
+        $clone['dateend']   = $cursorEnd->format('Y-m-d H:i:s');
+        $out[] = $clone;
+      }
+
+      $cursorStart->modify($stepSpec);
+      $cursorEnd = (clone $cursorStart)->modify('+' . $duration . ' seconds');
+
+      if (++$guard > 5000) {
+        break;
+      }
+    }
+
+    return $out;
   }
-
-  return $result;
-}
-
-/**
- * Expand a recurring event into occurrences that overlap the requested month range.
- * This fixes:
- *  - repeats not showing in the same month
- *  - repeats stopping after a fixed number of iterations
- */
-private function expandRecurringInRange(array $event, DateTime $rangeStart, DateTime $rangeEnd): array
-{
-  $rec = (string)($event['recurring'] ?? 'never');
-  if ($rec === 'never') return [];
-
-  $start0 = new DateTime($event['datestart']);
-  $end0   = new DateTime($event['dateend']);
-
-  // duration in seconds (keep same duration on each occurrence)
-  $duration = max(0, $end0->getTimestamp() - $start0->getTimestamp());
-
-  // Determine step
-  $stepSpec = match ($rec) {
-    'daily'   => '+1 day',
-    'weekly'  => '+1 week',
-    'monthly' => '+1 month',
-    'yearly'  => '+1 year',
-    default   => null,
-  };
-
-  if ($stepSpec === null) return [];
-
-  // Move cursor to the first occurrence that could overlap the range.
-  // We do that by stepping forward until end >= rangeStart.
-  $cursorStart = clone $start0;
-  $cursorEnd   = (clone $cursorStart);
-  $cursorEnd->modify('+' . $duration . ' seconds');
-
-  // Safety cap to prevent infinite loop if bad data (should never hit)
-  $guard = 0;
-
-  while ($cursorEnd < $rangeStart) {
-    $cursorStart->modify($stepSpec);
-    $cursorEnd = (clone $cursorStart)->modify('+' . $duration . ' seconds');
-
-    if (++$guard > 5000) {
-      break;
-    }
-  }
-
-  $out = [];
-
-  // Now generate occurrences until start > rangeEnd
-  while ($cursorStart <= $rangeEnd) {
-    // include if overlaps [rangeStart, rangeEnd]
-    if ($cursorEnd >= $rangeStart) {
-      $clone = $event;
-      $clone['datestart'] = $cursorStart->format('Y-m-d H:i:s');
-      $clone['dateend']   = $cursorEnd->format('Y-m-d H:i:s');
-      $out[] = $clone;
-    }
-
-    $cursorStart->modify($stepSpec);
-    $cursorEnd = (clone $cursorStart)->modify('+' . $duration . ' seconds');
-
-    if (++$guard > 5000) {
-      break;
-    }
-  }
-
-  return $out;
-}
 
   private function uniqueEvents(array $events): array
   {
