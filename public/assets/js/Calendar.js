@@ -787,3 +787,20 @@ class Calendar {
         this.options.expanded_list = value;
     }
 }
+
+// close modal when clicking outside or on escape key
+body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("calendar-modal-wrapper")) {
+        document
+            .querySelector(".calendar-modal-wrapper.open .close")
+            .click();
+    }
+});
+body.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        let openModal = document.querySelector(".calendar-modal-wrapper.open");
+        if (openModal) {
+            openModal.querySelector(".close").click();
+        }
+    }
+});
