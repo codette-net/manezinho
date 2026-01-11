@@ -3,8 +3,9 @@
 {% block title %} {{ $title }} {% endblock %}
 
 {% block meta %}
-<meta name="description"
-  content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
+@parent
+  <meta name="description" content="Discover the authentic taste of São Jorge at Art Restaurant Manezinho. Enjoy fresh seafood, local meats, São Jorge cheese, and curated wines in a relaxed setting.">
+  <meta name="keywords" content="Art Restaurant Manezinho, São Jorge cuisine, Azorean food, fresh seafood, local meats, São Jorge cheese, tapas, Azorean wines, craft cocktails, Urzelina restaurant">
 {% endblock %}
 
 
@@ -92,3 +93,46 @@
 {% endblock %}
 
 {% partial 'footer' %}
+
+{% block scripts %}
+@parent
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Art Restaurant Manezinho Menu",
+  "url": "https://www.artrestaurantmanezinho.com/menu",
+  "hasMenuSection": [
+    <?php $firstSection = true; ?>
+    <?php foreach ($tree as $main): ?>
+    <?php if (!$firstSection) echo ','; $firstSection = false; ?>
+    {
+      "@type": "MenuSection",
+      "name": "<?= htmlspecialchars($main["name_en"] ?: ''); ?>",
+      "description": "<?= htmlspecialchars($main["description_en"] ?: ''); ?>",
+      "hasMenuItem": [
+        <?php
+          $sectionItems = $itemsBySection[$main['id']] ?? [];
+          $firstItem = true;
+          foreach ($sectionItems as $it):
+            if (!$firstItem) echo ','; $firstItem = false;
+        ?>
+        {
+          "@type": "MenuItem",
+          "name": "<?= htmlspecialchars($it['name_en'] ?: ''); ?>",
+          "description": "<?= htmlspecialchars($it['description_en'] ?: ''); ?>",
+          "offers": {
+            "@type": "Offer",
+            "price": "<?= htmlspecialchars($it['price_1'] ?: '0.00'); ?>",
+            "priceCurrency": "EUR"
+          }
+        }
+        <?php endforeach; ?>
+      ]
+    }
+    <?php endforeach; ?>
+  ]
+}
+</script>
+{% endblock %}

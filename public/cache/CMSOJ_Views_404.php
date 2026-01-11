@@ -1,2 +1,41 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
-<h1>404</h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.6) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.6) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.6) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.6) 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+
+
+
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  h1 {
+    color: #e8491d;
+  }
+  p {
+    margin: 15px 0;
+  }
+  a {
+    color: #e8491d;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+</style>
+
+<h1>404 - Page Not Found</h1>
+<p>Sorry, the page you are looking for does not exist.</p>
+<p><a href="/">Return to Home</a></p>
+

@@ -1,12 +1,43 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Manezinho | <?php echo $title; ?> </title>
-  
-  <meta name="description" content="Welcome to Art Restaurant Manezinho, a unique dining experience in São Jorge, Azores. Enjoy exquisite cuisine in an artistic setting. Book your table now!">
+<html lang="en" dir="ltr">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
+<meta property="og:title" content="Art Restaurant Manezinho" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="pt_PT" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content='https://www.artrestaurantmanezinho.com/<?php echo $title; ?>' />
+<meta property="og:image" content="https://www.artrestaurantmanezinho.com/assets/img/manezinhooutside1024.JPG" />
+<meta property="og:image:alt" content="Outside bird view of Manezinho art Restaurant" />
+<meta property="og:description" content="Art restaurant Manezinho is a place dedicated to good food, art and music." />
+<!-- <meta property="og:video" content="https://www.artrestaurantmanezinho.com/assets/mp4/main.mp4" /> -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="rating" content="general">
+<meta name="revisit-after" content="7 days">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y85J3B80J"></script>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <meta name="description" content="Discover the authentic taste of São Jorge at Art Restaurant Manezinho. Enjoy fresh seafood, local meats, São Jorge cheese, and curated wines in a relaxed setting.">
+  <meta name="keywords" content="Art Restaurant Manezinho, São Jorge cuisine, Azorean food, fresh seafood, local meats, São Jorge cheese, tapas, Azorean wines, craft cocktails, Urzelina restaurant">
+
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y85J3B80J');
+</script>
+
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css"); ?>' />
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css"); ?>'>
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/style.css"); ?>'>
@@ -14,7 +45,11 @@
   <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/noscript.css"); ?>' />
 </noscript>
 
-  <!-- here is the end of head  -->
+<title>Manezinho | <?php echo $title; ?> </title>
+<link rel="apple-touch-icon" sizes="180x180" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/apple-touch-icon.png"); ?>'>
+<link rel="icon" type="image/png" sizes="32x32" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/favicon-32x32.png"); ?>'>
+<link rel="icon" type="image/png" sizes="16x16" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/favicon-16x16.png"); ?>'>
+<link rel="manifest" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/site.webmanifest"); ?>'>
 </head>
 
 
@@ -24,129 +59,125 @@
   
 
 <?php \CMSOJ\Template::partial('nav'); ?>
-  <main>
-    <header class="header-alt">
-      <h1 class="hero-header">Art Restaurant Manezinho</h1>
-      <h2 class="hero-header-h2">Flavours</h2>
+<main>
+  <header class="header-alt">
+    <h1 class="hero-header">Art Restaurant Manezinho</h1>
+    <h2 class="hero-header-h2">Flavours</h2>
+    <p>
+      Discover the authentic taste of São Jorge, where local ingredients and traditional island cooking inspire every
+      dish. From its famous cheeses and rich dairy heritage to fresh seafood and locally raised meats, the island
+      offers flavours rooted in simplicity and quality. At Manezinho, we bring these ingredients together with care,
+      creating meals that reflect the character of the Azores and the spirit of its coast.
+    </p>
+  </header>
+  <section class="panel">
+    <div class="col">
+      <h2 class="major"> Fresh Catch from the Atlantic</h2>
       <p>
-        Discover the authentic taste of São Jorge, where local ingredients and traditional island cooking inspire every
-        dish. From its famous cheeses and rich dairy heritage to fresh seafood and locally raised meats, the island
-        offers flavours rooted in simplicity and quality. At Manezinho, we bring these ingredients together with care,
-        creating meals that reflect the character of the Azores and the spirit of its coast.
+        The fish on our menu changes with what the ocean offers each day. Whether it’s tuna, amberjack, lapas or
+        another local catch, we prepare it fresh and serve it with a short story about its origin and, if you like, a
+        wine pairing chosen to match its flavour.</p>
+    </div>
+    <div class="col">
+      <figure class="image img-max shadow-low">
+        <!-- srcset  -->
+        <img src="assets/img/scaledImg/manezinho_food_060-small.jpg"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+          srcset="assets/img/scaledImg/manezinho_food_060-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_060-large.jpg 992w, assets/img/scaledImg/manezinho_food_060-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_060-small.jpg 480w"
+          alt="Manezinho Tuna Dish" loading="lazy">
+        <figcaption>Fresh Tuna</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="panel col-rev">
+    <div class="col">
+      <figure class="image img-max shadow-low">
+        <img src="assets/img/scaledImg/manezinho_food_031-small.jpg"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+          srcset="assets/img/scaledImg/manezinho_food_031-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_031-large.jpg 992w, assets/img/scaledImg/manezinho_food_031-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_031-small.jpg 480w"
+          alt="Manezinho Hamburger Dish" loading="lazy">
+        <figcaption>Manezinho Hamburger</figcaption>
+      </figure>
+    </div>
+    <div class="col">
+      <h2 class="major">
+        Crafted Cuts & Signature Dishes
+      </h2>
+      <p>
+        Our selection of island meats highlights the best of local producers, featuring premium cuts prepared with
+        care and served with thoughtful sides. Among them is our signature manezinho hamburger. It is made with ground
+        beef from the islands, which gives it a unique and delicious flavor.
       </p>
-    </header>
-    <section class="panel">
-      <div class="col">
-        <h2 class="major"> Fresh Catch from the Atlantic</h2>
-        <p>
-          The fish on our menu changes with what the ocean offers each day. Whether it’s tuna, amberjack, lapas or
-          another local catch, we prepare it fresh and serve it with a short story about its origin and, if you like, a
-          wine pairing chosen to match its flavour.</p>
-      </div>
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <!-- srcset  -->
-          <img src="assets/img/scaledImg/manezinho_food_060-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_060-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_060-large.jpg 992w, assets/img/scaledImg/manezinho_food_060-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_060-small.jpg 480w"
-            alt="Manezinho Tuna Dish" loading="lazy">
-          <figcaption>Fresh Tuna</figcaption>
-        </figure>
-      </div>
-    </section>
-    <section class="panel col-rev">
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <img src="assets/img/scaledImg/manezinho_food_031-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_031-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_031-large.jpg 992w, assets/img/scaledImg/manezinho_food_031-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_031-small.jpg 480w"
-            alt="Manezinho Hamburger Dish" loading="lazy">
-          <figcaption>Manezinho Hamburger</figcaption>
-        </figure>
-      </div>
-      <div class="col">
-        <h2 class="major">
-          Crafted Cuts & Signature Dishes
-        </h2>
-        <p>
-          Our selection of island meats highlights the best of local producers, featuring premium cuts prepared with
-          care and served with thoughtful sides. Among them is our signature manezinho hamburger. It is made with ground
-          beef from the islands, which gives it a unique and delicious flavor.
-        </p>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="panel">
-      <div class="col">
-        <h2 class="major">Cheese & Tapas</h2>
-        <p>São Jorge is known for its bold, flavorful cheese, and our tapas menu celebrates this local specialty
-          alongside a selection of small plates made with regional ingredients. From dairy-rich bites to fresh seafood
-          and cured meats, each tapa is prepared to share and enjoy at a relaxed pace.</p>
-      </div>
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <img src="assets/img/scaledImg/manezinho_food_033-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_033-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_033-large.jpg 992w, assets/img/scaledImg/manezinho_food_033-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_033-small.jpg 480w"
-            alt="Manezinho Tapas Dish" loading="lazy">
-          <figcaption>Assorted Tapas</figcaption>
-        </figure>
-      </div>
-    </section>
-    <!-- wines -->
-    <section class="panel col-rev">
-      <div class="col">
-        <figure class="image img-max shadow-low">
-          <img src="assets/img/scaledImg/manezinho_food_058-small.jpg"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-            srcset="assets/img/scaledImg/manezinho_food_058-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_058-large.jpg 992w, assets/img/scaledImg/manezinho_food_058-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_058-small.jpg 480w"
-            alt="Manezinho Wine Selection" loading="lazy">
-          <figcaption>Wine Selection</figcaption>
-        </figure>
-      </div>
-      <div class="col">
-        <h2 class="major">Curated Wine Selection</h2>
-        <p>
-          Our wine list showcases Azorean wines defined by volcanic terroir and limited production, alongside select
-          bottles from mainland regions. Let us guide you to the ideal pairing, whether you’re enjoying seafood, local
-          meats or a shared plate of São Jorge cheese.
-        </p>
-      </div>
-    </section>
-  
-      <!-- cocktails & gins img 036 -->
-      <section class="panel">
+  <section class="panel">
+    <div class="col">
+      <h2 class="major">Cheese & Tapas</h2>
+      <p>São Jorge is known for its bold, flavorful cheese, and our tapas menu celebrates this local specialty
+        alongside a selection of small plates made with regional ingredients. From dairy-rich bites to fresh seafood
+        and cured meats, each tapa is prepared to share and enjoy at a relaxed pace.</p>
+    </div>
+    <div class="col">
+      <figure class="image img-max shadow-low">
+        <img src="assets/img/scaledImg/manezinho_food_033-small.jpg"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+          srcset="assets/img/scaledImg/manezinho_food_033-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_033-large.jpg 992w, assets/img/scaledImg/manezinho_food_033-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_033-small.jpg 480w"
+          alt="Manezinho Tapas Dish" loading="lazy">
+        <figcaption>Assorted Tapas</figcaption>
+      </figure>
+    </div>
+  </section>
+  <!-- wines -->
+  <section class="panel col-rev">
+    <div class="col">
+      <figure class="image img-max shadow-low">
+        <img src="assets/img/scaledImg/manezinho_food_058-small.jpg"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+          srcset="assets/img/scaledImg/manezinho_food_058-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_058-large.jpg 992w, assets/img/scaledImg/manezinho_food_058-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_058-small.jpg 480w"
+          alt="Manezinho Wine Selection" loading="lazy">
+        <figcaption>Wine Selection</figcaption>
+      </figure>
+    </div>
+    <div class="col">
+      <h2 class="major">Curated Wine Selection</h2>
+      <p>
+        Our wine list showcases Azorean wines defined by volcanic terroir and limited production, alongside select
+        bottles from mainland regions. Let us guide you to the ideal pairing, whether you’re enjoying seafood, local
+        meats or a shared plate of São Jorge cheese.
+      </p>
+    </div>
+  </section>
 
-        <div class="col">
-          <h2 class="major">
-            Craft Cocktails & Local Gins
-          </h2>
-          <p>
-            Enjoy a selection of classic cocktails and carefully chosen gins, served simply and made to suit every
-            taste. Whether you prefer something refreshing, smooth or bold, we can help you find the right drink to
-            enjoy on its own or alongside your meal. Relax at the bar, try something familiar or discover a new
-            favourite with our recommendations.
+  <!-- cocktails & gins img 036 -->
+  <section class="panel">
 
-          </p>
-        </div>
-        <div class="col">
-          <figure class="image img-max shadow-low">
-            <img src="assets/img/scaledImg/manezinho_food_036-small.jpg"
-              sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
-              srcset="assets/img/scaledImg/manezinho_food_036-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_036-large.jpg 992w, assets/img/scaledImg/manezinho_food_036-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_036-small.jpg 480w"
-              alt="Manezinho Cocktails and Gins" loading="lazy">
-            <figcaption>Strawberry Martini</figcaption>
-          </figure>
-        </div>
-      </section>
+    <div class="col">
+      <h2 class="major">
+        Craft Cocktails & Local Gins
+      </h2>
+      <p>
+        Enjoy a selection of classic cocktails and carefully chosen gins, served simply and made to suit every
+        taste. Whether you prefer something refreshing, smooth or bold, we can help you find the right drink to
+        enjoy on its own or alongside your meal. Relax at the bar, try something familiar or discover a new
+        favourite with our recommendations.
+
+      </p>
+    </div>
+    <div class="col">
+      <figure class="image img-max shadow-low">
+        <img src="assets/img/scaledImg/manezinho_food_036-small.jpg"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 992px) 992px, 1200px"
+          srcset="assets/img/scaledImg/manezinho_food_036-xl.jpg 1200w, assets/img/scaledImg/manezinho_food_036-large.jpg 992w, assets/img/scaledImg/manezinho_food_036-medium.jpg 768w, ./assets/img/scaledImg/manezinho_food_036-small.jpg 480w"
+          alt="Manezinho Cocktails and Gins" loading="lazy">
+        <figcaption>Strawberry Martini</figcaption>
+      </figure>
+    </div>
+  </section>
 
 
-<?php \CMSOJ\Template::partial('reservation'); ?>
-  </main>
-
-
-<?php \CMSOJ\Template::partial('footer'); ?>
-
+  <?php \CMSOJ\Template::partial('reservation'); ?>
+</main>
 
 
 
@@ -155,7 +186,44 @@
 
   
 <script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js"); ?>''></script>
-<script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js"); ?>''></script>
+<script src=' <?php echo \CMSOJ\Template::asset("/assets/js/reservation.js"); ?>''></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Art Restaurant Manezinho",
+      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
+
+  "image": "https://www.artrestaurantmanezinho.com/assets/img/manezinhooutside1024.JPG",
+  "address": {
+   "@type": "PostalAddress",
+        "addressLocality": "Sao Jorge, Azores",
+        "addressRegion": "Urzelina",
+        "streetAddress": "Canada do Açougue, 9800"
+    "addressCountry": "Portugal"
+  },
+  "telephone": "+3512954140963",
+  "url": "https://www.artrestaurantmanezinho.com",
+  "servesCuisine": "Azorean, Seafood, Portuguese",
+  "priceRange": "€€",
+  
+  "sameAs": [
+    "https://www.facebook.com/artrestaurantmanezinho"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Restaurant",
+      "name": "Art restaurant Manezinho",
+      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
+      "openingHours": "We,Th,Fr,Sa,Su 18:30-02:00",
+      "telephone": "+351295414096"
+    }
+  </script>
 
 </body>
 
@@ -172,4 +240,8 @@
 
 
 
+
+
+
+<?php \CMSOJ\Template::partial('footer'); ?>
 

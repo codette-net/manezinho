@@ -9,25 +9,30 @@ use CMSOJ\Template;
 // Home
 $router->get('', function() {
     Template::view('CMSOJ/Views/index.html',
-['title' => 'Home']);
+['title' => 'home']);
+});
+
+$router->get('/home', function() {
+    Template::view('CMSOJ/Views/index.html',
+['title' => 'home']);
 });
 
 // Flavours page
 $router->get('flavours', function() {
     Template::View('CMSOJ/Views/flavours.html',
-['title' => 'Flavours']);
+['title' => 'flavours']);
 });
 
 // Events page
 $router->get('events', function() {
     Template::View('CMSOJ/Views/events.html',
-['title' => 'Events']);
+['title' => 'events']);
 });
 
 // About page
 $router->get('about', function() {
     Template::view('CMSOJ/Views/about.html',
-['title' => 'About']);
+['title' => 'about']);
 });
 
 // Dynamic blog post: /blog/123

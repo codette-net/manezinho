@@ -1,16 +1,41 @@
 <?php class_exists('CMSOJ\Template') or exit; ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Manezinho | <?php echo $title; ?> </title>
-  
+<html lang="en" dir="ltr">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta property="og:title" content="Art Restaurant Manezinho" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="pt_PT" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.artrestaurantmanezinho.com" />
+<meta property="og:image" content="https://www.artrestaurantmanezinho.com/assets/img/manezinhooutside1024.JPG" />
+<meta property="og:image:alt" content="Outside bird view of Manezinho art Restaurant" />
+<meta property="og:description" content="Art restaurant Manezinho is a place dedicated to good food, art and music." />
+<!-- <meta property="og:video" content="https://www.artrestaurantmanezinho.com/assets/mp4/main.mp4" /> -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="rating" content="general">
+<meta name="revisit-after" content="7 days">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y85J3B80J"></script>
+
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
 <meta name="description" content="Welcome to Art Restaurant Manezinho...">
 
-  
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y85J3B80J');
+</script>
+
 
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/main.css"); ?>' />
 <link rel="stylesheet" href='<?php echo \CMSOJ\Template::asset("/assets/css/components.css"); ?>'>
@@ -21,7 +46,11 @@
 
 <link rel="stylesheet" href="/assets/css/calendar.css">
 
-  <!-- here is the end of head  -->
+<title>Manezinho | <?php echo $title; ?> </title>
+<link rel="apple-touch-icon" sizes="180x180" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/apple-touch-icon.png"); ?>'>
+<link rel="icon" type="image/png" sizes="32x32" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/favicon-32x32.png"); ?>'>
+<link rel="icon" type="image/png" sizes="16x16" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/favicon-16x16.png"); ?>'>
+<link rel="manifest" href='<?php echo \CMSOJ\Template::asset("/assets/img/favicon/site.webmanifest"); ?>'>
 </head>
 
 
@@ -125,7 +154,44 @@
   
 
 <script src='<?php echo \CMSOJ\Template::asset("/assets/js/main.js"); ?>''></script>
-<script src='<?php echo \CMSOJ\Template::asset("/assets/js/reservation.js"); ?>''></script>
+<script src=' <?php echo \CMSOJ\Template::asset("/assets/js/reservation.js"); ?>''></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Art Restaurant Manezinho",
+      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
+
+  "image": "https://www.artrestaurantmanezinho.com/assets/img/manezinhooutside1024.JPG",
+  "address": {
+   "@type": "PostalAddress",
+        "addressLocality": "Sao Jorge, Azores",
+        "addressRegion": "Urzelina",
+        "streetAddress": "Canada do Açougue, 9800"
+    "addressCountry": "Portugal"
+  },
+  "telephone": "+3512954140963",
+  "url": "https://www.artrestaurantmanezinho.com",
+  "servesCuisine": "Azorean, Seafood, Portuguese",
+  "priceRange": "€€",
+  
+  "sameAs": [
+    "https://www.facebook.com/artrestaurantmanezinho"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Restaurant",
+      "name": "Art restaurant Manezinho",
+      "description": "Art restaurant Manezinho is a place dedicated to good food, art and music.",
+      "openingHours": "We,Th,Fr,Sa,Su 18:30-02:00",
+      "telephone": "+351295414096"
+    }
+  </script>
 
 <script src="/assets/js/Calendar.js"></script>
 <!-- <script src="CMSOJ/Views/js/events.js"></script> -->
