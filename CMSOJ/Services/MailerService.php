@@ -24,8 +24,13 @@ class MailerService
             $this->mail->isSMTP();
             $this->mail->Host = Config::get('SMTP_HOST');
             $this->mail->Port = Config::get('SMTP_PORT');
-            $this->mail->SMTPAuth = Config::get('SMTP_USER') !== '';
-            $this->mail->SMTPSecure = true; // no TLS on port 1025 (mailpit)
+            if ($this->mail->Port === 465) {
+                $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // implicit TLS
+            } else {
+                $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            }
+            $this->mail->SMTPAuth = true;
+            $this->mail->SMTPSecure = true;
             $this->mail->Username = Config::get('SMTP_USER');
             $this->mail->Password = Config::get('SMTP_PASS');
         }

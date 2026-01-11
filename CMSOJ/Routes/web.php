@@ -46,7 +46,7 @@ $router->get('calendar', [CalendarController::class, 'handle']);
 $router->get('menu',[MenuController::class,'index']);
 
 // Reservation request
-$router->post('reservation',[ReservationController::class,'submit']);
+$router->post('/reservation',[ReservationController::class,'submit']);
 
 
 
