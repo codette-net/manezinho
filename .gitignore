@@ -5,3 +5,4 @@ assets/img/scaledImg
 ./legacy
 tree.txt
 ./vendor
+public/cache

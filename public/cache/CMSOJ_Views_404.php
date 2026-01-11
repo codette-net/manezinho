@@ -7,16 +7,13 @@
     background-image: linear-gradient(45deg, rgba(255,255,255,0.6) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.6) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.6) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.6) 75%);
     background-size: 40px 40px;
     background-position: 0 0, 0 20px, 20px -20px, -20px 0;
-
-
-
     color: #333;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100dvh;
     text-align: center;
   }
   h1 {

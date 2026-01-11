@@ -271,7 +271,7 @@ form.addEventListener("submit", async (event) => {
             body: formData,
         });
         const result = await response.json();
-
+        
         if (result && !result.errors) {
             console.log("success");
             console.log(result);

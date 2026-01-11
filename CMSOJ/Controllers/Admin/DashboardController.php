@@ -24,6 +24,7 @@ class DashboardController
       'totalMessages' => $totalMessages,
       'unreadMessages' => $unreadMessages,
       'totalEvents' => $totalEvents,
+      'selected' => 'dashboard',
     ]);
   }
 }

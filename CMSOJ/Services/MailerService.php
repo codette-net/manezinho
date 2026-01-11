@@ -25,7 +25,7 @@ class MailerService
             $this->mail->Host = Config::get('SMTP_HOST');
             $this->mail->Port = Config::get('SMTP_PORT');
             $this->mail->SMTPAuth = Config::get('SMTP_USER') !== '';
-            $this->mail->SMTPSecure = false; // no TLS on port 1025 (mailpit)
+            $this->mail->SMTPSecure = true; // no TLS on port 1025 (mailpit)
             $this->mail->Username = Config::get('SMTP_USER');
             $this->mail->Password = Config::get('SMTP_PASS');
         }
@@ -40,8 +40,8 @@ class MailerService
     public function sendReservation(array $data, ?string &$error = null): bool
     {
         try {
-            $this->mail->setFrom('jos@jos.com', $data['first_name'] ?? 'Reservation');
-            $this->mail->addAddress('pol@pol.com', 'Reservations');
+            $this->mail->setFrom('info@artrestaurantmanezinho.com', $data['first_name'] ?? 'Reservation');
+            $this->mail->addAddress('reservations@artrestaurantmanezinho.com', 'Reservations');
 
             if (!empty($data['email'])) {
                 $this->mail->addReplyTo($data['email'], $data['first_name'] ?? '');
