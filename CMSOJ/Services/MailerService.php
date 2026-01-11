@@ -15,25 +15,38 @@ class MailerService
         $this->mail = new PHPMailer(true);
 
         // DEV DEBUG: log SMTP conversation to PHP error_log
-        // Comment out in production
-        $this->mail->SMTPDebug  = 2;
-        $this->mail->Debugoutput = 'error_log';
+        if (strtolower((string)Config::get('APP_ENV')) !== 'production') {
+            $this->mail->SMTPDebug  = 2;
+            $this->mail->Debugoutput = 'error_log';
+        } else {
+            $this->mail->SMTPDebug = 0;
+        }
+
 
         // If SMTP mode enabled use it
-        if (Config::get('SMTP') === 'true') {
+        // If SMTP mode enabled use it
+        if (strtolower((string)Config::get('SMTP')) === 'true') {
             $this->mail->isSMTP();
-            $this->mail->Host = Config::get('SMTP_HOST');
-            $this->mail->Port = Config::get('SMTP_PORT');
-            if ($this->mail->Port === 465) {
+            $this->mail->Host = (string)Config::get('SMTP_HOST');
+
+            $port = (int)Config::get('SMTP_PORT');
+            $this->mail->Port = $port;
+
+            $this->mail->SMTPAuth = true;
+            $this->mail->Username = (string)Config::get('SMTP_USER');
+            $this->mail->Password = (string)Config::get('SMTP_PASS');
+
+            // Encryption based on port
+            if ($port === 465) {
                 $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // implicit TLS
             } else {
-                $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // STARTTLS (usually 587)
             }
-            $this->mail->SMTPAuth = true;
-            $this->mail->SMTPSecure = true;
-            $this->mail->Username = Config::get('SMTP_USER');
-            $this->mail->Password = Config::get('SMTP_PASS');
+
+            // Optional but often helps on shared hosting:
+            $this->mail->SMTPAutoTLS = true;
         }
+
 
         $this->mail->isHTML(true);
     }
