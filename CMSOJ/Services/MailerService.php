@@ -58,8 +58,9 @@ class MailerService
     public function sendReservation(array $data, ?string &$error = null): bool
     {
         try {
-            $this->mail->setFrom('info@artrestaurantmanezinho.com', $data['first_name'] ?? 'Reservation');
-            $this->mail->addAddress('reservations@artrestaurantmanezinho.com', 'Reservations');
+            $this->mail->setFrom((string)Config::get('SMTP_USER'), 'Reservations');
+            $this->mail->addAddress((string)Config::get('MAIL_FROM'), 'Reservations');
+
 
             if (!empty($data['email'])) {
                 $this->mail->addReplyTo($data['email'], $data['first_name'] ?? '');
