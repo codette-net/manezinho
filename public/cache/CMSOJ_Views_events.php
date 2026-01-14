@@ -11,7 +11,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="pt_PT" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.artrestaurantmanezinho.com" />
+<meta property="og:url" content='https://www.artrestaurantmanezinho.com/<?php echo $title; ?>' />
 <meta property="og:image" content="https://www.artrestaurantmanezinho.com/assets/img/manezinhooutside1024.JPG" />
 <meta property="og:image:alt" content="Outside bird view of Manezinho art Restaurant" />
 <meta property="og:description" content="Art restaurant Manezinho is a place dedicated to good food, art and music." />
@@ -26,7 +26,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<meta name="description" content="Welcome to Art Restaurant Manezinho...">
+  <meta name="description" content="Enjoy live music at Art Restaurant Manezinho in São Jorge. Experience resident musicians, guest performances, and open stage nights in a relaxed setting. Check our events calendar for upcoming shows.">
+  <meta name="keywords" content="Art Restaurant Manezinho, live music São Jorge, resident musicians, guest performances, open stage nights, events calendar, Urzelina music events, karaoke nights, blues sessions, jazz nights, acoustic performances">  
 
 <script>
   window.dataLayer = window.dataLayer || [];
