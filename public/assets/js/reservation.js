@@ -278,6 +278,7 @@ form.addEventListener("submit", async (event) => {
             console.log("success");
             console.log(result);
             responseWrapper.style.display = "flex";
+            responseHeader.textContent = "Thank you!";
             responseMsg.innerHTML = result.success;
             form.reset();
         } else if (result.errors) {

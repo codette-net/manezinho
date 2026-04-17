@@ -24,7 +24,6 @@ class MailerService
 
 
         // If SMTP mode enabled use it
-        // If SMTP mode enabled use it
         if (strtolower((string)Config::get('SMTP')) === 'true') {
             $this->mail->isSMTP();
             $this->mail->Host = (string)Config::get('SMTP_HOST');
